@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="s" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a1622"/>
+      <stop offset="0.6" stop-color="#0f2c3d"/>
+      <stop offset="1" stop-color="#13405a"/>
+    </linearGradient>
+    <radialGradient id="sglow" cx="0.78" cy="0.22" r="0.5">
+      <stop offset="0" stop-color="#F2A60C" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#F2A60C" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#s)"/>
+  <rect width="1200" height="800" fill="url(#sglow)"/>
+  <g transform="translate(930 175)">
+    <circle r="70" fill="#F2A60C"/>
+    <g stroke="#F2A60C" stroke-width="10" stroke-linecap="round">
+      <path d="M0 -120 V-160 M0 120 V160 M-120 0 H-160 M120 0 H160 M-85 -85 L-115 -115 M85 -85 L115 -115 M-85 85 L-115 115 M85 85 L115 115"/>
+    </g>
+  </g>
+  <g stroke="#ffffff" stroke-opacity="0.10" stroke-width="2">
+    <rect x="120" y="470" width="430" height="250" rx="8" fill="#0a1622" fill-opacity="0.6"/>
+    <path d="M120 540 H550 M120 610 H550 M120 680 H550 M260 470 V720 M400 470 V720"/>
+    <rect x="610" y="470" width="430" height="250" rx="8" fill="#0a1622" fill-opacity="0.6"/>
+    <path d="M610 540 H1040 M610 610 H1040 M610 680 H1040 M750 470 V720 M890 470 V720"/>
+  </g>
+</svg>

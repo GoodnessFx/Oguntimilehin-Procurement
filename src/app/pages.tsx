@@ -70,30 +70,72 @@ const projectTone: Record<string, { from: string; to: string }> = {
   blue: { from: "from-[#1C6FB5]/15", to: "to-[#1C6FB5]/5" },
 };
 
+type HeroSlide = { type: "video" | "image"; src: string; alt: string; poster?: string };
+
+// Drop real power/energy footage here (public/media) and it crossfades into the
+// hero. Use .mp4 for video (autoplay/loop/muted) — set a `poster` SVG so the
+// frame shows before/without the video. Use .jpg/.png/.svg for stills.
+// If a file is missing, that layer falls back to the gradient base so the hero never breaks.
+const heroSlides: HeroSlide[] = [
+  { type: "video", src: "/media/hero-generator.mp4", poster: "/media/hero-generator.svg", alt: "Generator install for a Lagos home or business" },
+  { type: "image", src: "/media/hero-solar.svg", alt: "Solar panel and inverter setup" },
+  { type: "image", src: "/media/hero-consult.svg", alt: "Procurement and consulting meeting" },
+];
+
 function HeroBackground() {
-  const scenes = [
+  const gradientBase = [
     "linear-gradient(125deg,#0a0d10 0%,#1a2230 50%,#26301f 100%)",
     "linear-gradient(125deg,#241a06 0%,#3f2c08 42%,#7a4d06 120%)",
     "linear-gradient(125deg,#0a1622 0%,#0f2c3d 52%,#13405a 100%)",
   ];
   const [active, setActive] = useState(0);
+  const [failed, setFailed] = useState<Set<number>>(new Set());
 
   useEffect(() => {
     const id = window.setInterval(() => {
-      setActive((value) => (value + 1) % scenes.length);
+      setActive((value) => (value + 1) % heroSlides.length);
     }, 6000);
     return () => window.clearInterval(id);
-  }, [scenes.length]);
+  }, []);
 
   return (
     <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-      {scenes.map((background, index) => (
-        <div
-          key={index}
-          className="absolute inset-0 transition-opacity duration-[2000ms] ease-in-out"
-          style={{ background, opacity: index === active ? 1 : 0 }}
-        />
+      {gradientBase.map((background, index) => (
+        <div key={`g${index}`} className="absolute inset-0" style={{ background }} />
       ))}
+
+      {heroSlides.map((slide, index) => {
+        const visible = index === active && !failed.has(index);
+        return (
+          <div
+            key={slide.src}
+            className="absolute inset-0 transition-opacity duration-[2000ms] ease-in-out"
+            style={{ opacity: visible ? 1 : 0 }}
+          >
+            {slide.type === "video" ? (
+              <video
+                className="h-full w-full object-cover"
+                src={slide.src}
+                poster={slide.poster}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+                onError={() => setFailed((prev) => new Set(prev).add(index))}
+              />
+            ) : (
+              <img
+                className="h-full w-full object-cover"
+                src={slide.src}
+                alt={slide.alt}
+                onError={() => setFailed((prev) => new Set(prev).add(index))}
+              />
+            )}
+          </div>
+        );
+      })}
+
       <div className="absolute inset-0 bg-[#0a0d10]/72" />
       <div
         className="absolute inset-0 opacity-[0.10]"

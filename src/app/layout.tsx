@@ -1106,7 +1106,7 @@ export function CtaBanner() {
               Ready to source
             </div>
             <h2 style={{ fontFamily: "'Sora', sans-serif" }} className="text-[clamp(2rem,4vw,3.2rem)] font-extrabold leading-[1.02] tracking-[-0.04em] text-[#14181D]">
-              Need a generator, solar kit, or a trusted buyer?
+              Need a generator, solar kit, or a buyer you can verify?
             </h2>
             <p className="mt-3 max-w-2xl text-base leading-7 text-[#3C4248]">
               Send the item or the load you want to power. We’ll check the supplier and send a written quote.
