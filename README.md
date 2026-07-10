@@ -62,9 +62,16 @@ reference site's navy + gold.
 
 ## Notes for the client
 
-- The hero uses crossfading gradient scenes. Drop real generator / solar / consulting
-  photos into `public/media/` and swap `HeroBackground` in `src/app/pages.tsx`
-  to image layers when available.
+- The hero crossfades **real media** from `public/media/`: `hero.mp4` (video),
+  `hero-solar.jpg`, and `hero-consult.jpg`. `hero-generator.jpg` is the video
+  poster. Replace these with your own generator, solar, and consulting footage/photos.
+- `public/media/` also holds real photos used across the site: project cards
+  (`proj-*.jpg`), blog cards (`blog-*.jpg`), the service-information
+  points (`svc-*.jpg`), and the company-policy page (`policy-office.jpg`).
+  Swap them for your own shots. All load locally (copied from `public/`
+  into `dist/` at build) so nothing depends on an external host.
+- Every `<img>` has an `onError` handler that hides a broken image, so a
+  missing file degrades gracefully instead of breaking the layout.
 - "Recent projects" uses gradient cards with factual descriptions. Add real photos
   and numbers once permission is given — do not invent project counts.
 - Google rating is 5.0 from a single review; the testimonials section is kept minimal

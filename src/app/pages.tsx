@@ -77,9 +77,9 @@ type HeroSlide = { type: "video" | "image"; src: string; alt: string; poster?: s
 // frame shows before/without the video. Use .jpg/.png/.svg for stills.
 // If a file is missing, that layer falls back to the gradient base so the hero never breaks.
 const heroSlides: HeroSlide[] = [
-  { type: "video", src: "/media/hero-generator.mp4", poster: "/media/hero-generator.svg", alt: "Generator install for a Lagos home or business" },
-  { type: "image", src: "/media/hero-solar.svg", alt: "Solar panel and inverter setup" },
-  { type: "image", src: "/media/hero-consult.svg", alt: "Procurement and consulting meeting" },
+  { type: "video", src: "/media/hero.mp4", poster: "/media/hero-generator.jpg", alt: "Generator install for a Lagos home or business" },
+  { type: "image", src: "/media/hero-solar.jpg", alt: "Solar panel and inverter setup" },
+  { type: "image", src: "/media/hero-consult.jpg", alt: "Procurement and consulting meeting" },
 ];
 
 function HeroBackground() {
@@ -285,17 +285,29 @@ function ProjectsSection({ compact = false }: { compact?: boolean }) {
           {projects.map((project) => {
             const tone = projectTone[project.tone];
             return (
-              <div key={project.title} className={`overflow-hidden rounded-[24px] border bg-gradient-to-br ${tone.from} ${tone.to} p-6 shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
-                <div className="text-[11px] font-extrabold uppercase tracking-[0.16em]" style={{ color: gold }}>{project.category}</div>
-                <h3 className="mt-2 text-lg font-bold tracking-[-0.02em] text-[#14181D]">{project.title}</h3>
-                <p className="mt-2 text-sm leading-7 text-[#3C4248]">{project.summary}</p>
-                <p className="mt-3 text-sm leading-7 text-[#14181D]/80"><span className="font-semibold">Outcome:</span> {project.outcome}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="rounded-full border border-[#E3E7E4] bg-white px-3 py-1 text-xs font-medium text-[#3C4248]">{tag}</span>
-                  ))}
+              <article key={project.title} className={`overflow-hidden rounded-[24px] border bg-white shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
+                <div className="relative h-44 overflow-hidden bg-[#14181D]">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                    onError={(event) => { (event.currentTarget as HTMLImageElement).style.display = "none"; }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#14181D]/70 to-transparent" />
+                  <span className="absolute left-4 top-4 text-[11px] font-extrabold uppercase tracking-[0.16em] text-white">{project.category}</span>
                 </div>
-              </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-bold tracking-[-0.02em] text-[#14181D]">{project.title}</h3>
+                  <p className="mt-2 text-sm leading-7 text-[#3C4248]">{project.summary}</p>
+                  <p className="mt-3 text-sm leading-7 text-[#14181D]/80"><span className="font-semibold">Outcome:</span> {project.outcome}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span key={tag} className="rounded-full border border-[#E3E7E4] bg-white px-3 py-1 text-xs font-medium text-[#3C4248]">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </article>
             );
           })}
         </div>
@@ -396,21 +408,25 @@ export function ServiceInformationPage() {
       icon: ShieldCheck,
       title: "Supplier checks before payment",
       body: "We confirm the supplier is real and the specification matches what you pay for before any order is placed.",
+      image: "/media/svc-supplier.jpg",
     },
     {
       icon: Factory,
       title: "Inspection before it moves",
       body: "Where possible, items are checked for rating, condition, and completeness before they leave the supplier.",
+      image: "/media/svc-inspection.jpg",
     },
     {
       icon: FileText,
       title: "Paperwork and clearance",
       body: "We help with the documentation and clearance steps needed to get equipment to you without avoidable delay.",
+      image: "/media/svc-supplier.jpg",
     },
     {
       icon: Truck,
       title: "Delivery in Lagos",
       body: "We coordinate transport to your address or an agreed pickup point, and keep you updated through the process.",
+      image: "/media/svc-delivery.jpg",
     },
   ];
 
@@ -438,13 +454,27 @@ export function ServiceInformationPage() {
         <Container>
           <div className="grid gap-4 md:grid-cols-2">
             {points.map((point) => (
-              <div key={point.title} className={`flex items-start gap-4 rounded-[24px] border bg-[#F5F6F4] p-6 shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
-                <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl" style={{ backgroundColor: "rgba(242,166,12,0.10)" }}>
-                  <point.icon className="h-6 w-6" style={{ color: gold }} />
-                </span>
-                <div>
-                  <h3 className="text-lg font-bold tracking-[-0.02em] text-[#14181D]">{point.title}</h3>
-                  <p className="mt-2 text-sm leading-7 text-[#3C4248]">{point.body}</p>
+              <div key={point.title} className={`overflow-hidden rounded-[24px] border bg-white shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
+                <div className="relative h-40 overflow-hidden bg-[#14181D]">
+                  <img
+                    src={point.image}
+                    alt={point.title}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                    onError={(event) => { (event.currentTarget as HTMLImageElement).style.display = "none"; }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#14181D]/55 to-transparent" />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-start gap-4">
+                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl" style={{ backgroundColor: "rgba(242,166,12,0.10)" }}>
+                      <point.icon className="h-6 w-6" style={{ color: gold }} />
+                    </span>
+                    <div>
+                      <h3 className="text-lg font-bold tracking-[-0.02em] text-[#14181D]">{point.title}</h3>
+                      <p className="mt-2 text-sm leading-7 text-[#3C4248]">{point.body}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
@@ -611,15 +641,29 @@ export function BlogPage({ onNavigate }: { onNavigate?: (path: string) => void }
                     event.preventDefault();
                     if (onNavigate) onNavigate(`/blog/${post.slug}`);
                   }}
-                  className={`group flex flex-col rounded-[24px] border bg-white p-6 shadow-[0_10px_24px_rgba(20,24,29,0.03)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(20,24,29,0.06)] ${cardBorder}`}
+                  className={`group flex flex-col overflow-hidden rounded-[24px] border bg-white shadow-[0_10px_24px_rgba(20,24,29,0.03)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(20,24,29,0.06)] ${cardBorder}`}
                 >
-                  <div className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.14em]" style={{ color: gold }}>
-                    <span>{post.category}</span>
-                    {post.readTime ? <span className="text-[#9AA1A8]">· {post.readTime}</span> : null}
+                  <div className="relative h-40 overflow-hidden bg-[#14181D]">
+                    {post.image ? (
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        loading="lazy"
+                        className="h-full w-full object-cover"
+                        onError={(event) => { (event.currentTarget as HTMLImageElement).style.display = "none"; }}
+                      />
+                    ) : null}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#14181D]/55 to-transparent" />
                   </div>
-                  <h3 className="mt-3 text-lg font-bold leading-snug tracking-[-0.02em] text-[#14181D] group-hover:text-[#F2A60C]">{post.title}</h3>
-                  <p className="mt-2 text-sm leading-7 text-[#3C4248]">{post.excerpt}</p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#14181D]">Read guide <ArrowRight className="h-4 w-4" style={{ color: gold }} /></span>
+                  <div className="p-6">
+                    <div className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.14em]" style={{ color: gold }}>
+                      <span>{post.category}</span>
+                      {post.readTime ? <span className="text-[#9AA1A8]">· {post.readTime}</span> : null}
+                    </div>
+                    <h3 className="mt-3 text-lg font-bold leading-snug tracking-[-0.02em] text-[#14181D] group-hover:text-[#F2A60C]">{post.title}</h3>
+                    <p className="mt-2 text-sm leading-7 text-[#3C4248]">{post.excerpt}</p>
+                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#14181D]">Read guide <ArrowRight className="h-4 w-4" style={{ color: gold }} /></span>
+                  </div>
                 </a>
               ))}
             </div>
@@ -656,6 +700,16 @@ export function BlogPostPage({ slug }: { slug: string }) {
           {post.title}
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-[#3C4248]">{post.excerpt}</p>
+        {post.image ? (
+          <div className="mt-6 overflow-hidden rounded-[20px] border border-[#E3E7E4] bg-[#14181D]">
+            <img
+              src={post.image}
+              alt={post.title}
+              className="h-56 w-full object-cover sm:h-72"
+              onError={(event) => { (event.currentTarget as HTMLImageElement).style.display = "none"; }}
+            />
+          </div>
+        ) : null}
         <div className="mt-8 space-y-5 text-[17px] leading-8 text-[#2C3138]">
           {post.body.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
@@ -808,13 +862,25 @@ export function CompanyPolicyPage() {
               <p className="mt-2 text-[17px] leading-8 text-[#3C4248]">{section.body}</p>
             </div>
           ))}
-          <div className={`rounded-[24px] border bg-[#F5F6F4] p-6 ${cardBorder}`}>
+          <div className={`overflow-hidden rounded-[24px] border bg-white shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
+            <div className="relative h-44 overflow-hidden bg-[#14181D]">
+              <img
+                src="/media/policy-office.jpg"
+                alt="Oguntimehin Procurement & Energy Services, Ipaja, Lagos"
+                loading="lazy"
+                className="h-full w-full object-cover"
+                onError={(event) => { (event.currentTarget as HTMLImageElement).style.display = "none"; }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#14181D]/55 to-transparent" />
+            </div>
+            <div className="p-6">
             <div className="flex items-center gap-3 text-sm font-semibold text-[#14181D]">
               <MapPin className="h-4 w-4" style={{ color: gold }} /> {ADDRESS_LINE_1}, {ADDRESS_LINE_2}
             </div>
             <div className="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#3C4248]">
               <span className="inline-flex items-center gap-2"><Phone className="h-4 w-4" style={{ color: gold }} /> {PHONE_DISPLAY}</span>
               <span className="inline-flex items-center gap-2"><CalendarClock className="h-4 w-4" style={{ color: gold }} /> {HOURS_DISPLAY}{HOURS_NEEDS_VERIFICATION ? " (confirm before visiting)" : ""}</span>
+            </div>
             </div>
           </div>
         </Container>

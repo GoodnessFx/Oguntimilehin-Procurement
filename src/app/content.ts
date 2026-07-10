@@ -34,6 +34,7 @@ export type ProjectItem = {
   outcome: string;
   tags: string[];
   tone: "amber" | "graphite" | "blue";
+  image: string;
 };
 
 export type SocialLink = {
@@ -210,6 +211,7 @@ export const projects: ProjectItem[] = [
     outcome: "Matched capacity to actual load instead of overselling a bigger unit.",
     tags: ["Generator", "Inverter", "Home"],
     tone: "amber",
+    image: "/media/proj-home.jpg",
   },
   {
     category: "Business",
@@ -219,6 +221,7 @@ export const projects: ProjectItem[] = [
     outcome: "Kept the owner's tools running without a full grid connection.",
     tags: ["Generator", "Solar", "Workshop"],
     tone: "graphite",
+    image: "/media/proj-workshop.jpg",
   },
   {
     category: "Education",
@@ -228,6 +231,7 @@ export const projects: ProjectItem[] = [
     outcome: "Reduced reliance on noisy generators during school hours.",
     tags: ["Solar", "School", "Batteries"],
     tone: "blue",
+    image: "/media/proj-school.jpg",
   },
   {
     category: "Office",
@@ -237,6 +241,7 @@ export const projects: ProjectItem[] = [
     outcome: "Documented the load first, then sized the system to it.",
     tags: ["Inverter", "Office", "Batteries"],
     tone: "amber",
+    image: "/media/proj-office.jpg",
   },
   {
     category: "General Procurement",
@@ -246,6 +251,7 @@ export const projects: ProjectItem[] = [
     outcome: "Consolidated orders and reported progress at each stage.",
     tags: ["Procurement", "Facility"],
     tone: "graphite",
+    image: "/media/proj-facility.jpg",
   },
   {
     category: "Residential",
@@ -255,6 +261,7 @@ export const projects: ProjectItem[] = [
     outcome: "Kept it to a budget the client could start with and expand later.",
     tags: ["Solar", "Starter kit", "Home"],
     tone: "blue",
+    image: "/media/proj-solar.jpg",
   },
 ];
 
