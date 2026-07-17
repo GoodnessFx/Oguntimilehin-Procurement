@@ -2,16 +2,13 @@ export const SITE_URL = "https://oguntimehin-procurement.vercel.app";
 export const BUSINESS_NAME = "Oguntimehin Procurement & Energy Services";
 export const WA_PHONE = "2348107380672";
 export const PHONE_DISPLAY = "0810 738 0672";
-export const EMAIL = "oguntimehin.procurement@gmail.com";
+export const EMAIL = "oguntimehin.pes@gmail.com";
 export const ADDRESS_LINE_1 = "11 Fagbayi Street, off Cash Street, Alimosho";
 export const ADDRESS_LINE_2 = "Ipaja, Lagos 100278, Nigeria";
 export const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=11+Fagbayi+Street+Ipaja+Lagos";
 export const WA_GREETING =
-  "Hello Oguntimehin Procurement & Energy Services, I would like to request a quote for sourcing or power/energy solutions.";
-
-// Hours are shown as "Open · Closes 6pm" on Google Maps. Confirm the opening
-// time with the client before publishing. Using a safe placeholder for now.
+  "Hello Oguntimehin PES, I would like to request a quote for procurement, construction, or building materials.";
 export const HOURS_DISPLAY = "Mon–Sat, closes 6pm";
 export const HOURS_NEEDS_VERIFICATION = true;
 
@@ -62,15 +59,15 @@ export const analyticsConfig = {
 export const services: ServiceItem[] = [
   {
     icon: "search",
-    title: "Equipment Sourcing",
+    title: "Building Materials Procurement",
     description:
-      "We source generators, inverter and solar components, batteries, and related energy hardware from suppliers we have checked, not random listings.",
+      "Cement, steel, blocks, roofing, pipes, wiring — sourced from verified suppliers at competitive prices for projects of any scale.",
   },
   {
     icon: "zap",
-    title: "Generator Supply",
+    title: "Generator Supply & Installation",
     description:
-      "Diesel and petrol generators sized for homes, offices, schools, and small businesses across Lagos, with guidance on the right capacity.",
+      "Diesel and petrol generators sized for homes, offices, schools, and sites across Lagos, with professional installation and load testing.",
   },
   {
     icon: "sun",
@@ -80,9 +77,9 @@ export const services: ServiceItem[] = [
   },
   {
     icon: "clipboard",
-    title: "Energy Consultation",
+    title: "Energy Consultation & Load Assessment",
     description:
-      "We look at what you actually run — lights, fans, fridges, equipment — and recommend a power setup that fits your budget and space.",
+      "We assess what you actually run — lights, fans, AC, equipment — and recommend a power setup that fits your budget and space.",
   },
   {
     icon: "shield",
@@ -100,7 +97,7 @@ export const services: ServiceItem[] = [
     icon: "package",
     title: "General Procurement",
     description:
-      "Beyond power, we handle sourcing of other goods and materials for businesses, schools, and offices that need a reliable buying process.",
+      "Beyond power and construction, we handle sourcing of other goods and materials for businesses, schools, and offices that need a reliable buying process.",
   },
   {
     icon: "truck",
@@ -112,7 +109,7 @@ export const services: ServiceItem[] = [
     icon: "file",
     title: "Documentation & Clearance",
     description:
-      "We help with the paperwork and clearance steps needed to get equipment into your hands without avoidable delay.",
+      "We help with the paperwork and clearance steps needed to get equipment and materials to your site without avoidable delay.",
   },
 ];
 
@@ -120,10 +117,10 @@ export const whyChoose = [
   "Lagos-based and on-ground",
   "Supplier checks before payment",
   "Power setups sized to your load",
-  "Generator and solar sourcing",
+  "Generator, solar & building materials sourcing",
   "Clear, written quotations",
   "Updates through the process",
-  "Homes, businesses, schools, offices",
+  "Homes, businesses, schools, offices, sites",
   "Logistics handled to your door",
 ];
 
@@ -133,7 +130,9 @@ export const audiences = [
   "Schools and training centres",
   "Shops and workshops",
   "Estate and facility managers",
-  "Anyone sourcing goods through a trusted buyer",
+  "Construction sites & contractors",
+  "Building material suppliers & distributors",
+  "Anyone sourcing goods through a verified buyer",
 ];
 
 export const orderSteps = [
@@ -163,7 +162,7 @@ export const faqItems: FAQItem[] = [
   {
     question: "What do you source?",
     answer:
-      "Primarily power and energy equipment — generators, solar panels, inverters, batteries, and related hardware. We also handle general procurement for businesses, schools, and offices.",
+      "Primarily power and energy equipment — generators, solar panels, inverters, batteries, and related hardware. We also handle building materials (cement, steel, blocks, roofing, pipes, wiring) and general procurement for businesses, schools, and offices.",
   },
   {
     question: "Do you install the generators or solar systems?",
@@ -179,6 +178,11 @@ export const faqItems: FAQItem[] = [
     question: "Can you help me size a generator or solar system?",
     answer:
       "Yes. Tell us what you need to power — rooms, appliances, equipment — and we recommend a capacity and a bill of materials that fits your budget.",
+  },
+  {
+    question: "Do you supply building materials like cement, steel, and blocks?",
+    answer:
+      "Yes. We source cement, steel reinforcement, blocks, roofing sheets, pipes, wiring, and other construction materials from verified suppliers at competitive prices for projects of any scale.",
   },
   {
     question: "Where do you deliver?",

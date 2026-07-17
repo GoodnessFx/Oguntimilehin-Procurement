@@ -215,29 +215,7 @@ export function classNames(...values: Array<string | false | undefined>) {
 }
 
 export function Logo() {
-  return (
-    <svg
-      viewBox="0 0 64 64"
-      className="h-11 w-11"
-      role="img"
-      aria-label="Oguntimehin Procurement & Energy Services"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <defs>
-        <linearGradient id="brand-bolt" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#FFC247" />
-          <stop offset="1" stopColor="#F2A60C" />
-        </linearGradient>
-      </defs>
-      <rect x="2" y="2" width="60" height="60" rx="15" fill="#14181D" stroke="#F2A60C" strokeOpacity="0.55" strokeWidth="1.5" />
-      <g stroke="#F2A60C" strokeOpacity="0.30" strokeWidth="1.4" strokeLinecap="round" transform="translate(-4 0)">
-        <path d="M50 14 a12 12 0 0 1 0 0" fill="none" />
-        <path d="M49 13 v-3 M55 18 l2 -2 M56 25 h3" />
-      </g>
-      <path d="M37 12 L20 36 H31 L26 52 L45 27 H34 Z" fill="url(#brand-bolt)" />
-      <circle cx="32" cy="32" r="22" fill="none" stroke="#F2A60C" strokeOpacity="0.18" strokeWidth="1" />
-    </svg>
-  );
+  return <img src="/brand/logo.svg" alt="Oguntimehin PES logo" className="h-11 w-11 object-contain" />;
 }
 
 export function Container({ className, children }: { className?: string; children: ReactNode }) {

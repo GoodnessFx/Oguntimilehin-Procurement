@@ -77,9 +77,10 @@ type HeroSlide = { type: "video" | "image"; src: string; alt: string; poster?: s
 // frame shows before/without the video. Use .jpg/.png/.svg for stills.
 // If a file is missing, that layer falls back to the gradient base so the hero never breaks.
 const heroSlides: HeroSlide[] = [
-  { type: "video", src: "/media/hero.mp4", poster: "/media/hero-generator.jpg", alt: "Generator install for a Lagos home or business" },
-  { type: "image", src: "/media/hero-solar.jpg", alt: "Solar panel and inverter setup" },
-  { type: "image", src: "/media/hero-consult.jpg", alt: "Procurement and consulting meeting" },
+  { type: "video", src: "/media/hero.mp4", poster: "/media/hero-generator.jpg", alt: "Construction site with building materials delivery" },
+  { type: "image", src: "/media/hero-solar.jpg", alt: "Solar panel installation on Lagos rooftop" },
+  { type: "image", src: "/media/hero-consult.jpg", alt: "Building materials procurement and site consultation" },
+  { type: "image", src: "/media/hero-construction.jpg", alt: "Construction site with building materials supply" },
 ];
 
 function HeroBackground() {
@@ -156,13 +157,13 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
       <Container className="relative z-10 flex min-h-[88vh] flex-col justify-center py-20 text-white">
         <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.18em] backdrop-blur-sm">
           <span className="h-1.5 w-1.5 rounded-full bg-[#F2A60C]" />
-          Procurement & Power/Energy · Lagos
+          Procurement, Construction & Building Materials · Lagos
         </div>
         <h1 className="max-w-4xl text-[clamp(2.4rem,6vw,4.6rem)] font-extrabold leading-[1.02] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
-          Source the generator, solar kit, or equipment your Lagos home or business actually needs.
+          Source power equipment, building materials, and construction supplies — delivered to your Lagos site.
         </h1>
         <p className="mt-5 max-w-2xl text-[18px] leading-relaxed text-white/80">
-          Oguntimehin handles sourcing, supplier checks, and delivery of power and energy equipment — for homes, offices, schools, and workshops across Lagos.
+          Oguntimehin PES handles procurement, supplier verification, and delivery of generators, solar equipment, building materials, and construction supplies — for homes, offices, schools, workshops, and construction sites across Lagos.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <a
@@ -188,7 +189,8 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
         <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-white/70">
           <span className="inline-flex items-center gap-2"><Zap className="h-4 w-4" style={{ color: gold }} /> Generator supply</span>
           <span className="inline-flex items-center gap-2"><Sun className="h-4 w-4" style={{ color: gold }} /> Solar & inverter systems</span>
-          <span className="inline-flex items-center gap-2"><Package className="h-4 w-4" style={{ color: gold }} /> General procurement</span>
+          <span className="inline-flex items-center gap-2"><Package className="h-4 w-4" style={{ color: gold }} /> Building materials</span>
+          <span className="inline-flex items-center gap-2"><Building2 className="h-4 w-4" style={{ color: gold }} /> Construction supply</span>
         </div>
       </Container>
     </section>
