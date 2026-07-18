@@ -217,7 +217,7 @@ export function classNames(...values: Array<string | false | undefined>) {
 }
 
 export function Logo() {
-  return <img src="/brand/logo.svg" alt="Oguntimehin Procurement & Energy Services logo" className="h-11 w-11 object-contain" />;
+  return <img src="/brand/opes-logo.png" alt="Oguntimehin Procurement & Energy Services logo" className="h-11 w-11 object-contain" />;
 }
 
 export function Container({ className, children }: { className?: string; children: ReactNode }) {
@@ -1240,6 +1240,7 @@ export function AnnouncementBar({ onNavigate }: { onNavigate: (path: string) => 
     </a>
   );
 }
+
 
 
 
