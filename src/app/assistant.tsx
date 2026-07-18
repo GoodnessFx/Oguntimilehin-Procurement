@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { ArrowUp, Bot, MessageCircle, Send, X } from "lucide-react";
 import { faqItems, services } from "./content";
-import { WhatsAppBrandIcon, createWhatsAppUrl, gold } from "./layout";
+import { WhatsAppBrandIcon, createWhatsAppUrl, accent } from "./layout";
 
 type ChatMessage = {
   role: "assistant" | "user";
@@ -183,7 +183,7 @@ export function BackToTopButton() {
       className={`fixed bottom-28 left-6 z-50 flex h-12 w-12 items-center justify-center rounded-full text-white shadow-[0_8px_24px_rgba(242,166,12,0.3)] transition-all duration-300 ${
         visible ? "scale-100 opacity-100" : "scale-75 opacity-0 pointer-events-none"
       }`}
-      style={{ backgroundColor: gold }}
+      style={{ backgroundColor: accent }}
     >
       <ArrowUp className="h-5 w-5" />
     </button>
@@ -261,7 +261,7 @@ export function AssistantWidget() {
           onClick={() => setOpen(true)}
           className="inline-flex items-center gap-3 rounded-full border border-[#E3E7E4] bg-white px-4 py-3 text-sm font-semibold text-[#14181D] shadow-[0_18px_40px_rgba(20,24,29,0.12)] transition hover:border-[#F2A60C]"
         >
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#F5F6F4]" style={{ color: gold }}>
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#F5F6F4]" style={{ color: accent }}>
             <Bot className="h-5 w-5" />
           </span>
           Ask Oguntimehin
@@ -279,7 +279,7 @@ export function AssistantWidget() {
       >
         <div className="flex items-center justify-between border-b border-[#ECEEEC] px-5 py-4">
           <div className="flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#F5F6F4]" style={{ color: gold }}>
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#F5F6F4]" style={{ color: accent }}>
               <Bot className="h-5 w-5" />
             </span>
             <div>
@@ -340,7 +340,7 @@ export function AssistantWidget() {
               placeholder="Ask about generators, solar, or delivery"
               className="flex-1 rounded-full border border-[#D6DAD7] bg-[#F5F6F4] px-4 py-3 text-sm text-[#14181D] outline-none"
             />
-            <button type="button" onClick={handleSend} className="inline-flex h-12 w-12 items-center justify-center rounded-full text-white" style={{ backgroundColor: gold }}>
+            <button type="button" onClick={handleSend} className="inline-flex h-12 w-12 items-center justify-center rounded-full text-white" style={{ backgroundColor: accent }}>
               <Send className="h-4 w-4" />
             </button>
           </div>
@@ -357,3 +357,4 @@ export function AssistantWidget() {
     </div>
   );
 }
+

@@ -49,7 +49,7 @@ import {
   cardBorder,
   createWhatsAppUrl,
   dark,
-  gold,
+  accent,
 } from "./layout";
 
 const serviceIconMap: Record<string, typeof Search> = {
@@ -173,7 +173,7 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
               onNavigate?.("/#contact");
             }}
             className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-semibold text-[#14181D] transition hover:opacity-90"
-            style={{ backgroundColor: gold }}
+            style={{ backgroundColor: accent }}
           >
             Request a Quote <ArrowRight className="h-4 w-4" />
           </a>
@@ -187,10 +187,10 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
           </a>
         </div>
         <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-white/70">
-          <span className="inline-flex items-center gap-2"><Zap className="h-4 w-4" style={{ color: gold }} /> Generator supply</span>
-          <span className="inline-flex items-center gap-2"><Sun className="h-4 w-4" style={{ color: gold }} /> Solar & inverter systems</span>
-          <span className="inline-flex items-center gap-2"><Package className="h-4 w-4" style={{ color: gold }} /> Building materials</span>
-          <span className="inline-flex items-center gap-2"><Building2 className="h-4 w-4" style={{ color: gold }} /> Construction supply</span>
+          <span className="inline-flex items-center gap-2"><Zap className="h-4 w-4" style={{ color: accent }} /> Generator supply</span>
+          <span className="inline-flex items-center gap-2"><Sun className="h-4 w-4" style={{ color: accent }} /> Solar & inverter systems</span>
+          <span className="inline-flex items-center gap-2"><Package className="h-4 w-4" style={{ color: accent }} /> Building materials</span>
+          <span className="inline-flex items-center gap-2"><Building2 className="h-4 w-4" style={{ color: accent }} /> Construction supply</span>
         </div>
       </Container>
     </section>
@@ -234,7 +234,7 @@ function ServicesSection() {
             return (
               <div key={service.title} className={`group rounded-[24px] border bg-white p-6 shadow-[0_10px_24px_rgba(20,24,29,0.03)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(20,24,29,0.06)] ${cardBorder}`}>
                 <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl" style={{ backgroundColor: "rgba(242,166,12,0.10)" }}>
-                  <Icon className="h-6 w-6" style={{ color: gold }} />
+                  <Icon className="h-6 w-6" style={{ color: accent }} />
                 </span>
                 <h3 className="mt-5 text-lg font-bold tracking-[-0.02em] text-[#14181D]">{service.title}</h3>
                 <p className="mt-2 text-sm leading-7 text-[#3C4248]">{service.description}</p>
@@ -263,7 +263,7 @@ function OrderProcess() {
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold text-white" style={{ backgroundColor: dark }}>
                   {index + 1}
                 </span>
-                <span className="text-[11px] font-extrabold uppercase tracking-[0.16em]" style={{ color: gold }}>{step.title}</span>
+                <span className="text-[11px] font-extrabold uppercase tracking-[0.16em]" style={{ color: accent }}>{step.title}</span>
               </div>
               <p className="mt-4 text-sm leading-7 text-[#3C4248]">{step.heading}</p>
             </div>
@@ -346,7 +346,7 @@ function FaqSection({ title, body }: { title?: string; body?: string }) {
               target="_blank"
               rel="noreferrer"
               className="mt-5 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
-              style={{ backgroundColor: gold }}
+              style={{ backgroundColor: accent }}
             >
               Ask on WhatsApp <ArrowRight className="h-4 w-4" />
             </a>
@@ -388,7 +388,7 @@ export function ServicesPage() {
     <>
       <section className="bg-[#14181D] py-14 text-white">
         <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: gold }}>Services</div>
+          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Services</div>
           <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
             Procurement and power/energy sourcing for Lagos
           </h1>
@@ -443,7 +443,7 @@ export function ServiceInformationPage() {
     <>
       <section className="bg-[#14181D] py-14 text-white">
         <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: gold }}>Service information</div>
+          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Service information</div>
           <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
             How sourcing and delivery work
           </h1>
@@ -470,7 +470,7 @@ export function ServiceInformationPage() {
                 <div className="p-6">
                   <div className="flex items-start gap-4">
                     <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl" style={{ backgroundColor: "rgba(242,166,12,0.10)" }}>
-                      <point.icon className="h-6 w-6" style={{ color: gold }} />
+                      <point.icon className="h-6 w-6" style={{ color: accent }} />
                     </span>
                     <div>
                       <h3 className="text-lg font-bold tracking-[-0.02em] text-[#14181D]">{point.title}</h3>
@@ -506,7 +506,7 @@ export function HowItWorksPage() {
     <>
       <section className="bg-[#14181D] py-14 text-white">
         <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: gold }}>How it works</div>
+          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>How it works</div>
           <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
             From your request to delivery in five steps
           </h1>
@@ -523,7 +523,7 @@ export function ProjectsPage() {
     <>
       <section className="bg-[#14181D] py-14 text-white">
         <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: gold }}>Recent projects</div>
+          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Recent projects</div>
           <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
             Sourcing and power work around Lagos
           </h1>
@@ -543,7 +543,7 @@ export function TestimonialsPage() {
     <>
       <section className="bg-[#14181D] py-14 text-white">
         <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: gold }}>Reviews</div>
+          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Reviews</div>
           <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
             What customers say
           </h1>
@@ -560,7 +560,7 @@ export function WhyChoosePage() {
     <>
       <section className="bg-[#14181D] py-14 text-white">
         <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: gold }}>Why choose us</div>
+          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Why choose us</div>
           <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
             A local buyer who checks before paying
           </h1>
@@ -584,7 +584,7 @@ export function FaqPage() {
     <>
       <section className="bg-[#14181D] py-14 text-white">
         <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: gold }}>FAQ</div>
+          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>FAQ</div>
           <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
             Answers before you request a quote
           </h1>
@@ -601,7 +601,7 @@ export function ContactPage() {
     <>
       <section className="bg-[#14181D] py-14 text-white">
         <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: gold }}>Contact</div>
+          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Contact</div>
           <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
             Tell us what you need
           </h1>
@@ -620,7 +620,7 @@ export function BlogPage({ onNavigate }: { onNavigate?: (path: string) => void }
     <>
       <section className="bg-[#14181D] py-14 text-white">
         <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: gold }}>Blog & guides</div>
+          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Blog & guides</div>
           <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
             Practical notes on power and procurement in Lagos
           </h1>
@@ -658,13 +658,13 @@ export function BlogPage({ onNavigate }: { onNavigate?: (path: string) => void }
                     <div className="absolute inset-0 bg-gradient-to-t from-[#14181D]/55 to-transparent" />
                   </div>
                   <div className="p-6">
-                    <div className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.14em]" style={{ color: gold }}>
+                    <div className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.14em]" style={{ color: accent }}>
                       <span>{post.category}</span>
                       {post.readTime ? <span className="text-[#9AA1A8]">· {post.readTime}</span> : null}
                     </div>
                     <h3 className="mt-3 text-lg font-bold leading-snug tracking-[-0.02em] text-[#14181D] group-hover:text-[#F2A60C]">{post.title}</h3>
                     <p className="mt-2 text-sm leading-7 text-[#3C4248]">{post.excerpt}</p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#14181D]">Read guide <ArrowRight className="h-4 w-4" style={{ color: gold }} /></span>
+                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#14181D]">Read guide <ArrowRight className="h-4 w-4" style={{ color: accent }} /></span>
                   </div>
                 </a>
               ))}
@@ -693,7 +693,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
   return (
     <article className="bg-[#F5F6F4] py-12 lg:py-16">
       <Container className="max-w-3xl">
-        <div className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.14em]" style={{ color: gold }}>
+        <div className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.14em]" style={{ color: accent }}>
           <span>{post.category}</span>
           {post.date ? <span className="text-[#9AA1A8]">· {post.date}</span> : null}
           {post.readTime ? <span className="text-[#9AA1A8]">· {post.readTime}</span> : null}
@@ -723,7 +723,7 @@ export function BlogPostPage({ slug }: { slug: string }) {
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
-            style={{ backgroundColor: gold }}
+            style={{ backgroundColor: accent }}
           >
             Ask about this on WhatsApp <ArrowRight className="h-4 w-4" />
           </a>
@@ -764,7 +764,7 @@ export function PrivacyPage() {
     <>
       <section className="bg-[#14181D] py-14 text-white">
         <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: gold }}>Privacy policy</div>
+          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Privacy policy</div>
           <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
             How we handle your information
           </h1>
@@ -790,7 +790,7 @@ export function CookiePolicyPage() {
     <>
       <section className="bg-[#14181D] py-14 text-white">
         <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: gold }}>Cookie policy</div>
+          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Cookie policy</div>
           <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
             Cookies, pixels, and your consent
           </h1>
@@ -850,7 +850,7 @@ export function CompanyPolicyPage() {
     <>
       <section className="bg-[#14181D] py-14 text-white">
         <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: gold }}>Company policy</div>
+          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Company policy</div>
           <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
             How we run orders
           </h1>
@@ -877,11 +877,11 @@ export function CompanyPolicyPage() {
             </div>
             <div className="p-6">
             <div className="flex items-center gap-3 text-sm font-semibold text-[#14181D]">
-              <MapPin className="h-4 w-4" style={{ color: gold }} /> {ADDRESS_LINE_1}, {ADDRESS_LINE_2}
+              <MapPin className="h-4 w-4" style={{ color: accent }} /> {ADDRESS_LINE_1}, {ADDRESS_LINE_2}
             </div>
             <div className="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#3C4248]">
-              <span className="inline-flex items-center gap-2"><Phone className="h-4 w-4" style={{ color: gold }} /> {PHONE_DISPLAY}</span>
-              <span className="inline-flex items-center gap-2"><CalendarClock className="h-4 w-4" style={{ color: gold }} /> {HOURS_DISPLAY}{HOURS_NEEDS_VERIFICATION ? " (confirm before visiting)" : ""}</span>
+              <span className="inline-flex items-center gap-2"><Phone className="h-4 w-4" style={{ color: accent }} /> {PHONE_DISPLAY}</span>
+              <span className="inline-flex items-center gap-2"><CalendarClock className="h-4 w-4" style={{ color: accent }} /> {HOURS_DISPLAY}{HOURS_NEEDS_VERIFICATION ? " (confirm before visiting)" : ""}</span>
             </div>
             </div>
           </div>
@@ -891,3 +891,4 @@ export function CompanyPolicyPage() {
     </>
   );
 }
+

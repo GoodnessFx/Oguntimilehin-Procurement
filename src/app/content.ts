@@ -8,7 +8,7 @@ export const ADDRESS_LINE_2 = "Ipaja, Lagos 100278, Nigeria";
 export const GOOGLE_MAPS_URL =
   "https://www.google.com/maps/search/?api=1&query=11+Fagbayi+Street+Ipaja+Lagos";
 export const WA_GREETING =
-  "Hello Oguntimehin PES, I would like to request a quote for procurement, construction, or building materials.";
+  "Hello Oguntimehin Procurement & Energy Services, I would like to request a quote for procurement, construction, or building materials.";
 export const HOURS_DISPLAY = "Mon–Sat, closes 6pm";
 export const HOURS_NEEDS_VERIFICATION = true;
 

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { gold } from "./layout";
+import { accent } from "./layout";
 
 const STORAGE_KEY = "oguntimehin-cookie-consent-v1";
 
@@ -67,7 +67,7 @@ export function CookieConsent() {
                 window.dispatchEvent(new PopStateEvent("popstate"));
               }}
               className="font-semibold underline underline-offset-2 transition hover:no-underline"
-              style={{ color: gold }}
+              style={{ color: accent }}
             >
               Cookie Policy
             </a>
@@ -84,7 +84,7 @@ export function CookieConsent() {
               type="button"
               onClick={acceptAll}
               className="rounded-full px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
-              style={{ backgroundColor: gold }}
+              style={{ backgroundColor: accent }}
             >
               Accept
             </button>
@@ -94,3 +94,4 @@ export function CookieConsent() {
     </div>
   );
 }
+

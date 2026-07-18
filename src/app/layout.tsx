@@ -48,16 +48,16 @@ export type RouteMeta = {
   description: string;
 };
 
-export const gold = "#F2A60C";
-export const goldBright = "#FFC247";
-export const goldSoft = "#F2A60C";
-export const dark = "#0e1216";
-export const darkSoft = "#1c232b";
-export const bodyText = "#d4d4d0";
-export const muted = "#9ca3af";
-export const borderColor = "rgba(242, 166, 12, 0.2)";
-export const bg = "#0e1216";
-export const cardBorder = "border-rgba(242, 166, 12, 0.2)";
+export const accent = "#14b8a6";
+export const accentBright = "#0d9488";
+export const accentSoft = "#0f766e";
+export const dark = "#081522";
+export const darkSoft = "#0d1f2a";
+export const bodyText = "#cbd5e1";
+export const muted = "#64748b";
+export const borderColor = "rgba(20, 184, 166, 0.2)";
+export const bg = "#081522";
+export const cardBorder = "border-rgba(20, 184, 166, 0.2)";
 
 export const pageLinks = [
   { label: "Home", href: "/" },
@@ -217,7 +217,7 @@ export function classNames(...values: Array<string | false | undefined>) {
 }
 
 export function Logo() {
-  return <img src="/brand/logo.svg" alt="Oguntimehin PES logo" className="h-11 w-11 object-contain" />;
+  return <img src="/brand/logo.svg" alt="Oguntimehin Procurement & Energy Services logo" className="h-11 w-11 object-contain" />;
 }
 
 export function Container({ className, children }: { className?: string; children: ReactNode }) {
@@ -226,7 +226,7 @@ export function Container({ className, children }: { className?: string; childre
 
 export function SectionTag({ children }: { children: ReactNode }) {
   return (
-    <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-[#E8C57E]/40 bg-white/95 px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.18em] shadow-[0_4px_12px_rgba(242,166,12,0.06)] backdrop-blur-sm" style={{ color: gold }}>
+    <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-[#14b8a6]/40 bg-white/95 px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.18em] shadow-[0_4px_12px_rgba(20,184,166,0.06)] backdrop-blur-sm" style={{ color: accent }}>
       <span className="relative flex h-1.5 w-1.5">
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-current opacity-75" />
         <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-current" />
@@ -269,7 +269,7 @@ export function AccentCheck() {
   return (
     <span
       className="inline-flex h-7 w-7 items-center justify-center rounded-full border"
-      style={{ borderColor: "rgba(242,166,12,0.28)", backgroundColor: "rgba(242,166,12,0.10)" }}
+      style={{ borderColor: "rgba(20,184,166,0.28)", backgroundColor: "rgba(20,184,166,0.10)" }}
       aria-hidden="true"
     >
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -332,7 +332,7 @@ export function SocialLinks({ compact = false }: { compact?: boolean }) {
           target="_blank"
           rel="noreferrer"
           className={classNames(
-            "inline-flex items-center justify-center rounded-full border border-[#E3E7E4] bg-white text-[#0e1216] transition hover:border-[#F2A60C] hover:text-[#F2A60C]",
+            "inline-flex items-center justify-center rounded-full border border-[#1e293b] bg-white text-[#0e1216] transition hover:border-[#14b8a6] hover:text-\[#14b8a6\]",
             compact ? "h-9 w-9" : "h-10 w-10",
           )}
           aria-label={item.name}
@@ -375,7 +375,7 @@ export function NavAnchor({
       }}
       className={classNames(
         "text-sm font-medium transition",
-        active ? "text-[#F2A60C]" : "text-[#6B7280] hover:text-[#F2A60C]",
+        active ? "text-[#14b8a6]" : "text-white/90 hover:text-\[#14b8a6\]",
       )}
     >
       {label}
@@ -395,7 +395,7 @@ export function Header({
   const [activeDesktopGroup, setActiveDesktopGroup] = useState<string | null>(null);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#E3E7E4] bg-[#0e1216]/95 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-[#1e293b] bg-[#0e1216]/95 backdrop-blur-md">
       <Container className="flex h-20 items-center justify-between gap-6">
         <a
           href="/"
@@ -437,7 +437,7 @@ export function Header({
                   onClick={() => setActiveDesktopGroup(isDesktopOpen ? null : group.label)}
                   className={classNames(
                     "flex items-center gap-1.5 text-sm font-semibold transition cursor-pointer outline-none bg-transparent border-none",
-                    isGroupActive ? "text-[#F2A60C]" : "text-[#6B7280] hover:text-[#F2A60C]"
+                    isGroupActive ? "text-[#14b8a6]" : "text-white/90 hover:text-\[#14b8a6\]"
                   )}
                 >
                   {group.label}
@@ -448,7 +448,7 @@ export function Header({
                   "absolute top-full left-1/2 -translate-x-1/2 z-50 pt-2 w-56 transition-all duration-200 ease-out transform",
                   isDesktopOpen ? "opacity-100 visible scale-100" : "opacity-0 invisible scale-95"
                 )}>
-                  <div className="rounded-2xl border border-[#E3E7E4] bg-white p-2.5 shadow-[0_12px_32px_rgba(20,24,29,0.08)]">
+                  <div className="rounded-2xl border border-[#1e293b] bg-white p-2.5 shadow-[0_12px_32px_rgba(20,24,29,0.08)]">
                     {group.links.map((link) => {
                       const isLinkActive = currentPath === link.href;
                       return (
@@ -463,8 +463,8 @@ export function Header({
                           className={classNames(
                             "block rounded-xl px-3.5 py-2.5 text-sm font-medium transition",
                             isLinkActive
-                              ? "bg-[#F2A60C]/10 text-[#F2A60C]"
-                              : "text-[#9ca3af] hover:bg-[#0e1216] hover:text-[#F2A60C]"
+                              ? "bg-[#14b8a6]/10 text-[#14b8a6]"
+                              : "text-white/90 hover:bg-[#0e1216] hover:text-\[#14b8a6\]"
                           )}
                         >
                           {link.label}
@@ -480,7 +480,7 @@ export function Header({
 
         <div className="hidden items-center gap-3 lg:flex">
           <SocialLinks compact />
-          <a href={`tel:${PHONE_DISPLAY.replace(/\s/g, "")}`} className="text-sm font-medium text-[#9ca3af] transition hover:text-[#F2A60C]">
+          <a href={`tel:${PHONE_DISPLAY.replace(/\s/g, "")}`} className="text-sm font-medium text-white/90 transition hover:text-\[#14b8a6\]">
             {PHONE_DISPLAY}
           </a>
           <a
@@ -497,7 +497,7 @@ export function Header({
         <button
           type="button"
           aria-label="Toggle navigation"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#E3E7E4] bg-white text-[#0e1216] lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#1e293b] bg-white text-[#0e1216] lg:hidden"
           onClick={() => setMenuOpen((value) => !value)}
         >
           {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -505,7 +505,7 @@ export function Header({
       </Container>
 
       {menuOpen ? (
-        <div className="border-t border-[#E3E7E4] bg-white lg:hidden">
+        <div className="border-t border-[#1e293b] bg-white lg:hidden">
           <Container className="flex flex-col gap-4 py-6">
             <NavAnchor
               href="/"
@@ -528,14 +528,14 @@ export function Header({
                     onClick={() => setActiveMobileGroup(isGroupOpen ? null : group.label)}
                     className={classNames(
                       "flex w-full items-center justify-between py-2 text-sm font-semibold transition cursor-pointer text-left bg-transparent border-none outline-none",
-                      isGroupActive ? "text-[#F2A60C]" : "text-[#9ca3af] hover:text-[#F2A60C]"
+                      isGroupActive ? "text-[#14b8a6]" : "text-white/90 hover:text-\[#14b8a6\]"
                     )}
                   >
                     <span>{group.label}</span>
                     <ChevronDown className={classNames("h-4 w-4 transition-transform duration-200", isGroupOpen && "rotate-180")} />
                   </button>
                   {isGroupOpen ? (
-                    <div className="mt-1 flex flex-col gap-2.5 border-l border-[#E3E7E4] pl-4 py-1">
+                    <div className="mt-1 flex flex-col gap-2.5 border-l border-[#1e293b] pl-4 py-1">
                       {group.links.map((link) => {
                         const isLinkActive = currentPath === link.href;
                         return (
@@ -549,7 +549,7 @@ export function Header({
                             }}
                             className={classNames(
                               "block py-1 text-sm font-medium transition",
-                              isLinkActive ? "text-[#F2A60C]" : "text-[#6B7280] hover:text-[#F2A60C]"
+                              isLinkActive ? "text-[#14b8a6]" : "text-white/90 hover:text-\[#14b8a6\]"
                             )}
                           >
                             {link.label}
@@ -562,7 +562,7 @@ export function Header({
               );
             })}
 
-            <div className="border-t border-[#E3E7E4] pt-4">
+            <div className="border-t border-[#1e293b] pt-4">
               <SocialLinks />
             </div>
           </Container>
@@ -576,7 +576,7 @@ export function NewsletterSignup({
   inline = false,
   dark = false,
   title = "Newsletter",
-  body = "Get practical procurement and power/energy tips for Lagos — generator sizing, solar basics, and sourcing updates.",
+  body = "Get practical procurement, construction, and energy tips for Lagos — generator sizing, solar basics, and sourcing updates.",
 }: {
   inline?: boolean;
   dark?: boolean;
@@ -597,7 +597,7 @@ export function NewsletterSignup({
   }) => {
     if (!analyticsConfig.newsletterAction) {
       return {
-        message: "You’re subscribed — you’ll hear from us occasionally with procurement and power tips.",
+        message: "You’re subscribed — you’ll hear from us occasionally with procurement, construction, and energy tips.",
       };
     }
 
@@ -675,7 +675,7 @@ export function NewsletterSignup({
       setStatus("success");
       setFeedback(
         payload?.message ??
-          "You’re subscribed — you’ll hear from us occasionally with procurement and power tips.",
+          "You’re subscribed — you’ll hear from us occasionally with procurement, construction, and energy tips.",
       );
       setEmail("");
       setConsent(false);
@@ -691,8 +691,8 @@ export function NewsletterSignup({
 
   const content = (
     <>
-      <div className={classNames("text-xs uppercase tracking-[0.18em]", dark ? "text-white/70" : "text-[#6B7280]", inline && !dark && "text-[#6B7280]")}>{title}</div>
-      <p className={classNames("mt-3 max-w-xl text-sm leading-7", dark ? "text-white/80" : "text-[#9ca3af]")}>{body}</p>
+      <div className={classNames("text-xs uppercase tracking-[0.18em]", dark ? "text-white/70" : "text-white/90", inline && !dark && "text-white/90")}>{title}</div>
+      <p className={classNames("mt-3 max-w-xl text-sm leading-7", dark ? "text-white/80" : "text-white/90")}>{body}</p>
       <form onSubmit={handleSubmit} className="mt-4 grid gap-3">
         <input
           type="text"
@@ -712,10 +712,10 @@ export function NewsletterSignup({
             onChange={(event) => setEmail(event.target.value)}
             placeholder="Enter your email address"
             className={classNames(
-              "min-w-0 flex-1 rounded-full px-4 py-3 text-sm outline-none transition focus:border-[#F2A60C]",
+              "min-w-0 flex-1 rounded-full px-4 py-3 text-sm outline-none transition focus:border-[#14b8a6]",
               dark
-                ? "border-white/20 bg-white/5 text-white placeholder-white/40 focus:border-[#F2A60C]"
-                : "border-[#E3E7E4] bg-white text-[#0e1216] focus:border-[#F2A60C]"
+                ? "border-white/20 bg-white/5 text-white placeholder-white/40 focus:border-[#14b8a6]"
+                : "border-[#1e293b] bg-white text-[#0e1216] focus:border-[#14b8a6]"
             )}
             aria-label="Email address"
           />
@@ -732,18 +732,18 @@ export function NewsletterSignup({
           "flex items-start gap-3 rounded-2xl px-4 py-3 text-sm leading-6",
           dark
             ? "border-white/10 bg-white/5 text-white/80"
-            : "border-[#E3E7E4] bg-white text-[#9ca3af]"
+            : "border-[#1e293b] bg-white text-white/90"
         )}>
           <input
             type="checkbox"
             checked={consent}
             onChange={(event) => setConsent(event.target.checked)}
             className={classNames(
-              "mt-1 h-4 w-4 rounded accent-[#F2A60C]",
-              dark ? "border-white/30 bg-white/5" : "border-[#E3E7E4] bg-white"
+              "mt-1 h-4 w-4 rounded accent-[#14b8a6]",
+              dark ? "border-white/30 bg-white/5" : "border-[#1e293b] bg-white"
             )}
           />
-          <span>Yes, I want occasional Oguntimehin emails about procurement and power/energy tips.</span>
+          <span>Yes, I want occasional Oguntimehin emails about procurement, construction, and energy tips.</span>
         </label>
         {feedback ? (
           <p
@@ -757,7 +757,7 @@ export function NewsletterSignup({
           </p>
         ) : null}
       </form>
-      <p className={classNames("mt-3 text-xs leading-6", dark ? "text-white/50" : "text-[#6B7280]")}>{footerConsent}</p>
+      <p className={classNames("mt-3 text-xs leading-6", dark ? "text-white/50" : "text-white/90")}>{footerConsent}</p>
     </>
   );
 
@@ -876,7 +876,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
             required={field !== "whatsappNumber"}
             value={form[field as keyof QuoteFormState]}
             onChange={(event) => setField(field as keyof QuoteFormState, event.target.value)}
-            className="rounded-2xl border border-[#E3E7E4] bg-white px-4 py-3 text-sm text-[#0e1216] outline-none transition focus:border-[#F2A60C]"
+            className="rounded-2xl border border-[#1e293b] bg-white px-4 py-3 text-sm text-[#0e1216] outline-none transition focus:border-[#14b8a6]"
             placeholder={placeholder}
           />
         </label>
@@ -887,7 +887,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
           <select
             value={form.serviceType}
             onChange={(event) => setField("serviceType", event.target.value)}
-            className="rounded-2xl border border-[#E3E7E4] bg-white px-4 py-3 text-sm text-[#0e1216] outline-none transition focus:border-[#F2A60C]"
+            className="rounded-2xl border border-[#1e293b] bg-white px-4 py-3 text-sm text-[#0e1216] outline-none transition focus:border-[#14b8a6]"
           >
             <option>Generator</option>
             <option>Solar / Inverter</option>
@@ -900,7 +900,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
           <select
             value={form.contactPreference}
             onChange={(event) => setField("contactPreference", event.target.value as QuoteFormState["contactPreference"])}
-            className="rounded-2xl border border-[#E3E7E4] bg-white px-4 py-3 text-sm text-[#0e1216] outline-none transition focus:border-[#F2A60C]"
+            className="rounded-2xl border border-[#1e293b] bg-white px-4 py-3 text-sm text-[#0e1216] outline-none transition focus:border-[#14b8a6]"
           >
             <option>WhatsApp</option>
             <option>Email</option>
@@ -909,12 +909,12 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
       </div>
       <label className="grid gap-2 text-sm font-medium text-[#0e1216]">
         Product Image (optional upload)
-        <span className="flex cursor-pointer items-center gap-3 rounded-2xl border border-[#E3E7E4] bg-[#0e1216] px-4 py-3 text-sm text-[#9ca3af] transition hover:border-[#F2A60C]">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#F2A60C]">
+        <span className="flex cursor-pointer items-center gap-3 rounded-2xl border border-[#1e293b] bg-[#0e1216] px-4 py-3 text-sm text-white/90 transition hover:border-[#14b8a6]">
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#14b8a6]">
             <MessageCircle className="h-4 w-4" />
           </span>
           <span className="flex-1">{form.productImageName || "Choose an image to reference in your quote request"}</span>
-          <span className="rounded-full border border-[#E3E7E4] bg-white px-3 py-2 text-xs font-semibold text-[#0e1216]">Select file</span>
+          <span className="rounded-full border border-[#1e293b] bg-white px-3 py-2 text-xs font-semibold text-[#0e1216]">Select file</span>
           <input
             type="file"
             accept="image/*"
@@ -929,7 +929,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
           value={form.additionalInformation}
           onChange={(event) => setField("additionalInformation", event.target.value)}
           rows={4}
-          className="rounded-2xl border border-[#E3E7E4] bg-white px-4 py-3 text-sm text-[#0e1216] outline-none transition focus:border-[#F2A60C]"
+          className="rounded-2xl border border-[#1e293b] bg-white px-4 py-3 text-sm text-[#0e1216] outline-none transition focus:border-[#14b8a6]"
           placeholder="Add the load you need to power, preferred brand, delivery location, or any other details."
         />
       </label>
@@ -990,7 +990,7 @@ export function FaqList({
             <div
               className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}
             >
-              <p className="px-5 pb-5 text-sm leading-7 text-[#9ca3af]">{item.answer}</p>
+              <p className="px-5 pb-5 text-sm leading-7 text-white/90">{item.answer}</p>
             </div>
           </div>
         );
@@ -1001,7 +1001,7 @@ export function FaqList({
 
 export function TestimonialsPreview() {
   return (
-    <section className="border-b border-[#E3E7E4] bg-white py-8 lg:py-12">
+    <section className="border-b border-[#1e293b] bg-white py-8 lg:py-12">
       <Container>
         <div className="flex flex-col items-start justify-between gap-6 rounded-[28px] border bg-[#0e1216] p-6 shadow-[0_14px_34px_rgba(20,24,29,0.04)] sm:flex-row sm:items-center lg:p-8 ${cardBorder}">
           <div>
@@ -1014,11 +1014,11 @@ export function TestimonialsPreview() {
               </span>
               <span className="flex gap-1">
                 {Array.from({ length: 5 }).map((_, index) => (
-                  <Star key={index} className="h-4 w-4 fill-[#F2A60C] text-[#F2A60C]" />
+                  <Star key={index} className="h-4 w-4 fill-[#14b8a6] text-[#14b8a6]" />
                 ))}
               </span>
             </div>
-            <p className="mt-2 text-sm leading-6 text-[#9ca3af]">
+            <p className="mt-2 text-sm leading-6 text-white/90">
               Based on a verified Google review. More reviews are welcome as we grow.
             </p>
           </div>
@@ -1039,14 +1039,14 @@ export function TestimonialsPreview() {
 
 export function ContactSection({ compact = false }: { compact?: boolean }) {
   return (
-    <section id="contact" className="border-b border-[#E3E7E4] bg-[#0e1216] py-8 lg:py-12">
+    <section id="contact" className="border-b border-[#1e293b] bg-[#0e1216] py-8 lg:py-12">
       <Container className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
         <div>
           <div className="mb-6">
             <h2 className="text-[clamp(2.3rem,5vw,3.5rem)] font-extrabold tracking-[-0.04em] text-[#0e1216]" style={{ fontFamily: "'Sora', sans-serif" }}>
               Tell us what you need — we’ll quote it <span style={{ color: gold }}>in writing.</span>
             </h2>
-            <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-[#9ca3af]">
+            <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-white/90">
               Send the item or the load you want to power. We check the supplier, size the equipment if needed, and reply on your preferred channel.
             </p>
           </div>
@@ -1056,7 +1056,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
                 <Phone className="mt-1 h-4 w-4" style={{ color: gold }} />
                 <div>
                   <div className="text-sm font-semibold text-[#0e1216]">{PHONE_DISPLAY}</div>
-                  <div className="text-sm leading-6 text-[#9ca3af]">Call or continue on WhatsApp for live support.</div>
+                  <div className="text-sm leading-6 text-white/90">Call or continue on WhatsApp for live support.</div>
                 </div>
               </div>
             </div>
@@ -1065,7 +1065,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
                 <Mail className="mt-1 h-4 w-4" style={{ color: gold }} />
                 <div>
                   <div className="text-sm font-semibold text-[#0e1216]">{EMAIL}</div>
-                  <div className="text-sm leading-6 text-[#9ca3af]">Email is available if you prefer a documented reply thread.</div>
+                  <div className="text-sm leading-6 text-white/90">Email is available if you prefer a documented reply thread.</div>
                 </div>
               </div>
             </div>
@@ -1076,7 +1076,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
                   <div className="text-sm font-semibold text-[#0e1216]">
                     {ADDRESS_LINE_1}, {ADDRESS_LINE_2}
                   </div>
-                  <div className="text-sm leading-6 text-[#9ca3af]">
+                  <div className="text-sm leading-6 text-white/90">
                     Office hours: {HOURS_DISPLAY}
                     {HOURS_NEEDS_VERIFICATION ? " — please confirm before visiting." : ""}
                   </div>
@@ -1099,18 +1099,18 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
 
 export function CtaBanner() {
   return (
-    <section className="py-8 lg:py-12" style={{ backgroundColor: "rgba(242,166,12,0.12)" }}>
+    <section className="py-8 lg:py-12" style={{ backgroundColor: "rgba(20,184,166,0.12)" }}>
       <Container>
         <div className={`flex flex-col gap-6 rounded-[32px] border bg-white p-8 shadow-[0_18px_48px_rgba(20,24,29,0.05)] lg:flex-row lg:items-center lg:justify-between ${cardBorder}`}>
           <div>
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#E8C57E] bg-[#0e1216] px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#6B7280]">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#14b8a6] bg-[#0e1216] px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/90">
               <CalendarDays className="h-4 w-4" style={{ color: gold }} />
               Ready to source
             </div>
             <h2 style={{ fontFamily: "'Sora', sans-serif" }} className="text-[clamp(2rem,4vw,3.2rem)] font-extrabold leading-[1.02] tracking-[-0.04em] text-[#0e1216]">
               Need a generator, solar kit, or a buyer you can verify?
             </h2>
-            <p className="mt-3 max-w-2xl text-base leading-7 text-[#9ca3af]">
+            <p className="mt-3 max-w-2xl text-base leading-7 text-white/90">
               Send the item or the load you want to power. We’ll check the supplier and send a written quote.
             </p>
           </div>
@@ -1162,7 +1162,7 @@ export function Footer({ onNavigate }: { onNavigate: (path: string) => void }) {
                   event.preventDefault();
                   onNavigate(item.href);
                 }}
-                className="text-sm font-medium !text-white transition hover:text-[#F2A60C]"
+                className="text-sm font-medium !text-white transition hover:text-\[#14b8a6\]"
               >
                 {item.label}
               </a>
@@ -1194,7 +1194,7 @@ export function Footer({ onNavigate }: { onNavigate: (path: string) => void }) {
               </div>
             </div>
           </div>
-          <NewsletterSignup dark title="Newsletter signup" body="Subscribe for procurement and power/energy tips, sourcing updates, and new guides." />
+          <NewsletterSignup dark title="Newsletter signup" body="Subscribe for procurement, construction, and energy tips, sourcing updates, and new guides." />
         </div>
       </Container>
       <Container className="mt-10 border-t border-white/10 pt-6 text-xs text-white/70">
@@ -1222,7 +1222,7 @@ export function AnnouncementBar({ onNavigate }: { onNavigate: (path: string) => 
         className="inline-block whitespace-nowrap"
         style={{
           fontFamily: "'Sora', sans-serif",
-          color: "#F2A60C",
+          color: "#14b8a6",
           fontWeight: "500",
           fontSize: "0.875rem",
           letterSpacing: "0.02em",
@@ -1240,5 +1240,10 @@ export function AnnouncementBar({ onNavigate }: { onNavigate: (path: string) => 
     </a>
   );
 }
+
+
+
+
+
 
 
