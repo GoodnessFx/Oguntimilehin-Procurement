@@ -49,13 +49,15 @@ export type RouteMeta = {
 };
 
 export const gold = "#F2A60C";
-export const goldSoft = "#E8C57E";
-export const dark = "#14181D";
-export const bodyText = "#3C4248";
-export const muted = "#6B7280";
-export const borderColor = "#E3E7E4";
-export const bg = "#F5F6F4";
-export const cardBorder = "border-[#E3E7E4]";
+export const goldBright = "#FFC247";
+export const goldSoft = "#F2A60C";
+export const dark = "#0e1216";
+export const darkSoft = "#1c232b";
+export const bodyText = "#d4d4d0";
+export const muted = "#9ca3af";
+export const borderColor = "rgba(242, 166, 12, 0.2)";
+export const bg = "#0e1216";
+export const cardBorder = "border-rgba(242, 166, 12, 0.2)";
 
 export const pageLinks = [
   { label: "Home", href: "/" },
@@ -229,7 +231,7 @@ export function SectionTag({ children }: { children: ReactNode }) {
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-current opacity-75" />
         <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-current" />
       </span>
-      <span className="text-[#14181D]/90">{children}</span>
+      <span className="text-[#0e1216]/90">{children}</span>
     </div>
   );
 }
@@ -330,7 +332,7 @@ export function SocialLinks({ compact = false }: { compact?: boolean }) {
           target="_blank"
           rel="noreferrer"
           className={classNames(
-            "inline-flex items-center justify-center rounded-full border border-[#E3E7E4] bg-white text-[#14181D] transition hover:border-[#F2A60C] hover:text-[#F2A60C]",
+            "inline-flex items-center justify-center rounded-full border border-[#E3E7E4] bg-white text-[#0e1216] transition hover:border-[#F2A60C] hover:text-[#F2A60C]",
             compact ? "h-9 w-9" : "h-10 w-10",
           )}
           aria-label={item.name}
@@ -393,7 +395,7 @@ export function Header({
   const [activeDesktopGroup, setActiveDesktopGroup] = useState<string | null>(null);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#ECEEEC] bg-[#F5F6F4]/95 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-[#E3E7E4] bg-[#0e1216]/95 backdrop-blur-md">
       <Container className="flex h-20 items-center justify-between gap-6">
         <a
           href="/"
@@ -406,7 +408,7 @@ export function Header({
         >
           <Logo />
           <div className="min-w-0">
-            <div style={{ fontFamily: "'Sora', sans-serif" }} className="truncate text-[16px] font-bold tracking-[-0.02em] text-[#14181D]">
+            <div style={{ fontFamily: "'Sora', sans-serif" }} className="truncate text-[16px] font-bold tracking-[-0.02em] text-[#0e1216]">
               Oguntimehin
             </div>
             <div className="text-[10px] uppercase tracking-[0.18em]" style={{ color: gold }}>
@@ -446,7 +448,7 @@ export function Header({
                   "absolute top-full left-1/2 -translate-x-1/2 z-50 pt-2 w-56 transition-all duration-200 ease-out transform",
                   isDesktopOpen ? "opacity-100 visible scale-100" : "opacity-0 invisible scale-95"
                 )}>
-                  <div className="rounded-2xl border border-[#ECEEEC] bg-white p-2.5 shadow-[0_12px_32px_rgba(20,24,29,0.08)]">
+                  <div className="rounded-2xl border border-[#E3E7E4] bg-white p-2.5 shadow-[0_12px_32px_rgba(20,24,29,0.08)]">
                     {group.links.map((link) => {
                       const isLinkActive = currentPath === link.href;
                       return (
@@ -462,7 +464,7 @@ export function Header({
                             "block rounded-xl px-3.5 py-2.5 text-sm font-medium transition",
                             isLinkActive
                               ? "bg-[#F2A60C]/10 text-[#F2A60C]"
-                              : "text-[#3C4248] hover:bg-[#F5F6F4] hover:text-[#F2A60C]"
+                              : "text-[#9ca3af] hover:bg-[#0e1216] hover:text-[#F2A60C]"
                           )}
                         >
                           {link.label}
@@ -478,7 +480,7 @@ export function Header({
 
         <div className="hidden items-center gap-3 lg:flex">
           <SocialLinks compact />
-          <a href={`tel:${PHONE_DISPLAY.replace(/\s/g, "")}`} className="text-sm font-medium text-[#3C4248] transition hover:text-[#F2A60C]">
+          <a href={`tel:${PHONE_DISPLAY.replace(/\s/g, "")}`} className="text-sm font-medium text-[#9ca3af] transition hover:text-[#F2A60C]">
             {PHONE_DISPLAY}
           </a>
           <a
@@ -495,7 +497,7 @@ export function Header({
         <button
           type="button"
           aria-label="Toggle navigation"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#E3E7E4] bg-white text-[#14181D] lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#E3E7E4] bg-white text-[#0e1216] lg:hidden"
           onClick={() => setMenuOpen((value) => !value)}
         >
           {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -503,7 +505,7 @@ export function Header({
       </Container>
 
       {menuOpen ? (
-        <div className="border-t border-[#ECEEEC] bg-white lg:hidden">
+        <div className="border-t border-[#E3E7E4] bg-white lg:hidden">
           <Container className="flex flex-col gap-4 py-6">
             <NavAnchor
               href="/"
@@ -520,20 +522,20 @@ export function Header({
               );
 
               return (
-                <div key={group.label} className="border-t border-[#F5F6F4] pt-2">
+                <div key={group.label} className="border-t border-[#0e1216] pt-2">
                   <button
                     type="button"
                     onClick={() => setActiveMobileGroup(isGroupOpen ? null : group.label)}
                     className={classNames(
                       "flex w-full items-center justify-between py-2 text-sm font-semibold transition cursor-pointer text-left bg-transparent border-none outline-none",
-                      isGroupActive ? "text-[#F2A60C]" : "text-[#3C4248] hover:text-[#F2A60C]"
+                      isGroupActive ? "text-[#F2A60C]" : "text-[#9ca3af] hover:text-[#F2A60C]"
                     )}
                   >
                     <span>{group.label}</span>
                     <ChevronDown className={classNames("h-4 w-4 transition-transform duration-200", isGroupOpen && "rotate-180")} />
                   </button>
                   {isGroupOpen ? (
-                    <div className="mt-1 flex flex-col gap-2.5 border-l border-[#ECEEEC] pl-4 py-1">
+                    <div className="mt-1 flex flex-col gap-2.5 border-l border-[#E3E7E4] pl-4 py-1">
                       {group.links.map((link) => {
                         const isLinkActive = currentPath === link.href;
                         return (
@@ -560,7 +562,7 @@ export function Header({
               );
             })}
 
-            <div className="border-t border-[#ECEEEC] pt-4">
+            <div className="border-t border-[#E3E7E4] pt-4">
               <SocialLinks />
             </div>
           </Container>
@@ -689,8 +691,8 @@ export function NewsletterSignup({
 
   const content = (
     <>
-      <div className={classNames("text-xs uppercase tracking-[0.18em]", dark ? "text-white/70" : "text-[#8A8379]", inline && !dark && "text-[#8A8379]")}>{title}</div>
-      <p className={classNames("mt-3 max-w-xl text-sm leading-7", dark ? "text-white/80" : "text-[#3C4248]")}>{body}</p>
+      <div className={classNames("text-xs uppercase tracking-[0.18em]", dark ? "text-white/70" : "text-[#6B7280]", inline && !dark && "text-[#6B7280]")}>{title}</div>
+      <p className={classNames("mt-3 max-w-xl text-sm leading-7", dark ? "text-white/80" : "text-[#9ca3af]")}>{body}</p>
       <form onSubmit={handleSubmit} className="mt-4 grid gap-3">
         <input
           type="text"
@@ -713,7 +715,7 @@ export function NewsletterSignup({
               "min-w-0 flex-1 rounded-full px-4 py-3 text-sm outline-none transition focus:border-[#F2A60C]",
               dark
                 ? "border-white/20 bg-white/5 text-white placeholder-white/40 focus:border-[#F2A60C]"
-                : "border-[#D6DAD7] bg-white text-[#14181D] focus:border-[#F2A60C]"
+                : "border-[#E3E7E4] bg-white text-[#0e1216] focus:border-[#F2A60C]"
             )}
             aria-label="Email address"
           />
@@ -730,7 +732,7 @@ export function NewsletterSignup({
           "flex items-start gap-3 rounded-2xl px-4 py-3 text-sm leading-6",
           dark
             ? "border-white/10 bg-white/5 text-white/80"
-            : "border-[#E3E7E4] bg-white text-[#3C4248]"
+            : "border-[#E3E7E4] bg-white text-[#9ca3af]"
         )}>
           <input
             type="checkbox"
@@ -738,7 +740,7 @@ export function NewsletterSignup({
             onChange={(event) => setConsent(event.target.checked)}
             className={classNames(
               "mt-1 h-4 w-4 rounded accent-[#F2A60C]",
-              dark ? "border-white/30 bg-white/5" : "border-[#D6DAD7] bg-white"
+              dark ? "border-white/30 bg-white/5" : "border-[#E3E7E4] bg-white"
             )}
           />
           <span>Yes, I want occasional Oguntimehin emails about procurement and power/energy tips.</span>
@@ -761,7 +763,7 @@ export function NewsletterSignup({
 
   if (inline) {
     return (
-      <div className={`rounded-[28px] border bg-[#F5F6F4] p-6 shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
+      <div className={`rounded-[28px] border bg-[#0e1216] p-6 shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
         {content}
       </div>
     );
@@ -868,24 +870,24 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
         ["Item Needed", "itemNeeded", "e.g. 5kVA generator, or 3kVA inverter + 2 batteries"],
         ["Quantity", "quantity", "e.g. 1 unit, or 4 panels"],
       ].map(([label, field, placeholder]) => (
-        <label key={field} className="grid gap-2 text-sm font-medium text-[#14181D]">
+        <label key={field} className="grid gap-2 text-sm font-medium text-[#0e1216]">
           {label}
           <input
             required={field !== "whatsappNumber"}
             value={form[field as keyof QuoteFormState]}
             onChange={(event) => setField(field as keyof QuoteFormState, event.target.value)}
-            className="rounded-2xl border border-[#D6DAD7] bg-white px-4 py-3 text-sm text-[#14181D] outline-none transition focus:border-[#F2A60C]"
+            className="rounded-2xl border border-[#E3E7E4] bg-white px-4 py-3 text-sm text-[#0e1216] outline-none transition focus:border-[#F2A60C]"
             placeholder={placeholder}
           />
         </label>
       ))}
       <div className="grid gap-4 md:grid-cols-2">
-        <label className="grid gap-2 text-sm font-medium text-[#14181D]">
+        <label className="grid gap-2 text-sm font-medium text-[#0e1216]">
           Service Type
           <select
             value={form.serviceType}
             onChange={(event) => setField("serviceType", event.target.value)}
-            className="rounded-2xl border border-[#D6DAD7] bg-white px-4 py-3 text-sm text-[#14181D] outline-none transition focus:border-[#F2A60C]"
+            className="rounded-2xl border border-[#E3E7E4] bg-white px-4 py-3 text-sm text-[#0e1216] outline-none transition focus:border-[#F2A60C]"
           >
             <option>Generator</option>
             <option>Solar / Inverter</option>
@@ -893,26 +895,26 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
             <option>Not sure yet</option>
           </select>
         </label>
-        <label className="grid gap-2 text-sm font-medium text-[#14181D]">
+        <label className="grid gap-2 text-sm font-medium text-[#0e1216]">
           Response Preference
           <select
             value={form.contactPreference}
             onChange={(event) => setField("contactPreference", event.target.value as QuoteFormState["contactPreference"])}
-            className="rounded-2xl border border-[#D6DAD7] bg-white px-4 py-3 text-sm text-[#14181D] outline-none transition focus:border-[#F2A60C]"
+            className="rounded-2xl border border-[#E3E7E4] bg-white px-4 py-3 text-sm text-[#0e1216] outline-none transition focus:border-[#F2A60C]"
           >
             <option>WhatsApp</option>
             <option>Email</option>
           </select>
         </label>
       </div>
-      <label className="grid gap-2 text-sm font-medium text-[#14181D]">
+      <label className="grid gap-2 text-sm font-medium text-[#0e1216]">
         Product Image (optional upload)
-        <span className="flex cursor-pointer items-center gap-3 rounded-2xl border border-[#D6DAD7] bg-[#F5F6F4] px-4 py-3 text-sm text-[#3C4248] transition hover:border-[#F2A60C]">
+        <span className="flex cursor-pointer items-center gap-3 rounded-2xl border border-[#E3E7E4] bg-[#0e1216] px-4 py-3 text-sm text-[#9ca3af] transition hover:border-[#F2A60C]">
           <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#F2A60C]">
             <MessageCircle className="h-4 w-4" />
           </span>
           <span className="flex-1">{form.productImageName || "Choose an image to reference in your quote request"}</span>
-          <span className="rounded-full border border-[#E3E7E4] bg-white px-3 py-2 text-xs font-semibold text-[#14181D]">Select file</span>
+          <span className="rounded-full border border-[#E3E7E4] bg-white px-3 py-2 text-xs font-semibold text-[#0e1216]">Select file</span>
           <input
             type="file"
             accept="image/*"
@@ -921,13 +923,13 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
           />
         </span>
       </label>
-      <label className="grid gap-2 text-sm font-medium text-[#14181D]">
+      <label className="grid gap-2 text-sm font-medium text-[#0e1216]">
         Additional Information
         <textarea
           value={form.additionalInformation}
           onChange={(event) => setField("additionalInformation", event.target.value)}
           rows={4}
-          className="rounded-2xl border border-[#D6DAD7] bg-white px-4 py-3 text-sm text-[#14181D] outline-none transition focus:border-[#F2A60C]"
+          className="rounded-2xl border border-[#E3E7E4] bg-white px-4 py-3 text-sm text-[#0e1216] outline-none transition focus:border-[#F2A60C]"
           placeholder="Add the load you need to power, preferred brand, delivery location, or any other details."
         />
       </label>
@@ -951,7 +953,7 @@ export function WhyChooseGrid() {
           className={`flex items-center gap-3 rounded-[22px] border bg-white p-5 shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}
         >
           <AccentCheck />
-          <span className="text-sm font-semibold text-[#14181D]">{item}</span>
+          <span className="text-sm font-semibold text-[#0e1216]">{item}</span>
         </div>
       ))}
     </div>
@@ -980,7 +982,7 @@ export function FaqList({
             <button
               type="button"
               onClick={() => setOpenIndex(isOpen ? null : index)}
-              className="flex w-full items-center justify-between gap-4 p-5 text-left text-base font-semibold text-[#14181D] cursor-pointer"
+              className="flex w-full items-center justify-between gap-4 p-5 text-left text-base font-semibold text-[#0e1216] cursor-pointer"
             >
               <span>{item.question}</span>
               <ChevronDown className={`h-4 w-4 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} style={{ color: gold }} />
@@ -988,7 +990,7 @@ export function FaqList({
             <div
               className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}
             >
-              <p className="px-5 pb-5 text-sm leading-7 text-[#3C4248]">{item.answer}</p>
+              <p className="px-5 pb-5 text-sm leading-7 text-[#9ca3af]">{item.answer}</p>
             </div>
           </div>
         );
@@ -999,15 +1001,15 @@ export function FaqList({
 
 export function TestimonialsPreview() {
   return (
-    <section className="border-b border-[#ECEEEC] bg-white py-8 lg:py-12">
+    <section className="border-b border-[#E3E7E4] bg-white py-8 lg:py-12">
       <Container>
-        <div className="flex flex-col items-start justify-between gap-6 rounded-[28px] border bg-[#F5F6F4] p-6 shadow-[0_14px_34px_rgba(20,24,29,0.04)] sm:flex-row sm:items-center lg:p-8 ${cardBorder}">
+        <div className="flex flex-col items-start justify-between gap-6 rounded-[28px] border bg-[#0e1216] p-6 shadow-[0_14px_34px_rgba(20,24,29,0.04)] sm:flex-row sm:items-center lg:p-8 ${cardBorder}">
           <div>
             <div className="text-xs uppercase tracking-[0.18em]" style={{ color: gold }}>
               Google rating
             </div>
             <div className="mt-2 flex items-center gap-3">
-              <span style={{ fontFamily: "'Sora', sans-serif" }} className="text-4xl font-bold tracking-[-0.04em] text-[#14181D]">
+              <span style={{ fontFamily: "'Sora', sans-serif" }} className="text-4xl font-bold tracking-[-0.04em] text-[#0e1216]">
                 5.0
               </span>
               <span className="flex gap-1">
@@ -1016,7 +1018,7 @@ export function TestimonialsPreview() {
                 ))}
               </span>
             </div>
-            <p className="mt-2 text-sm leading-6 text-[#3C4248]">
+            <p className="mt-2 text-sm leading-6 text-[#9ca3af]">
               Based on a verified Google review. More reviews are welcome as we grow.
             </p>
           </div>
@@ -1037,14 +1039,14 @@ export function TestimonialsPreview() {
 
 export function ContactSection({ compact = false }: { compact?: boolean }) {
   return (
-    <section id="contact" className="border-b border-[#ECEEEC] bg-[#F5F6F4] py-8 lg:py-12">
+    <section id="contact" className="border-b border-[#E3E7E4] bg-[#0e1216] py-8 lg:py-12">
       <Container className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
         <div>
           <div className="mb-6">
-            <h2 className="text-[clamp(2.3rem,5vw,3.5rem)] font-extrabold tracking-[-0.04em] text-[#14181D]" style={{ fontFamily: "'Sora', sans-serif" }}>
+            <h2 className="text-[clamp(2.3rem,5vw,3.5rem)] font-extrabold tracking-[-0.04em] text-[#0e1216]" style={{ fontFamily: "'Sora', sans-serif" }}>
               Tell us what you need — we’ll quote it <span style={{ color: gold }}>in writing.</span>
             </h2>
-            <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-[#3C4248]">
+            <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-[#9ca3af]">
               Send the item or the load you want to power. We check the supplier, size the equipment if needed, and reply on your preferred channel.
             </p>
           </div>
@@ -1053,8 +1055,8 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
               <div className="flex items-start gap-3">
                 <Phone className="mt-1 h-4 w-4" style={{ color: gold }} />
                 <div>
-                  <div className="text-sm font-semibold text-[#14181D]">{PHONE_DISPLAY}</div>
-                  <div className="text-sm leading-6 text-[#3C4248]">Call or continue on WhatsApp for live support.</div>
+                  <div className="text-sm font-semibold text-[#0e1216]">{PHONE_DISPLAY}</div>
+                  <div className="text-sm leading-6 text-[#9ca3af]">Call or continue on WhatsApp for live support.</div>
                 </div>
               </div>
             </div>
@@ -1062,8 +1064,8 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
               <div className="flex items-start gap-3">
                 <Mail className="mt-1 h-4 w-4" style={{ color: gold }} />
                 <div>
-                  <div className="text-sm font-semibold text-[#14181D]">{EMAIL}</div>
-                  <div className="text-sm leading-6 text-[#3C4248]">Email is available if you prefer a documented reply thread.</div>
+                  <div className="text-sm font-semibold text-[#0e1216]">{EMAIL}</div>
+                  <div className="text-sm leading-6 text-[#9ca3af]">Email is available if you prefer a documented reply thread.</div>
                 </div>
               </div>
             </div>
@@ -1071,10 +1073,10 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
               <div className="flex items-start gap-3">
                 <MapPin className="mt-1 h-4 w-4" style={{ color: gold }} />
                 <div>
-                  <div className="text-sm font-semibold text-[#14181D]">
+                  <div className="text-sm font-semibold text-[#0e1216]">
                     {ADDRESS_LINE_1}, {ADDRESS_LINE_2}
                   </div>
-                  <div className="text-sm leading-6 text-[#3C4248]">
+                  <div className="text-sm leading-6 text-[#9ca3af]">
                     Office hours: {HOURS_DISPLAY}
                     {HOURS_NEEDS_VERIFICATION ? " — please confirm before visiting." : ""}
                   </div>
@@ -1085,7 +1087,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
         </div>
 
         <div className={`rounded-[30px] border bg-white p-6 shadow-[0_18px_48px_rgba(20,24,29,0.06)] ${cardBorder}`}>
-          <div className="mb-5 text-xl font-bold tracking-[-0.02em] text-[#14181D]" style={{ fontFamily: "'Sora', sans-serif" }}>
+          <div className="mb-5 text-xl font-bold tracking-[-0.02em] text-[#0e1216]" style={{ fontFamily: "'Sora', sans-serif" }}>
             Request a Quote
           </div>
           <QuoteForm compact={compact} />
@@ -1101,14 +1103,14 @@ export function CtaBanner() {
       <Container>
         <div className={`flex flex-col gap-6 rounded-[32px] border bg-white p-8 shadow-[0_18px_48px_rgba(20,24,29,0.05)] lg:flex-row lg:items-center lg:justify-between ${cardBorder}`}>
           <div>
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#E8C57E] bg-[#F5F6F4] px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#6B7280]">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#E8C57E] bg-[#0e1216] px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#6B7280]">
               <CalendarDays className="h-4 w-4" style={{ color: gold }} />
               Ready to source
             </div>
-            <h2 style={{ fontFamily: "'Sora', sans-serif" }} className="text-[clamp(2rem,4vw,3.2rem)] font-extrabold leading-[1.02] tracking-[-0.04em] text-[#14181D]">
+            <h2 style={{ fontFamily: "'Sora', sans-serif" }} className="text-[clamp(2rem,4vw,3.2rem)] font-extrabold leading-[1.02] tracking-[-0.04em] text-[#0e1216]">
               Need a generator, solar kit, or a buyer you can verify?
             </h2>
-            <p className="mt-3 max-w-2xl text-base leading-7 text-[#3C4248]">
+            <p className="mt-3 max-w-2xl text-base leading-7 text-[#9ca3af]">
               Send the item or the load you want to power. We’ll check the supplier and send a written quote.
             </p>
           </div>
@@ -1127,7 +1129,7 @@ export function CtaBanner() {
 
 export function Footer({ onNavigate }: { onNavigate: (path: string) => void }) {
   return (
-    <footer className="border-t border-white/10 bg-[#14181D] py-8 lg:py-12">
+    <footer className="border-t border-white/10 bg-[#0e1216] py-8 lg:py-12">
       <Container className="grid gap-10 lg:grid-cols-[1fr_0.8fr_1fr]">
         <div>
           <div className="flex items-center gap-3">
@@ -1238,3 +1240,5 @@ export function AnnouncementBar({ onNavigate }: { onNavigate: (path: string) => 
     </a>
   );
 }
+
+
