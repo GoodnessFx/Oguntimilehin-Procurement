@@ -275,7 +275,7 @@ export function AccentCheck() {
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         <path
           d="M2.75 7.35L5.55 10.15L11.25 4.45"
-          stroke={gold}
+          stroke={accent}
           strokeWidth="1.8"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -411,7 +411,7 @@ export function Header({
             <div style={{ fontFamily: "'Sora', sans-serif" }} className="truncate text-[16px] font-bold tracking-[-0.02em] text-[#0e1216]">
               Oguntimehin
             </div>
-            <div className="text-[10px] uppercase tracking-[0.18em]" style={{ color: gold }}>
+            <div className="text-[10px] uppercase tracking-[0.18em]" style={{ color: accent }}>
               Procurement & Energy
             </div>
           </div>
@@ -488,7 +488,7 @@ export function Header({
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
-            style={{ backgroundColor: gold }}
+            style={{ backgroundColor: accent }}
           >
             WhatsApp <ArrowRight className="h-4 w-4" />
           </a>
@@ -723,7 +723,7 @@ export function NewsletterSignup({
             type="submit"
             disabled={status === "loading"}
             className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-70"
-            style={{ backgroundColor: gold }}
+            style={{ backgroundColor: accent }}
           >
             {status === "loading" ? "Subscribing..." : "Subscribe"} <ArrowRight className="h-4 w-4" />
           </button>
@@ -936,7 +936,7 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
       <button
         type="submit"
         className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-semibold text-white transition hover:opacity-90"
-        style={{ backgroundColor: gold }}
+        style={{ backgroundColor: accent }}
       >
         Submit Request <ArrowRight className="h-4 w-4" />
       </button>
@@ -985,7 +985,7 @@ export function FaqList({
               className="flex w-full items-center justify-between gap-4 p-5 text-left text-base font-semibold text-[#0e1216] cursor-pointer"
             >
               <span>{item.question}</span>
-              <ChevronDown className={`h-4 w-4 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} style={{ color: gold }} />
+              <ChevronDown className={`h-4 w-4 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} style={{ color: accent }} />
             </button>
             <div
               className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}
@@ -1005,7 +1005,7 @@ export function TestimonialsPreview() {
       <Container>
         <div className="flex flex-col items-start justify-between gap-6 rounded-[28px] border bg-[#0e1216] p-6 shadow-[0_14px_34px_rgba(20,24,29,0.04)] sm:flex-row sm:items-center lg:p-8 ${cardBorder}">
           <div>
-            <div className="text-xs uppercase tracking-[0.18em]" style={{ color: gold }}>
+            <div className="text-xs uppercase tracking-[0.18em]" style={{ color: accent }}>
               Google rating
             </div>
             <div className="mt-2 flex items-center gap-3">
@@ -1027,7 +1027,7 @@ export function TestimonialsPreview() {
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
-            style={{ backgroundColor: gold }}
+            style={{ backgroundColor: accent }}
           >
             Leave a review <ArrowRight className="h-4 w-4" />
           </a>
@@ -1044,7 +1044,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
         <div>
           <div className="mb-6">
             <h2 className="text-[clamp(2.3rem,5vw,3.5rem)] font-extrabold tracking-[-0.04em] text-[#0e1216]" style={{ fontFamily: "'Sora', sans-serif" }}>
-              Tell us what you need — we’ll quote it <span style={{ color: gold }}>in writing.</span>
+              Tell us what you need — we’ll quote it <span style={{ color: accent }}>in writing.</span>
             </h2>
             <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-white/90">
               Send the item or the load you want to power. We check the supplier, size the equipment if needed, and reply on your preferred channel.
@@ -1053,7 +1053,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
           <div className="grid gap-4">
             <div className={`rounded-2xl border bg-white p-5 shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
               <div className="flex items-start gap-3">
-                <Phone className="mt-1 h-4 w-4" style={{ color: gold }} />
+                <Phone className="mt-1 h-4 w-4" style={{ color: accent }} />
                 <div>
                   <div className="text-sm font-semibold text-[#0e1216]">{PHONE_DISPLAY}</div>
                   <div className="text-sm leading-6 text-white/90">Call or continue on WhatsApp for live support.</div>
@@ -1062,7 +1062,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
             </div>
             <div className={`rounded-2xl border bg-white p-5 shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
               <div className="flex items-start gap-3">
-                <Mail className="mt-1 h-4 w-4" style={{ color: gold }} />
+                <Mail className="mt-1 h-4 w-4" style={{ color: accent }} />
                 <div>
                   <div className="text-sm font-semibold text-[#0e1216]">{EMAIL}</div>
                   <div className="text-sm leading-6 text-white/90">Email is available if you prefer a documented reply thread.</div>
@@ -1071,7 +1071,7 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
             </div>
             <div className={`rounded-2xl border bg-white p-5 shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
               <div className="flex items-start gap-3">
-                <MapPin className="mt-1 h-4 w-4" style={{ color: gold }} />
+                <MapPin className="mt-1 h-4 w-4" style={{ color: accent }} />
                 <div>
                   <div className="text-sm font-semibold text-[#0e1216]">
                     {ADDRESS_LINE_1}, {ADDRESS_LINE_2}
@@ -1104,7 +1104,7 @@ export function CtaBanner() {
         <div className={`flex flex-col gap-6 rounded-[32px] border bg-white p-8 shadow-[0_18px_48px_rgba(20,24,29,0.05)] lg:flex-row lg:items-center lg:justify-between ${cardBorder}`}>
           <div>
             <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#14b8a6] bg-[#0e1216] px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/90">
-              <CalendarDays className="h-4 w-4" style={{ color: gold }} />
+              <CalendarDays className="h-4 w-4" style={{ color: accent }} />
               Ready to source
             </div>
             <h2 style={{ fontFamily: "'Sora', sans-serif" }} className="text-[clamp(2rem,4vw,3.2rem)] font-extrabold leading-[1.02] tracking-[-0.04em] text-[#0e1216]">
@@ -1117,7 +1117,7 @@ export function CtaBanner() {
           <a
             href="/#contact"
             className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-semibold text-white transition hover:opacity-90"
-            style={{ backgroundColor: gold }}
+            style={{ backgroundColor: accent }}
           >
             Request a Quote <ArrowRight className="h-4 w-4" />
           </a>
@@ -1138,7 +1138,7 @@ export function Footer({ onNavigate }: { onNavigate: (path: string) => void }) {
               <div style={{ fontFamily: "'Sora', sans-serif" }} className="text-lg font-bold tracking-[-0.02em] text-white">
                 {BUSINESS_NAME}
               </div>
-              <div className="text-[10px] uppercase tracking-[0.18em]" style={{ color: gold }}>
+              <div className="text-[10px] uppercase tracking-[0.18em]" style={{ color: accent }}>
                 Procurement & Energy
               </div>
             </div>
@@ -1175,21 +1175,21 @@ export function Footer({ onNavigate }: { onNavigate: (path: string) => void }) {
             <div className="text-xs uppercase tracking-[0.18em] text-white/70">Contact</div>
             <div className="mt-4 grid gap-4">
               <a href={`tel:${PHONE_DISPLAY.replace(/\s/g, "")}`} className="flex items-start gap-3 text-sm text-white">
-                <Phone className="mt-1 h-4 w-4" style={{ color: gold }} />
+                <Phone className="mt-1 h-4 w-4" style={{ color: accent }} />
                 <span className="text-white">{PHONE_DISPLAY}</span>
               </a>
               <a href={`mailto:${EMAIL}`} className="flex items-start gap-3 text-sm text-white">
-                <Mail className="mt-1 h-4 w-4" style={{ color: gold }} />
+                <Mail className="mt-1 h-4 w-4" style={{ color: accent }} />
                 <span className="text-white">{EMAIL}</span>
               </a>
               <a href={GOOGLE_MAPS_URL} target="_blank" rel="noreferrer" className="flex items-start gap-3 text-sm text-white">
-                <MapPin className="mt-1 h-4 w-4" style={{ color: gold }} />
+                <MapPin className="mt-1 h-4 w-4" style={{ color: accent }} />
                 <span className="text-white">
                   {ADDRESS_LINE_1}, {ADDRESS_LINE_2}
                 </span>
               </a>
               <div className="flex items-start gap-3 text-sm text-white">
-                <CircleHelp className="mt-1 h-4 w-4" style={{ color: gold }} />
+                <CircleHelp className="mt-1 h-4 w-4" style={{ color: accent }} />
                 <span className="text-white">Office hours: {HOURS_DISPLAY}{HOURS_NEEDS_VERIFICATION ? " (confirm before visiting)" : ""}</span>
               </div>
             </div>
@@ -1240,6 +1240,7 @@ export function AnnouncementBar({ onNavigate }: { onNavigate: (path: string) => 
     </a>
   );
 }
+
 
 
 
