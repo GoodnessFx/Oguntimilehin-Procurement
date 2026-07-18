@@ -375,7 +375,7 @@ export function NavAnchor({
       }}
       className={classNames(
         "text-sm font-medium transition",
-        active ? "text-[#14b8a6]" : "text-white/90 hover:text-\[#14b8a6\]",
+        active ? "text-[#14b8a6]" : "text-white/90 hover:text-[#14b8a6]",
       )}
     >
       {label}
@@ -448,7 +448,7 @@ export function Header({
                   "absolute top-full left-1/2 -translate-x-1/2 z-50 pt-2 w-56 transition-all duration-200 ease-out transform",
                   isDesktopOpen ? "opacity-100 visible scale-100" : "opacity-0 invisible scale-95"
                 )}>
-                  <div className="rounded-2xl border border-[#1e293b] bg-white p-2.5 shadow-[0_12px_32px_rgba(20,24,29,0.08)]">
+<div className="rounded-2xl border border-[#1e293b] bg-white p-2.5 shadow-[0_12px_32px_rgba(20,24,29,0.08)]">
                     {group.links.map((link) => {
                       const isLinkActive = currentPath === link.href;
                       return (
@@ -460,12 +460,12 @@ export function Header({
                             onNavigate(link.href);
                             setActiveDesktopGroup(null);
                           }}
-className={classNames(
-                              "block rounded-xl px-3.5 py-2.5 text-sm font-medium transition",
-                              isLinkActive
-                                ? "bg-[#14b8a6]/10 text-[#14b8a6]"
-                                : "text-[#0e1216] hover:bg-[#14b8a6]/10 hover:text-[#14b8a6]"
-                            )}
+                          className={classNames(
+                            "block rounded-xl px-3.5 py-2.5 text-sm font-medium transition",
+                            isLinkActive
+                              ? "bg-[#14b8a6]/10 text-[#14b8a6]"
+                              : "text-[#0e1216] hover:bg-[#14b8a6]/10 hover:text-[#14b8a6]"
+                          )}
                         >
                           {link.label}
                         </a>
@@ -504,8 +504,8 @@ className={classNames(
         </button>
       </Container>
 
-      {menuOpen ? (
-        <div className="border-t border-[#1e293b] bg-white lg:hidden">
+{menuOpen ? (
+        <div className="border-t border-[#1e293b] bg-[#0e1216] lg:hidden">
           <Container className="flex flex-col gap-4 py-6">
             <NavAnchor
               href="/"
@@ -547,10 +547,10 @@ className={classNames(
                   onNavigate(link.href);
                   setMenuOpen(false);
                 }}
-                className={classNames(
-                  "block py-1 text-sm font-medium transition",
-                  isLinkActive ? "text-[#14b8a6]" : "text-[#0e1216] hover:text-[#14b8a6]"
-                )}
+className={classNames(
+                              "block py-1 text-sm font-medium transition",
+                              isLinkActive ? "text-[#14b8a6]" : "text-[#0e1216] hover:text-[#14b8a6]"
+                            )}
               >
                 {link.label}
               </a>
