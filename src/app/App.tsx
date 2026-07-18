@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { analyticsConfig, faqItems, SITE_URL, socialLinks } from "./content";
+import { BUSINESS_NAME, BUSINESS_SHORT_NAME, analyticsConfig, faqItems, SITE_URL, socialLinks } from "./content";
 import { AssistantWidget, BackToTopButton, FloatingWhatsAppButton } from "./assistant";
 import { Footer, Header, AnnouncementBar, normalizePath, routeMeta, setMetaTag, upsertLink } from "./layout";
 import {
@@ -25,9 +25,10 @@ function buildLocalBusinessSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "Oguntimehin Procurement & Energy Services",
+    name: BUSINESS_NAME,
+    alternateName: BUSINESS_SHORT_NAME,
     url: SITE_URL,
-    image: `${SITE_URL}/brand/logo.svg`,
+    image: `${SITE_URL}/brand/opes-logo-primary.png`,
     telephone: "+2348107380672",
     email: "oguntimehin.procurement@gmail.com",
     address: {
@@ -152,7 +153,7 @@ export default function App() {
   const activeMeta = useMemo(() => {
     if (activePost) {
       return {
-        title: `${activePost.title} | Oguntimehin Blog`,
+        title: `${activePost.title} | OPES Insights`,
         description: activePost.excerpt,
       };
     }
@@ -163,17 +164,19 @@ export default function App() {
   useEffect(() => {
     document.title = activeMeta.title;
     setMetaTag("description", activeMeta.description);
-    setMetaTag("theme-color", "#F5F6F4");
+    setMetaTag("theme-color", "#0D234F");
+    setMetaTag("keywords", "OPES, Oguntimehin Procurement, procurement company Nigeria, energy solutions Lagos, inverter systems, solar projects, battery storage");
     setMetaTag("og:title", activeMeta.title, true);
     setMetaTag("og:description", activeMeta.description, true);
     setMetaTag("og:type", activePost ? "article" : "website", true);
     setMetaTag("og:url", `${SITE_URL}${currentPath === "/" ? "" : currentPath}`, true);
-    setMetaTag("og:image", `${SITE_URL}/brand/logo.svg`, true);
+    setMetaTag("og:image", `${SITE_URL}/brand/opes-logo-primary.png`, true);
+    setMetaTag("twitter:image", `${SITE_URL}/brand/opes-logo-primary.png`);
     setMetaTag("twitter:card", "summary_large_image");
     setMetaTag("twitter:title", activeMeta.title);
     setMetaTag("twitter:description", activeMeta.description);
     upsertLink("canonical", `${SITE_URL}${currentPath === "/" ? "" : currentPath}`);
-    upsertLink("icon", `${SITE_URL}/brand/logo.svg`);
+    upsertLink("icon", `${SITE_URL}/brand/opes-logo-primary.png`);
 
     const schemaId = "oguntimehin-schema";
     let schemaElement = document.getElementById(schemaId) as HTMLScriptElement | null;
@@ -200,8 +203,16 @@ export default function App() {
         url: `${SITE_URL}/blog/${activePost.slug}`,
         author: {
           "@type": "Organization",
-          name: "Oguntimehin Procurement & Energy Services",
+            name: BUSINESS_NAME,
         },
+          publisher: {
+            "@type": "Organization",
+            name: BUSINESS_NAME,
+            logo: {
+              "@type": "ImageObject",
+              url: `${SITE_URL}/brand/opes-logo-primary.png`,
+            },
+          },
       });
     }
 
@@ -257,7 +268,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#F5F6F4]" style={{ fontFamily: "'Inter', sans-serif" }}>
+    <div className="min-h-screen overflow-x-hidden bg-[#F4F6F8]" style={{ fontFamily: "'Inter', sans-serif" }}>
       <AnnouncementBar onNavigate={navigate} />
       <Header currentPath={currentPath} onNavigate={navigate} />
       {renderPage()}

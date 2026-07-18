@@ -1,16 +1,16 @@
 export const SITE_URL = "https://oguntimehin-procurement.vercel.app";
 export const BUSINESS_NAME = "Oguntimehin Procurement & Energy Services";
-export const WA_PHONE = "2348107380672";
+export const BUSINESS_SHORT_NAME = "OPES";
 export const PHONE_DISPLAY = "0810 738 0672";
+export const WA_PHONE = "2348107380672";
 export const EMAIL = "oguntimehin.pes@gmail.com";
 export const ADDRESS_LINE_1 = "11 Fagbayi Street, off Cash Street, Alimosho";
 export const ADDRESS_LINE_2 = "Ipaja, Lagos 100278, Nigeria";
-export const GOOGLE_MAPS_URL =
-  "https://www.google.com/maps/search/?api=1&query=11+Fagbayi+Street+Ipaja+Lagos";
-export const WA_GREETING =
-  "Hello Oguntimehin Procurement & Energy Services, I would like to request a quote for procurement, construction, or building materials.";
+export const GOOGLE_MAPS_URL = "https://www.google.com/maps/search/?api=1&query=11+Fagbayi+Street+Ipaja+Lagos";
 export const HOURS_DISPLAY = "Mon–Sat, closes 6pm";
 export const HOURS_NEEDS_VERIFICATION = true;
+export const WA_GREETING =
+  "Hello OPES, I would like to request a quote for procurement, energy, or engineering support.";
 
 export type ServiceItem = {
   icon: string;
@@ -30,8 +30,17 @@ export type ProjectItem = {
   summary: string;
   outcome: string;
   tags: string[];
-  tone: "amber" | "graphite" | "blue";
+  tone: "navy" | "gold" | "slate";
   image: string;
+};
+
+export type FeaturedMediaItem = {
+  type: "image" | "video";
+  src: string;
+  poster?: string;
+  title: string;
+  caption: string;
+  category: string;
 };
 
 export type SocialLink = {
@@ -56,221 +65,277 @@ export const analyticsConfig = {
   newsletterAction: "",
 };
 
+export const heroStats = [
+  { value: "Energy", label: "solar, inverter, and backup power systems" },
+  { value: "Procurement", label: "verified sourcing and commercial supply" },
+  { value: "Logistics", label: "delivery coordination and project support" },
+];
+
+export const trustPillars = [
+  "Engineering-led decision support",
+  "Verified supplier and product checks",
+  "Premium documentation and quote handling",
+  "Responsive support from inquiry to delivery",
+];
+
 export const services: ServiceItem[] = [
   {
     icon: "search",
-    title: "Building Materials Procurement",
+    title: "Strategic Procurement",
     description:
-      "Cement, steel, blocks, roofing, pipes, wiring — sourced from verified suppliers at competitive prices for projects of any scale.",
+      "OPES sources industrial equipment, project materials, and commercial supplies through verified vendors with clear specifications and documented quotations.",
   },
   {
     icon: "zap",
-    title: "Generator Supply & Installation",
+    title: "Generator Solutions",
     description:
-      "Diesel and petrol generators sized for homes, offices, schools, and sites across Lagos, with professional installation and load testing.",
+      "Diesel and hybrid generator systems for homes, offices, schools, facilities, and project sites, including sizing guidance and delivery coordination.",
   },
   {
     icon: "sun",
     title: "Solar & Inverter Systems",
     description:
-      "Solar panels, charge controllers, inverters, and battery banks sourced and matched to your load — from a single room to a full building.",
+      "Solar PV, inverters, battery storage, and hybrid power systems designed around the actual load profile of each client environment.",
   },
   {
     icon: "clipboard",
-    title: "Energy Consultation & Load Assessment",
+    title: "Energy Advisory",
     description:
-      "We assess what you actually run — lights, fans, AC, equipment — and recommend a power setup that fits your budget and space.",
+      "Load assessment, capacity planning, and practical recommendations that balance reliability, budget, maintenance, and future expansion.",
   },
   {
     icon: "shield",
     title: "Supplier Verification",
     description:
-      "Before any payment, we confirm the supplier is real and the specification matches what you are paying for.",
+      "We confirm supplier credibility, product specification, and commercial fit before money moves so clients buy with confidence.",
   },
   {
     icon: "factory",
-    title: "Pre-Delivery Inspection",
+    title: "Inspection & Quality Control",
     description:
-      "Items can be checked for rating, condition, and completeness before they leave the supplier, so you are not surprised on delivery.",
+      "Equipment condition, completeness, and key technical details are checked where possible before dispatch or installation.",
   },
   {
     icon: "package",
-    title: "General Procurement",
+    title: "Industrial Supply Support",
     description:
-      "Beyond power and construction, we handle sourcing of other goods and materials for businesses, schools, and offices that need a reliable buying process.",
+      "From batteries and balance-of-system components to general project materials, OPES provides structured sourcing support for business-critical needs.",
   },
   {
     icon: "truck",
     title: "Logistics & Delivery",
     description:
-      "We coordinate transport from supplier to your Lagos address or pickup point, and keep you updated through the process.",
+      "We coordinate movement from supplier to site or pickup point with status updates and practical delivery planning.",
   },
   {
     icon: "file",
-    title: "Documentation & Clearance",
+    title: "Documentation & Commercial Clarity",
     description:
-      "We help with the paperwork and clearance steps needed to get equipment and materials to your site without avoidable delay.",
+      "Quotations, item specifications, and procurement communication stay documented so clients know exactly what is being supplied.",
   },
 ];
 
 export const whyChoose = [
-  "Lagos-based and on-ground",
-  "Supplier checks before payment",
-  "Power setups sized to your load",
-  "Generator, solar & building materials sourcing",
-  "Clear, written quotations",
-  "Updates through the process",
-  "Homes, businesses, schools, offices, sites",
-  "Logistics handled to your door",
+  "Premium brand experience with practical execution",
+  "Strong experience across energy and procurement scopes",
+  "Load-based recommendations instead of guesswork",
+  "Commercially clear written quotations",
+  "Supplier screening before commitment",
+  "Project-ready logistics coordination",
+  "Professional support for homes, institutions, and business operations",
+  "A corporate standard of communication and follow-through",
 ];
 
 export const audiences = [
-  "Homeowners dealing with erratic supply",
-  "Offices and small businesses",
-  "Schools and training centres",
-  "Shops and workshops",
-  "Estate and facility managers",
-  "Construction sites & contractors",
-  "Building material suppliers & distributors",
-  "Anyone sourcing goods through a verified buyer",
+  "Corporate offices and facilities",
+  "Industrial and energy project teams",
+  "Commercial property owners",
+  "Schools, churches, and institutions",
+  "Residential clients requiring reliable backup power",
+  "Developers, contractors, and site managers",
+  "Procurement teams that need a trusted sourcing partner",
+  "Organizations expanding into hybrid and renewable power",
 ];
 
 export const orderSteps = [
   {
-    title: "Step 1",
-    heading: "Tell us what you need — a generator, solar parts, or another item.",
+    title: "Discovery",
+    heading: "Share the project scope, equipment need, or operational challenge with OPES.",
   },
   {
-    title: "Step 2",
-    heading: "We check the supplier and send a written quotation with specs and total cost.",
+    title: "Evaluation",
+    heading: "We review the load, specification, quantity, and supplier options before recommending a direction.",
   },
   {
-    title: "Step 3",
-    heading: "You confirm and pay. We place the order and track it.",
+    title: "Quotation",
+    heading: "You receive a written proposal with the item scope, commercial details, and next steps.",
   },
   {
-    title: "Step 4",
-    heading: "We inspect the equipment before it moves, where possible.",
+    title: "Execution",
+    heading: "Once approved, OPES coordinates procurement, quality checks, and supply movement.",
   },
   {
-    title: "Step 5",
-    heading: "We deliver to your Lagos address or an agreed pickup point.",
+    title: "Delivery",
+    heading: "Equipment is delivered or prepared for deployment with communication maintained throughout.",
   },
 ];
 
 export const faqItems: FAQItem[] = [
   {
-    question: "What do you source?",
+    question: "What does OPES do?",
     answer:
-      "Primarily power and energy equipment — generators, solar panels, inverters, batteries, and related hardware. We also handle building materials (cement, steel, blocks, roofing, pipes, wiring) and general procurement for businesses, schools, and offices.",
+      "OPES provides procurement, energy, and project support services. That includes sourcing equipment and materials, advising on power solutions, verifying suppliers, and coordinating delivery.",
   },
   {
-    question: "Do you install the generators or solar systems?",
+    question: "Can OPES handle solar and inverter projects?",
     answer:
-      "We source and supply the equipment and can coordinate installation through trusted technicians. Installation scope and cost are confirmed per job — ask us when you request a quote.",
+      "Yes. OPES supports solar, inverter, and battery-based systems ranging from smaller backup setups to larger hybrid energy projects, with recommendations based on actual load needs.",
   },
   {
-    question: "How do I know the supplier is genuine?",
+    question: "Do you install the equipment?",
     answer:
-      "We verify suppliers before payment and, where possible, inspect the item before it ships. You get the specification in writing before you pay.",
+      "OPES can coordinate trusted technical support where needed. Installation scope and cost are always clarified per project before work proceeds.",
   },
   {
-    question: "Can you help me size a generator or solar system?",
+    question: "How do you make sure suppliers are genuine?",
     answer:
-      "Yes. Tell us what you need to power — rooms, appliances, equipment — and we recommend a capacity and a bill of materials that fits your budget.",
+      "Supplier verification is part of the OPES process. We review the source, confirm the specification, and keep the commercial details documented before final commitment.",
   },
   {
-    question: "Do you supply building materials like cement, steel, and blocks?",
+    question: "Do you only work on energy projects?",
     answer:
-      "Yes. We source cement, steel reinforcement, blocks, roofing sheets, pipes, wiring, and other construction materials from verified suppliers at competitive prices for projects of any scale.",
+      "No. Energy is a core strength, but OPES also supports broader procurement requirements for businesses, institutions, project teams, and facilities.",
   },
   {
     question: "Where do you deliver?",
     answer:
-      "Within Lagos as standard. Delivery outside Lagos can be arranged depending on the item and location — confirm with us when you request a quote.",
+      "Lagos remains the core delivery base, with additional locations considered depending on project type, product class, and logistics requirements.",
   },
   {
-    question: "How are payments handled?",
+    question: "How does pricing work?",
     answer:
-      "Payment terms are agreed at the quotation stage. We confirm the total cost in writing before any order is placed.",
+      "Pricing depends on the project scope, specification, market availability, and delivery conditions. OPES provides written quotations so the commercial picture stays clear.",
+  },
+  {
+    question: "Can you help size a power solution?",
+    answer:
+      "Yes. OPES can assess the appliances, equipment, or operational load involved and recommend a practical generator or hybrid power solution.",
   },
   {
     question: "How long does sourcing take?",
     answer:
-      "It depends on the item, supplier lead time, and whether inspection or clearance is involved. We give you a realistic timeline when we quote.",
-  },
-  {
-    question: "Do you offer refunds?",
-    answer:
-      "If an item does not match the agreed specification due to our error, we work it out with you directly. Terms are confirmed before payment.",
+      "Lead time depends on item availability, supplier readiness, technical complexity, and logistics. We communicate realistic timing at quotation stage.",
   },
 ];
 
 export const projects: ProjectItem[] = [
   {
-    category: "Residential",
-    title: "Home backup power",
+    category: "Hybrid Power",
+    title: "Commercial inverter and battery deployment",
     summary:
-      "Sourced a generator and a small inverter-battery set for a family home in Ipaja dealing with frequent outages.",
-    outcome: "Matched capacity to actual load instead of overselling a bigger unit.",
-    tags: ["Generator", "Inverter", "Home"],
-    tone: "amber",
-    image: "/media/proj-home.jpg",
+      "A recent OPES energy project combining inverter infrastructure and battery storage for a more resilient operating environment.",
+    outcome: "Delivered a cleaner, more structured backup power architecture with professional installation finish.",
+    tags: ["Inverter", "Battery", "Commercial"],
+    tone: "navy",
+    image: "/media/recent/inverter-installed.jpeg",
   },
   {
-    category: "Business",
-    title: "Shop and workshop supply",
+    category: "Solar Infrastructure",
+    title: "Large-scale solar canopy installation",
     summary:
-      "Procured generators and solar lighting for a workshop that needed steady power through the working day.",
-    outcome: "Kept the owner's tools running without a full grid connection.",
-    tags: ["Generator", "Solar", "Workshop"],
-    tone: "graphite",
-    image: "/media/proj-workshop.jpg",
+      "A professionally mounted solar installation supporting daytime energy needs with a strong visual and engineering presence.",
+    outcome: "Created durable renewable-energy coverage suited to institutional or business-grade operations.",
+    tags: ["Solar", "Institutional", "Renewable"],
+    tone: "gold",
+    image: "/media/recent/solar-installation-001.jpeg",
   },
   {
-    category: "Education",
-    title: "School power setup",
+    category: "Battery Systems",
+    title: "Utility-scale storage equipment sourcing",
     summary:
-      "Helped a small school source solar panels and batteries to run lights and fans in core classrooms.",
-    outcome: "Reduced reliance on noisy generators during school hours.",
-    tags: ["Solar", "School", "Batteries"],
-    tone: "blue",
-    image: "/media/proj-school.jpg",
+      "OPES-curated battery storage systems for clients planning larger backup, hybrid, or distributed energy applications.",
+    outcome: "Positioned the project for longer runtime and more dependable energy continuity.",
+    tags: ["Battery", "Energy Storage", "Industrial"],
+    tone: "slate",
+    image: "/media/recent/deye-battery-pack-215kwh.jpeg",
   },
   {
-    category: "Office",
-    title: "Office inverter system",
+    category: "Hybrid Inverter",
+    title: "12kVA hybrid inverter system supply",
     summary:
-      "Sourced an inverter and battery bank for a small office so computers and routers stay up through outages.",
-    outcome: "Documented the load first, then sized the system to it.",
-    tags: ["Inverter", "Office", "Batteries"],
-    tone: "amber",
-    image: "/media/proj-office.jpg",
+      "A tailored hybrid inverter solution selected for clients who need dependable switching between multiple power sources.",
+    outcome: "Balanced performance, expandability, and a premium commercial fit.",
+    tags: ["12kVA", "Hybrid", "Power Systems"],
+    tone: "navy",
+    image: "/media/recent/hybrid-inverter-system-12kva.jpeg",
   },
   {
-    category: "General Procurement",
-    title: "Materials for a facility",
+    category: "Energy Storage",
+    title: "Battery-backed inverter packages",
     summary:
-      "Handled sourcing of assorted materials for a facility manager who needed one reliable point of contact.",
-    outcome: "Consolidated orders and reported progress at each stage.",
-    tags: ["Procurement", "Facility"],
-    tone: "graphite",
-    image: "/media/proj-facility.jpg",
+      "Battery and inverter combinations sourced for clients prioritizing quieter, cleaner, and more intelligent power backup.",
+    outcome: "Reduced reliance on ad-hoc backup arrangements and improved system consistency.",
+    tags: ["Storage", "Inverter", "Backup Power"],
+    tone: "gold",
+    image: "/media/recent/itel-battery-16kwh.jpeg",
   },
   {
-    category: "Residential",
-    title: "Solar starter kit",
+    category: "Equipment Supply",
+    title: "Modular inverter solutions",
     summary:
-      "Put together a first solar kit — panel, controller, battery — for a tenant who wanted lights and phone charging off-grid.",
-    outcome: "Kept it to a budget the client could start with and expand later.",
-    tags: ["Solar", "Starter kit", "Home"],
-    tone: "blue",
-    image: "/media/proj-solar.jpg",
+      "Compact inverter packages selected for scalable residential and commercial deployment, with clean procurement handling throughout.",
+    outcome: "Made future expansion easier while keeping the immediate supply scope practical.",
+    tags: ["Inverter", "Procurement", "Scalable"],
+    tone: "slate",
+    image: "/media/recent/inverter-001.jpeg",
   },
 ];
 
+export const featuredMedia: FeaturedMediaItem[] = [
+  {
+    type: "video",
+    src: "/media/recent/solar-installed.mp4",
+    poster: "/media/recent/solar-installation-001.jpeg",
+    title: "Solar project delivery",
+    caption: "Recent OPES solar execution footage showing finished renewable infrastructure in use.",
+    category: "Field video",
+  },
+  {
+    type: "video",
+    src: "/media/recent/inverter-delivered.mp4",
+    poster: "/media/recent/inverter-installed.jpeg",
+    title: "Inverter project delivery",
+    caption: "A professional look at recent inverter-system delivery and deployment work.",
+    category: "Delivery video",
+  },
+  {
+    type: "video",
+    src: "/media/recent/battery-delivery.mp4",
+    poster: "/media/recent/deye-battery-pack-215kwh.jpeg",
+    title: "Battery logistics",
+    caption: "Battery logistics and supply movement captured as part of recent project execution.",
+    category: "Operations video",
+  },
+  {
+    type: "video",
+    src: "/media/recent/lithium-battery-2.5kw.mp4",
+    poster: "/media/recent/itel-battery-16kwh.jpeg",
+    title: "Lithium storage sourcing",
+    caption: "Recent delivery of a 2.5kW modular lithium battery system, checked and prepared for client installation.",
+    category: "Logistics video",
+  },
+  {
+    type: "image",
+    src: "/media/recent/solar-inspection-site.jpeg",
+    title: "Pre-installation site inspection",
+    caption: "On-site quality check and electrical panel assessment to guarantee load capacity matches equipment specifications.",
+    category: "Engineering check",
+  },
+];
+
+
 export const assistantFallback =
-  "I can help with sourcing, power/energy options, sizing guidance, supplier checks, and the order process. For exact quotes, account issues, or anything outside the published information, please continue on WhatsApp.";
+  "I can help with procurement, power-system guidance, supplier verification, delivery questions, and OPES service information. For a live quote or project-specific discussion, please continue on WhatsApp.";
 
 export const footerConsent =
-  "By subscribing, you agree to receive updates from Oguntimehin Procurement & Energy Services. You can unsubscribe anytime.";
+  "By subscribing, you agree to receive occasional OPES updates and practical procurement or energy insights. You can unsubscribe anytime.";

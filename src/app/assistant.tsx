@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { ArrowUp, Bot, MessageCircle, Send, X } from "lucide-react";
-import { faqItems, services } from "./content";
+import { BUSINESS_SHORT_NAME, faqItems, services } from "./content";
 import { WhatsAppBrandIcon, createWhatsAppUrl, accent } from "./layout";
 
 type ChatMessage = {
@@ -10,10 +10,10 @@ type ChatMessage = {
 };
 
 const greeting =
-  "Hello. I can answer questions about generators, solar and inverter systems, supplier checks, sizing, delivery, and the order process. Ask me anything and I’ll think it through before replying.";
+  "Hello. I can answer questions about OPES services, generators, solar and inverter systems, supplier checks, delivery, and the project process. Ask me anything and I’ll think it through before replying.";
 
 const fallback =
-  "I can answer from the information published on this site. For exact quotes, account-specific issues, complaints, or anything outside the published information, please continue on WhatsApp.";
+  "I can answer from the information published on this site. For an exact quote, a live project discussion, or anything outside the published information, please continue on WhatsApp.";
 
 const handoffTerms = [
   "quote",
@@ -89,7 +89,7 @@ const knowledge = [
   {
     patterns: ["who are you", "what do you do", "what is oguntimehin", "services offered", "how can you help"],
     answer:
-      "I’m the Oguntimehin Assistant. I answer questions about generator and solar sourcing, supplier checks, sizing, delivery, and the order process using the published site information.",
+      "I’m the OPES Assistant. I answer questions about procurement, energy systems, supplier checks, sizing, delivery, and the order process using the published site information.",
   },
 ];
 
@@ -152,7 +152,7 @@ const quickQuestions = [
 export function FloatingWhatsAppButton() {
   return (
     <a
-      href={createWhatsAppUrl("Hello Oguntimehin, I would like to continue this conversation on WhatsApp.")}
+      href={createWhatsAppUrl("Hello OPES, I would like to continue this conversation on WhatsApp.")}
       target="_blank"
       rel="noreferrer"
       className="group fixed bottom-5 right-5 z-50 inline-flex h-20 w-20 items-center justify-center rounded-full bg-white p-1 shadow-[0_22px_50px_rgba(37,211,102,0.35)] transition hover:scale-[1.04]"
@@ -180,7 +180,7 @@ export function BackToTopButton() {
       type="button"
       aria-label="Back to top"
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      className={`fixed bottom-28 left-6 z-50 flex h-12 w-12 items-center justify-center rounded-full text-white shadow-[0_8px_24px_rgba(242,166,12,0.3)] transition-all duration-300 ${
+      className={`fixed bottom-28 left-6 z-50 flex h-12 w-12 items-center justify-center rounded-full text-white shadow-[0_8px_24px_rgba(13,35,79,0.25)] transition-all duration-300 ${
         visible ? "scale-100 opacity-100" : "scale-75 opacity-0 pointer-events-none"
       }`}
       style={{ backgroundColor: accent }}
@@ -259,12 +259,12 @@ export function AssistantWidget() {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="inline-flex items-center gap-3 rounded-full border border-[#E3E7E4] bg-white px-4 py-3 text-sm font-semibold text-[#14181D] shadow-[0_18px_40px_rgba(20,24,29,0.12)] transition hover:border-[#F2A60C]"
+          className="inline-flex items-center gap-3 rounded-full border border-[#D7DEE9] bg-white px-4 py-3 text-sm font-semibold text-[#0D234F] shadow-[0_18px_40px_rgba(20,24,29,0.12)] transition hover:border-[#E0A21A]"
         >
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#F5F6F4]" style={{ color: accent }}>
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#F4F6F8]" style={{ color: accent }}>
             <Bot className="h-5 w-5" />
           </span>
-          Ask Oguntimehin
+          Ask {BUSINESS_SHORT_NAME}
         </button>
       </div>
     );
@@ -275,15 +275,15 @@ export function AssistantWidget() {
       <div className="absolute inset-0 bg-black/20 md:hidden" onClick={() => setOpen(false)} />
       <div
         onClick={(event) => event.stopPropagation()}
-        className="pointer-events-auto fixed left-4 right-4 bottom-4 top-6 z-50 mx-auto w-full max-w-sm overflow-hidden rounded-[28px] border border-[#E3E7E4] bg-white shadow-[0_22px_54px_rgba(20,24,29,0.14)] md:left-auto md:right-6 md:bottom-6 md:top-auto md:w-[22rem] md:max-h-[calc(100vh-6rem)]"
+        className="pointer-events-auto fixed left-4 right-4 bottom-4 top-6 z-50 mx-auto w-full max-w-sm overflow-hidden rounded-[28px] border border-[#D7DEE9] bg-white shadow-[0_22px_54px_rgba(20,24,29,0.14)] md:left-auto md:right-6 md:bottom-6 md:top-auto md:w-[22rem] md:max-h-[calc(100vh-6rem)]"
       >
-        <div className="flex items-center justify-between border-b border-[#ECEEEC] px-5 py-4">
+        <div className="flex items-center justify-between border-b border-[#E7ECF3] px-5 py-4">
           <div className="flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#F5F6F4]" style={{ color: accent }}>
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#F4F6F8]" style={{ color: accent }}>
               <Bot className="h-5 w-5" />
             </span>
             <div>
-              <div className="text-sm font-semibold text-[#14181D]">Oguntimehin Assistant</div>
+              <div className="text-sm font-semibold text-[#0D234F]">{BUSINESS_SHORT_NAME} Assistant</div>
               <div className="text-xs text-[#6B7280]">Published site knowledge only</div>
             </div>
           </div>
@@ -297,15 +297,15 @@ export function AssistantWidget() {
               key={`${message.role}-${index}`}
               className={
                 message.role === "assistant"
-                  ? "mr-6 rounded-2xl bg-[#F5F6F4] px-4 py-3 text-sm leading-6 text-[#3C4248]"
-                  : "ml-6 rounded-2xl border border-[#E3E7E4] bg-white px-4 py-3 text-sm leading-6 text-[#14181D]"
+                  ? "mr-6 rounded-2xl bg-[#F4F6F8] px-4 py-3 text-sm leading-6 text-[#51607B]"
+                  : "ml-6 rounded-2xl border border-[#D7DEE9] bg-white px-4 py-3 text-sm leading-6 text-[#0D234F]"
               }
             >
               {message.pending ? (
-                <div className="flex items-center gap-2 text-[#3C4248]">
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#F2A60C] animate-pulse" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#F2A60C] animate-pulse" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-[#F2A60C] animate-pulse" />
+                <div className="flex items-center gap-2 text-[#51607B]">
+                  <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-[#E0A21A]" />
+                  <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-[#E0A21A]" />
+                  <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-[#E0A21A]" />
                   Typing...
                 </div>
               ) : (
@@ -314,14 +314,14 @@ export function AssistantWidget() {
             </div>
           ))}
         </div>
-        <div className="border-t border-[#ECEEEC] p-4">
+        <div className="border-t border-[#E7ECF3] p-4">
           <div className="mb-3 flex flex-wrap gap-2">
             {quickQuestions.map((question) => (
               <button
                 key={question}
                 type="button"
                 onClick={() => pushReply(question)}
-                className="rounded-full border border-[#E3E7E4] bg-[#F5F6F4] px-3 py-2 text-xs font-semibold text-[#3C4248] transition hover:border-[#F2A60C] hover:text-[#14181D]"
+                className="rounded-full border border-[#D7DEE9] bg-[#F4F6F8] px-3 py-2 text-xs font-semibold text-[#51607B] transition hover:border-[#E0A21A] hover:text-[#0D234F]"
               >
                 {question}
               </button>
@@ -337,15 +337,15 @@ export function AssistantWidget() {
                   handleSend();
                 }
               }}
-              placeholder="Ask about generators, solar, or delivery"
-              className="flex-1 rounded-full border border-[#D6DAD7] bg-[#F5F6F4] px-4 py-3 text-sm text-[#14181D] outline-none"
+              placeholder="Ask about procurement, solar, inverters, or delivery"
+              className="flex-1 rounded-full border border-[#D7DEE9] bg-[#F4F6F8] px-4 py-3 text-sm text-[#0D234F] outline-none"
             />
-            <button type="button" onClick={handleSend} className="inline-flex h-12 w-12 items-center justify-center rounded-full text-white" style={{ backgroundColor: accent }}>
+            <button type="button" onClick={handleSend} className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#0D234F] text-white transition hover:bg-[#E0A21A]">
               <Send className="h-4 w-4" />
             </button>
           </div>
           <a
-            href={createWhatsAppUrl("Hello Oguntimehin, I need a live quote or support beyond the website FAQs.")}
+            href={createWhatsAppUrl("Hello OPES, I need a live quote or support beyond the website FAQs.")}
             target="_blank"
             rel="noreferrer"
             className="mt-3 inline-flex items-center gap-2 text-xs font-semibold text-[#6B7280]"

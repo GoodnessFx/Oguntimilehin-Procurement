@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oguntimehin-procurement.vercel.app/sitemap.xml

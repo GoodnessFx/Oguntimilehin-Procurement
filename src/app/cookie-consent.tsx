@@ -76,14 +76,14 @@ export function CookieConsent() {
             <button
               type="button"
               onClick={rejectNonEssential}
-              className="rounded-full border border-[#D6DAD7] px-5 py-2.5 text-sm font-semibold text-[#3C4248] transition hover:border-[#F2A60C] hover:text-[#14181D]"
+              className="rounded-xl border border-[#D6DAD7] px-5 py-2.5 text-sm font-semibold text-[#3C4248] transition hover:border-[#E0A21A] hover:text-[#0D234F]"
             >
               Reject non-essential
             </button>
             <button
               type="button"
               onClick={acceptAll}
-              className="rounded-full px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90"
+              className="rounded-xl px-5 py-2.5 text-sm font-semibold text-white transition hover:opacity-90 shadow-sm"
               style={{ backgroundColor: accent }}
             >
               Accept

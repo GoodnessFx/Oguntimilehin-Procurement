@@ -1,22 +1,11 @@
 import { useMemo, useState } from "react";
 import type { FormEvent, ReactNode } from "react";
-import {
-  ArrowRight,
-  CalendarDays,
-  ChevronDown,
-  CircleHelp,
-  Mail,
-  MapPin,
-  Menu,
-  MessageCircle,
-  Phone,
-  Star,
-  X,
-} from "lucide-react";
+import { ArrowRight, CalendarDays, ChevronDown, CircleHelp, Mail, MapPin, Menu, MessageCircle, Phone, Star, X } from "lucide-react";
 import {
   ADDRESS_LINE_1,
   ADDRESS_LINE_2,
   BUSINESS_NAME,
+  BUSINESS_SHORT_NAME,
   EMAIL,
   GOOGLE_MAPS_URL,
   HOURS_DISPLAY,
@@ -48,16 +37,17 @@ export type RouteMeta = {
   description: string;
 };
 
-export const accent = "#14b8a6";
-export const accentBright = "#0d9488";
-export const accentSoft = "#0f766e";
-export const dark = "#081522";
-export const darkSoft = "#0d1f2a";
-export const bodyText = "#cbd5e1";
-export const muted = "#64748b";
-export const borderColor = "rgba(20, 184, 166, 0.2)";
-export const bg = "#081522";
-export const cardBorder = "border-rgba(20, 184, 166, 0.2)";
+export const accent = "#E0A21A";
+export const accentBright = "#F5BE2E";
+export const accentSoft = "#B88412";
+export const dark = "#0D234F";
+export const displayFont = "'Space Grotesk', 'Manrope', sans-serif";
+export const darkSoft = "#111111";
+export const bodyText = "#51607B";
+export const muted = "#6E7C96";
+export const borderColor = "border-[#D7DEE9]";
+export const bg = "#F4F6F8";
+export const cardBorder = "border-[#D7DEE9]";
 
 export const pageLinks = [
   { label: "Home", href: "/" },
@@ -114,63 +104,63 @@ export const homeSectionLinks = [
 
 export const routeMeta: Record<string, RouteMeta> = {
   "/": {
-    title: "Oguntimehin Procurement & Energy Services | Lagos",
+    title: "OPES | Procurement & Energy Services",
     description:
-      "Lagos procurement consultant and power/energy solutions — sourcing generators, solar equipment, and related infrastructure for homes, businesses, schools, and offices.",
+      "Premium procurement, engineering support, and energy solutions from OPES (Oguntimehin Procurement & Energy Services).",
   },
   "/services": {
-    title: "Services | Procurement & Power/Energy Solutions Lagos",
+    title: "Services | OPES",
     description:
-      "Explore Oguntimehin services: generator supply, solar and inverter sourcing, energy consultation, supplier verification, inspection, and delivery.",
+      "Explore OPES services across strategic procurement, energy systems, logistics, supplier verification, and project delivery support.",
   },
   "/service-information": {
-    title: "Service Information | How Sourcing & Delivery Works",
+    title: "Service Information | OPES",
     description:
-      "How Oguntimehin handles sourcing, supplier checks, inspection, documentation, and Lagos delivery for power and procurement orders.",
+      "How OPES handles discovery, supplier evaluation, technical review, quotation, procurement, and delivery.",
   },
   "/recent-projects": {
-    title: "Recent Projects | Oguntimehin Procurement & Energy",
+    title: "Recent Projects | OPES",
     description:
-      "Examples of generator, solar, and procurement work delivered for homes, businesses, schools, and offices in Lagos.",
+      "Recent OPES work across inverter systems, solar infrastructure, battery storage, and project supply.",
   },
   "/faq": {
-    title: "FAQ | Oguntimehin Procurement & Energy Services",
+    title: "FAQ | OPES",
     description:
-      "Answers about what we source, supplier checks, sizing generators and solar, delivery, payments, and timelines.",
+      "Answers to common OPES questions about procurement, energy systems, delivery, sizing, and service scope.",
   },
   "/blog": {
-    title: "Blog & Guides | Oguntimehin Procurement & Energy",
+    title: "Insights | OPES",
     description:
-      "Practical guides on generators, solar and inverter setups, procurement tips, and power decisions for Lagos homes and businesses.",
+      "Guides and practical insights on procurement, energy systems, backup power, and project planning from OPES.",
   },
   "/privacy-policy": {
-    title: "Privacy Policy | Oguntimehin Procurement & Energy Services",
+    title: "Privacy Policy | OPES",
     description:
-      "How Oguntimehin collects, uses, stores, and protects customer information under NDPR-aligned privacy terms.",
+      "How OPES collects, uses, stores, and protects customer information under NDPR-aligned privacy terms.",
   },
   "/why-choose-us": {
-    title: "Why Choose Us | Lagos Procurement & Energy",
+    title: "Why Choose OPES",
     description:
-      "Why Oguntimehin is a practical sourcing and power-solutions partner for Lagos homes, businesses, schools, and offices.",
+      "Why OPES is a premium procurement and energy partner for projects, facilities, institutions, and businesses.",
   },
   "/how-it-works": {
-    title: "How It Works | Order Process Step-by-Step",
+    title: "How It Works | OPES",
     description:
-      "The five steps from telling us what you need to delivery in Lagos — quotation, sourcing, inspection, and handoff.",
+      "The OPES process from project discovery and evaluation to quotation, execution, and delivery.",
   },
   "/contact": {
-    title: "Contact Us | Oguntimehin Procurement & Energy Services",
+    title: "Contact | OPES",
     description:
-      "Get in touch for generator, solar, and procurement quotes. Call, email, or chat with us on WhatsApp.",
+      "Get in touch with OPES for procurement, energy, and project support. Call, email, or continue on WhatsApp.",
   },
   "/cookie-policy": {
-    title: "Cookie Policy | Oguntimehin Procurement & Energy Services",
-    description: "How Oguntimehin uses cookies and similar technologies, including analytics and marketing pixels when enabled.",
+    title: "Cookie Policy | OPES",
+    description: "How OPES uses cookies and similar technologies, including analytics and marketing pixels when enabled.",
   },
   "/company-policy": {
-    title: "Company Policy | Oguntimehin Procurement & Energy Services",
+    title: "Company Policy | OPES",
     description:
-      "Oguntimehin's company policy covering the sourcing process, quotations, payments, delivery, and dispute resolution.",
+      "OPES policy covering quotations, payments, delivery, supplier handling, and service limitations.",
   },
 };
 
@@ -217,7 +207,7 @@ export function classNames(...values: Array<string | false | undefined>) {
 }
 
 export function Logo() {
-  return <img src="/brand/logo.png" alt="Oguntimehin Procurement & Energy Services logo" className="h-11 w-11 object-contain" />;
+  return <img src="/brand/opes-logo-primary.png" alt="OPES logo" className="h-12 w-12 object-contain" />;
 }
 
 export function Container({ className, children }: { className?: string; children: ReactNode }) {
@@ -226,12 +216,93 @@ export function Container({ className, children }: { className?: string; childre
 
 export function SectionTag({ children }: { children: ReactNode }) {
   return (
-    <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-[#14b8a6]/40 bg-white/95 px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.18em] shadow-[0_4px_12px_rgba(20,184,166,0.06)] backdrop-blur-sm" style={{ color: accent }}>
-      <span className="relative flex h-1.5 w-1.5">
-        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-current opacity-75" />
-        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-current" />
-      </span>
-      <span className="text-[#0e1216]/90">{children}</span>
+    <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-[#E6C875] bg-white/95 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.2em] shadow-[0_10px_30px_rgba(13,35,79,0.06)] backdrop-blur-sm" style={{ color: dark }}>
+      <span className="relative inline-flex h-2 w-2 rounded-full bg-[#E0A21A]" />
+      <span className="inline-flex h-2 w-2 rotate-45 rounded-[3px] bg-[#244C9F]" />
+      <span className="inline-flex h-2 w-2 rotate-45 rounded-[3px] bg-[#E0A21A]" />
+      <span className="text-[#0D234F]">{children}</span>
+    </div>
+  );
+}
+
+export function PrimaryButton({
+  href,
+  children,
+  onClick,
+}: {
+  href?: string;
+  children: ReactNode;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+}) {
+  return (
+    <a
+      href={href}
+      onClick={onClick}
+      className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#0D234F] px-6 py-4 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(13,35,79,0.20)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#E0A21A] hover:shadow-[0_0_24px_rgba(224,162,26,0.30)] hover:text-white"
+    >
+      {children}
+    </a>
+  );
+}
+
+export function SecondaryButton({
+  href,
+  children,
+  onClick,
+}: {
+  href?: string;
+  children: ReactNode;
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+}) {
+  return (
+    <a
+      href={href}
+      onClick={onClick}
+      className="inline-flex items-center justify-center gap-2 rounded-xl border border-[#0D234F]/30 bg-white px-6 py-4 text-sm font-semibold text-[#0D234F] transition duration-300 hover:-translate-y-0.5 hover:border-[#E0A21A] hover:text-[#E0A21A]"
+    >
+      {children}
+    </a>
+  );
+}
+
+export function SurfaceCard({ className, children }: { className?: string; children: ReactNode }) {
+  return (
+    <div
+      className={classNames(
+        "rounded-2xl border border-[#D7DEE9] bg-white shadow-[0_12px_36px_rgba(15,23,42,0.05)]",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function DarkPanel({ className, children }: { className?: string; children: ReactNode }) {
+  return (
+    <div
+      className={classNames(
+        "rounded-2xl border border-white/10 bg-[linear-gradient(135deg,#0D234F_0%,#244C9F_52%,#111111_100%)] text-white shadow-[0_20px_50px_rgba(13,35,79,0.22)]",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function LogoWordmark({ light = false }: { light?: boolean }) {
+  return (
+    <div className="min-w-0">
+      <div
+        style={{ fontFamily: displayFont }}
+        className={classNames("truncate text-[1.05rem] font-extrabold tracking-[-0.04em]", light ? "text-white" : "text-[#0D234F]")}
+      >
+        {BUSINESS_SHORT_NAME}
+      </div>
+      <div className={classNames("text-[10px] uppercase tracking-[0.22em]", light ? "text-white/70" : "text-[#6E7C96]")}>
+        Oguntimehin Procurement & Energy Services
+      </div>
     </div>
   );
 }
@@ -240,7 +311,7 @@ export function SectionHeading({
   eyebrow,
   title,
   body,
-  center,
+  center = false,
 }: {
   eyebrow: string;
   title: string;
@@ -252,7 +323,7 @@ export function SectionHeading({
       <SectionTag>{eyebrow}</SectionTag>
       <h2
         className="max-w-3xl text-[clamp(2rem,4vw,3.5rem)] font-extrabold leading-[1.02] tracking-[-0.04em]"
-        style={{ color: dark, fontFamily: "'Sora', sans-serif", marginInline: center ? "auto" : undefined }}
+        style={{ color: dark, fontFamily: displayFont, marginInline: center ? "auto" : undefined }}
       >
         {title}
       </h2>
@@ -269,13 +340,13 @@ export function AccentCheck() {
   return (
     <span
       className="inline-flex h-7 w-7 items-center justify-center rounded-full border"
-      style={{ borderColor: "rgba(20,184,166,0.28)", backgroundColor: "rgba(20,184,166,0.10)" }}
+      style={{ borderColor: "rgba(13,35,79,0.12)", backgroundColor: "rgba(224,162,26,0.10)" }}
       aria-hidden="true"
     >
       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         <path
           d="M2.75 7.35L5.55 10.15L11.25 4.45"
-          stroke={accent}
+          stroke={dark}
           strokeWidth="1.8"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -332,7 +403,7 @@ export function SocialLinks({ compact = false }: { compact?: boolean }) {
           target="_blank"
           rel="noreferrer"
           className={classNames(
-            "inline-flex items-center justify-center rounded-full border border-[#1e293b] bg-white text-[#0e1216] transition hover:border-[#14b8a6] hover:text-\[#14b8a6\]",
+            "inline-flex items-center justify-center rounded-full border border-[#D7DEE9] bg-white text-[#0D234F] transition hover:border-[#E0A21A] hover:text-[#E0A21A]",
             compact ? "h-9 w-9" : "h-10 w-10",
           )}
           aria-label={item.name}
@@ -375,7 +446,7 @@ export function NavAnchor({
       }}
       className={classNames(
         "text-sm font-medium transition",
-        active ? "text-[#14b8a6]" : "text-white/90 hover:text-[#14b8a6]",
+        active ? "text-[#E0A21A]" : "text-white/85 hover:text-[#E0A21A]",
       )}
     >
       {label}
@@ -395,7 +466,7 @@ export function Header({
   const [activeDesktopGroup, setActiveDesktopGroup] = useState<string | null>(null);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#1e293b] bg-[#0e1216]/95 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#091933]/90 backdrop-blur-xl">
       <Container className="flex h-20 items-center justify-between gap-6">
         <a
           href="/"
@@ -404,17 +475,10 @@ export function Header({
             onNavigate("/");
             setMenuOpen(false);
           }}
-          className="flex min-w-0 items-center gap-1"
+          className="flex min-w-0 items-center gap-3"
         >
           <Logo />
-          <div className="min-w-0">
-            <div style={{ fontFamily: "'Sora', sans-serif" }} className="truncate text-[16px] font-bold tracking-[-0.02em] text-[#0e1216]">
-              Oguntimehin
-            </div>
-            <div className="text-[10px] uppercase tracking-[0.18em]" style={{ color: accent }}>
-              Procurement & Energy
-            </div>
-          </div>
+          <LogoWordmark light />
         </a>
 
         <nav className="hidden items-center gap-7 lg:flex">
@@ -437,7 +501,7 @@ export function Header({
                   onClick={() => setActiveDesktopGroup(isDesktopOpen ? null : group.label)}
                   className={classNames(
                     "flex items-center gap-1.5 text-sm font-semibold transition cursor-pointer outline-none bg-transparent border-none",
-                    isGroupActive ? "text-[#14b8a6]" : "text-white/90 hover:text-\[#14b8a6\]"
+                    isGroupActive ? "text-[#E0A21A]" : "text-white/85 hover:text-[#E0A21A]"
                   )}
                 >
                   {group.label}
@@ -448,7 +512,7 @@ export function Header({
                   "absolute top-full left-1/2 -translate-x-1/2 z-50 pt-2 w-56 transition-all duration-200 ease-out transform",
                   isDesktopOpen ? "opacity-100 visible scale-100" : "opacity-0 invisible scale-95"
                 )}>
-<div className="rounded-2xl border border-[#1e293b] bg-white p-2.5 shadow-[0_12px_32px_rgba(20,24,29,0.08)]">
+<div className="rounded-2xl border border-[#D7DEE9] bg-white p-2.5 shadow-[0_18px_40px_rgba(15,23,42,0.10)]">
                     {group.links.map((link) => {
                       const isLinkActive = currentPath === link.href;
                       return (
@@ -463,8 +527,8 @@ export function Header({
                           className={classNames(
                             "block rounded-xl px-3.5 py-2.5 text-sm font-medium transition",
                             isLinkActive
-                              ? "bg-[#14b8a6]/10 text-[#14b8a6]"
-                              : "text-[#0e1216] hover:bg-[#14b8a6]/10 hover:text-[#14b8a6]"
+                              ? "bg-[#0D234F] text-white"
+                              : "text-[#0D234F] hover:bg-[#F4F6F8] hover:text-[#E0A21A]"
                           )}
                         >
                           {link.label}
@@ -480,24 +544,18 @@ export function Header({
 
         <div className="hidden items-center gap-3 lg:flex">
           <SocialLinks compact />
-          <a href={`tel:${PHONE_DISPLAY.replace(/\s/g, "")}`} className="text-sm font-medium text-white/90 transition hover:text-\[#14b8a6\]">
+          <a href={`tel:${PHONE_DISPLAY.replace(/\s/g, "")}`} className="text-sm font-medium text-white/85 transition hover:text-[#E0A21A]">
             {PHONE_DISPLAY}
           </a>
-          <a
-            href={createWhatsAppUrl(WA_GREETING)}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
-            style={{ backgroundColor: accent }}
-          >
+          <PrimaryButton href={createWhatsAppUrl(WA_GREETING)}>
             WhatsApp <ArrowRight className="h-4 w-4" />
-          </a>
+          </PrimaryButton>
         </div>
 
         <button
           type="button"
           aria-label="Toggle navigation"
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#1e293b] bg-white text-[#0e1216] lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/10 text-white lg:hidden"
           onClick={() => setMenuOpen((value) => !value)}
         >
           {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -505,7 +563,7 @@ export function Header({
       </Container>
 
 {menuOpen ? (
-        <div className="border-t border-[#1e293b] bg-[#0e1216] lg:hidden">
+        <div className="border-t border-white/10 bg-[#091933] lg:hidden">
           <Container className="flex flex-col gap-4 py-6">
             <NavAnchor
               href="/"
@@ -522,20 +580,20 @@ export function Header({
   );
 
   return (
-    <div key={group.label} className="border-t border-[#0e1216] pt-2">
+    <div key={group.label} className="border-t border-white/10 pt-2">
       <button
         type="button"
         onClick={() => setActiveMobileGroup(isGroupOpen ? null : group.label)}
         className={classNames(
           "flex w-full items-center justify-between py-2 text-sm font-semibold transition cursor-pointer text-left bg-transparent border-none outline-none",
-          isGroupActive ? "text-[#14b8a6]" : "text-[#0e1216] hover:text-[#14b8a6]"
+          isGroupActive ? "text-[#E0A21A]" : "text-white/85 hover:text-[#E0A21A]"
         )}
       >
         <span>{group.label}</span>
         <ChevronDown className={classNames("h-4 w-4 transition-transform duration-200", isGroupOpen && "rotate-180")} />
       </button>
       {isGroupOpen ? (
-        <div className="mt-1 flex flex-col gap-2.5 border-l border-[#1e293b] pl-4 py-1">
+        <div className="mt-1 flex flex-col gap-2.5 border-l border-white/10 pl-4 py-1">
           {group.links.map((link) => {
             const isLinkActive = currentPath === link.href;
             return (
@@ -549,7 +607,7 @@ export function Header({
                 }}
 className={classNames(
                               "block py-1 text-sm font-medium transition",
-                              isLinkActive ? "text-[#14b8a6]" : "text-[#0e1216] hover:text-[#14b8a6]"
+                              isLinkActive ? "text-[#E0A21A]" : "text-white/80 hover:text-[#E0A21A]"
                             )}
               >
                 {link.label}
@@ -563,7 +621,7 @@ className={classNames(
 })}
 
 
-            <div className="border-t border-[#1e293b] pt-4">
+            <div className="border-t border-white/10 pt-4">
               <SocialLinks />
             </div>
           </Container>
@@ -576,8 +634,8 @@ className={classNames(
 export function NewsletterSignup({
   inline = false,
   dark = false,
-  title = "Newsletter",
-  body = "Get practical procurement, construction, and energy tips for Lagos — generator sizing, solar basics, and sourcing updates.",
+  title = "Insights",
+  body = "Get occasional OPES updates on procurement strategy, energy systems, and practical project decisions.",
 }: {
   inline?: boolean;
   dark?: boolean;
@@ -692,8 +750,8 @@ export function NewsletterSignup({
 
   const content = (
     <>
-      <div className={classNames("text-xs uppercase tracking-[0.18em]", dark ? "text-white/70" : "text-white/90", inline && !dark && "text-white/90")}>{title}</div>
-      <p className={classNames("mt-3 max-w-xl text-sm leading-7", dark ? "text-white/80" : "text-white/90")}>{body}</p>
+      <div className={classNames("text-xs uppercase tracking-[0.2em]", dark ? "text-white/70" : "text-[#6E7C96]")}>{title}</div>
+      <p className={classNames("mt-3 max-w-xl text-sm leading-7", dark ? "text-white/78" : "text-[#51607B]")}>{body}</p>
       <form onSubmit={handleSubmit} className="mt-4 grid gap-3">
         <input
           type="text"
@@ -713,38 +771,37 @@ export function NewsletterSignup({
             onChange={(event) => setEmail(event.target.value)}
             placeholder="Enter your email address"
             className={classNames(
-              "min-w-0 flex-1 rounded-full px-4 py-3 text-sm outline-none transition focus:border-[#14b8a6]",
+              "min-w-0 flex-1 rounded-full border px-4 py-3 text-sm outline-none transition focus:border-[#E0A21A]",
               dark
-                ? "border-white/20 bg-white/5 text-white placeholder-white/40 focus:border-[#14b8a6]"
-                : "border-[#1e293b] bg-white text-[#0e1216] focus:border-[#14b8a6]"
+                ? "border-white/15 bg-white/5 text-white placeholder-white/40"
+                : "border-[#D7DEE9] bg-white text-[#0D234F]"
             )}
             aria-label="Email address"
           />
           <button
             type="submit"
             disabled={status === "loading"}
-            className="inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-70"
-            style={{ backgroundColor: accent }}
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0D234F] px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:bg-[#E0A21A] disabled:cursor-not-allowed disabled:opacity-70"
           >
             {status === "loading" ? "Subscribing..." : "Subscribe"} <ArrowRight className="h-4 w-4" />
           </button>
         </div>
         <label className={classNames(
-          "flex items-start gap-3 rounded-2xl px-4 py-3 text-sm leading-6",
+          "flex items-start gap-3 rounded-2xl border px-4 py-3 text-sm leading-6",
           dark
             ? "border-white/10 bg-white/5 text-white/80"
-            : "border-[#1e293b] bg-white text-white/90"
+            : "border-[#D7DEE9] bg-[#F8FAFC] text-[#51607B]"
         )}>
           <input
             type="checkbox"
             checked={consent}
             onChange={(event) => setConsent(event.target.checked)}
             className={classNames(
-              "mt-1 h-4 w-4 rounded accent-[#14b8a6]",
-              dark ? "border-white/30 bg-white/5" : "border-[#1e293b] bg-white"
+              "mt-1 h-4 w-4 rounded accent-[#E0A21A]",
+              dark ? "border-white/30 bg-white/5" : "border-[#D7DEE9] bg-white"
             )}
           />
-          <span>Yes, I want occasional Oguntimehin emails about procurement, construction, and energy tips.</span>
+          <span>Yes, I want occasional OPES emails about procurement, energy systems, and project updates.</span>
         </label>
         {feedback ? (
           <p
@@ -758,16 +815,12 @@ export function NewsletterSignup({
           </p>
         ) : null}
       </form>
-      <p className={classNames("mt-3 text-xs leading-6", dark ? "text-white/50" : "text-white/90")}>{footerConsent}</p>
+      <p className={classNames("mt-3 text-xs leading-6", dark ? "text-white/50" : "text-[#6E7C96]")}>{footerConsent}</p>
     </>
   );
 
   if (inline) {
-    return (
-      <div className={`rounded-[28px] border bg-[#0e1216] p-6 shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
-        {content}
-      </div>
-    );
+    return <DarkPanel className="p-6">{content}</DarkPanel>;
   }
 
   return content;
@@ -868,54 +921,55 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
         ["Name", "name", "e.g. Amina Bello"],
         ["Phone Number", "phoneNumber", "e.g. 0810 738 0672"],
         ["WhatsApp Number", "whatsappNumber", "e.g. 0810 738 0672"],
-        ["Item Needed", "itemNeeded", "e.g. 5kVA generator, or 3kVA inverter + 2 batteries"],
-        ["Quantity", "quantity", "e.g. 1 unit, or 4 panels"],
+        ["Item Needed", "itemNeeded", "e.g. 12kVA inverter system, battery bank, or project supply scope"],
+        ["Quantity", "quantity", "e.g. 1 system, 6 batteries, or full project lot"],
       ].map(([label, field, placeholder]) => (
-        <label key={field} className="grid gap-2 text-sm font-medium text-[#0e1216]">
+        <label key={field} className="grid gap-2 text-sm font-medium text-[#0D234F]">
           {label}
           <input
             required={field !== "whatsappNumber"}
             value={form[field as keyof QuoteFormState]}
             onChange={(event) => setField(field as keyof QuoteFormState, event.target.value)}
-            className="rounded-2xl border border-[#1e293b] bg-white px-4 py-3 text-sm text-[#0e1216] outline-none transition focus:border-[#14b8a6]"
+            className="rounded-2xl border border-[#D7DEE9] bg-white px-4 py-3 text-sm text-[#0D234F] outline-none transition focus:border-[#E0A21A]"
             placeholder={placeholder}
           />
         </label>
       ))}
       <div className="grid gap-4 md:grid-cols-2">
-        <label className="grid gap-2 text-sm font-medium text-[#0e1216]">
+        <label className="grid gap-2 text-sm font-medium text-[#0D234F]">
           Service Type
           <select
             value={form.serviceType}
             onChange={(event) => setField("serviceType", event.target.value)}
-            className="rounded-2xl border border-[#1e293b] bg-white px-4 py-3 text-sm text-[#0e1216] outline-none transition focus:border-[#14b8a6]"
+            className="rounded-2xl border border-[#D7DEE9] bg-white px-4 py-3 text-sm text-[#0D234F] outline-none transition focus:border-[#E0A21A]"
           >
             <option>Generator</option>
             <option>Solar / Inverter</option>
             <option>General Procurement</option>
+            <option>Engineering Support</option>
             <option>Not sure yet</option>
           </select>
         </label>
-        <label className="grid gap-2 text-sm font-medium text-[#0e1216]">
+        <label className="grid gap-2 text-sm font-medium text-[#0D234F]">
           Response Preference
           <select
             value={form.contactPreference}
             onChange={(event) => setField("contactPreference", event.target.value as QuoteFormState["contactPreference"])}
-            className="rounded-2xl border border-[#1e293b] bg-white px-4 py-3 text-sm text-[#0e1216] outline-none transition focus:border-[#14b8a6]"
+            className="rounded-2xl border border-[#D7DEE9] bg-white px-4 py-3 text-sm text-[#0D234F] outline-none transition focus:border-[#E0A21A]"
           >
             <option>WhatsApp</option>
             <option>Email</option>
           </select>
         </label>
       </div>
-      <label className="grid gap-2 text-sm font-medium text-[#0e1216]">
+      <label className="grid gap-2 text-sm font-medium text-[#0D234F]">
         Product Image (optional upload)
-        <span className="flex cursor-pointer items-center gap-3 rounded-2xl border border-[#1e293b] bg-[#0e1216] px-4 py-3 text-sm text-white/90 transition hover:border-[#14b8a6]">
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#14b8a6]">
+        <span className="flex cursor-pointer items-center gap-3 rounded-2xl border border-[#D7DEE9] bg-[#0D234F] px-4 py-3 text-sm text-white/90 transition hover:border-[#E0A21A]">
+          <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#0D234F]">
             <MessageCircle className="h-4 w-4" />
           </span>
           <span className="flex-1">{form.productImageName || "Choose an image to reference in your quote request"}</span>
-          <span className="rounded-full border border-[#1e293b] bg-white px-3 py-2 text-xs font-semibold text-[#0e1216]">Select file</span>
+          <span className="rounded-full border border-white/15 bg-white px-3 py-2 text-xs font-semibold text-[#0D234F]">Select file</span>
           <input
             type="file"
             accept="image/*"
@@ -924,20 +978,19 @@ export function QuoteForm({ compact = false }: { compact?: boolean }) {
           />
         </span>
       </label>
-      <label className="grid gap-2 text-sm font-medium text-[#0e1216]">
+      <label className="grid gap-2 text-sm font-medium text-[#0D234F]">
         Additional Information
         <textarea
           value={form.additionalInformation}
           onChange={(event) => setField("additionalInformation", event.target.value)}
           rows={4}
-          className="rounded-2xl border border-[#1e293b] bg-white px-4 py-3 text-sm text-[#0e1216] outline-none transition focus:border-[#14b8a6]"
-          placeholder="Add the load you need to power, preferred brand, delivery location, or any other details."
+          className="rounded-2xl border border-[#D7DEE9] bg-white px-4 py-3 text-sm text-[#0D234F] outline-none transition focus:border-[#E0A21A]"
+          placeholder="Add the load profile, preferred brand, project location, delivery requirement, or any commercial detail."
         />
       </label>
       <button
         type="submit"
-        className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-semibold text-white transition hover:opacity-90"
-        style={{ backgroundColor: accent }}
+        className="inline-flex items-center justify-center gap-2 rounded-full bg-[#0D234F] px-6 py-4 text-sm font-semibold text-white transition duration-300 hover:bg-[#E0A21A]"
       >
         Submit Request <ArrowRight className="h-4 w-4" />
       </button>
@@ -949,13 +1002,13 @@ export function WhyChooseGrid() {
   return (
     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {whyChoose.map((item) => (
-        <div
+        <SurfaceCard
           key={item}
-          className={`flex items-center gap-3 rounded-[22px] border bg-white p-5 shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}
+          className="flex items-center gap-3 p-5"
         >
           <AccentCheck />
-          <span className="text-sm font-semibold text-[#0e1216]">{item}</span>
-        </div>
+          <span className="text-sm font-semibold text-[#0D234F]">{item}</span>
+        </SurfaceCard>
       ))}
     </div>
   );
@@ -976,14 +1029,14 @@ export function FaqList({
       {items.map((item, index) => {
         const isOpen = openIndex === index;
         return (
-          <div
+          <SurfaceCard
             key={item.question}
-            className={`rounded-[24px] border bg-white shadow-[0_10px_24px_rgba(20,24,29,0.03)] overflow-hidden transition-all duration-300 ${cardBorder}`}
+            className="overflow-hidden transition-all duration-300"
           >
             <button
               type="button"
               onClick={() => setOpenIndex(isOpen ? null : index)}
-              className="flex w-full items-center justify-between gap-4 p-5 text-left text-base font-semibold text-[#0e1216] cursor-pointer"
+              className="flex w-full cursor-pointer items-center justify-between gap-4 p-5 text-left text-base font-semibold text-[#0D234F]"
             >
               <span>{item.question}</span>
               <ChevronDown className={`h-4 w-4 shrink-0 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} style={{ color: accent }} />
@@ -991,9 +1044,9 @@ export function FaqList({
             <div
               className={`transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}
             >
-              <p className="px-5 pb-5 text-sm leading-7 text-white/90">{item.answer}</p>
+              <p className="px-5 pb-5 text-sm leading-7 text-[#51607B]">{item.answer}</p>
             </div>
-          </div>
+          </SurfaceCard>
         );
       })}
     </div>
@@ -1002,37 +1055,31 @@ export function FaqList({
 
 export function TestimonialsPreview() {
   return (
-    <section className="border-b border-[#1e293b] bg-white py-8 lg:py-12">
+    <section className="border-b border-[#E7ECF3] bg-white py-8 lg:py-12">
       <Container>
-        <div className="flex flex-col items-start justify-between gap-6 rounded-[28px] border bg-[#0e1216] p-6 shadow-[0_14px_34px_rgba(20,24,29,0.04)] sm:flex-row sm:items-center lg:p-8 ${cardBorder}">
+        <DarkPanel className="flex flex-col items-start justify-between gap-6 p-6 sm:flex-row sm:items-center lg:p-8">
           <div>
-            <div className="text-xs uppercase tracking-[0.18em]" style={{ color: accent }}>
-              Google rating
+            <div className="text-xs uppercase tracking-[0.2em]" style={{ color: "#F5BE2E" }}>
+              Brand confidence
             </div>
             <div className="mt-2 flex items-center gap-3">
-              <span style={{ fontFamily: "'Sora', sans-serif" }} className="text-4xl font-bold tracking-[-0.04em] text-[#0e1216]">
-                5.0
+              <span style={{ fontFamily: displayFont }} className="text-4xl font-bold tracking-[-0.04em] text-white">
+                Premium
               </span>
               <span className="flex gap-1">
                 {Array.from({ length: 5 }).map((_, index) => (
-                  <Star key={index} className="h-4 w-4 fill-[#14b8a6] text-[#14b8a6]" />
+                  <Star key={index} className="h-4 w-4 fill-[#F5BE2E] text-[#F5BE2E]" />
                 ))}
               </span>
             </div>
-            <p className="mt-2 text-sm leading-6 text-white/90">
-              Based on a verified Google review. More reviews are welcome as we grow.
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-white/78">
+              OPES is positioned as a premium procurement and energy partner: trusted, documented, and execution-focused from inquiry to delivery.
             </p>
           </div>
-          <a
-            href={GOOGLE_MAPS_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
-            style={{ backgroundColor: accent }}
-          >
+          <PrimaryButton href={GOOGLE_MAPS_URL}>
             Leave a review <ArrowRight className="h-4 w-4" />
-          </a>
-        </div>
+          </PrimaryButton>
+        </DarkPanel>
       </Container>
     </section>
   );
@@ -1040,59 +1087,59 @@ export function TestimonialsPreview() {
 
 export function ContactSection({ compact = false }: { compact?: boolean }) {
   return (
-    <section id="contact" className="border-b border-[#1e293b] bg-[#0e1216] py-8 lg:py-12">
+    <section id="contact" className="border-b border-[#D7DEE9] bg-[#F4F6F8] py-12 lg:py-16">
       <Container className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr]">
         <div>
           <div className="mb-6">
-            <h2 className="text-[clamp(2.3rem,5vw,3.5rem)] font-extrabold tracking-[-0.04em] text-[#0e1216]" style={{ fontFamily: "'Sora', sans-serif" }}>
-              Tell us what you need — we’ll quote it <span style={{ color: accent }}>in writing.</span>
+            <h2 className="text-[clamp(2.3rem,5vw,3.5rem)] font-extrabold tracking-[-0.04em] text-[#0D234F]" style={{ fontFamily: displayFont }}>
+              Start the conversation with <span style={{ color: accent }}>OPES.</span>
             </h2>
-            <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-white/90">
-              Send the item or the load you want to power. We check the supplier, size the equipment if needed, and reply on your preferred channel.
+            <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-[#51607B]">
+              Share your equipment requirement, project scope, or energy challenge. We will review it, advise where needed, and respond with a professional next step.
             </p>
           </div>
           <div className="grid gap-4">
-            <div className={`rounded-2xl border bg-white p-5 shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
+            <SurfaceCard className="p-5">
               <div className="flex items-start gap-3">
                 <Phone className="mt-1 h-4 w-4" style={{ color: accent }} />
                 <div>
-                  <div className="text-sm font-semibold text-[#0e1216]">{PHONE_DISPLAY}</div>
-                  <div className="text-sm leading-6 text-white/90">Call or continue on WhatsApp for live support.</div>
+                  <div className="text-sm font-semibold text-[#0D234F]">{PHONE_DISPLAY}</div>
+                  <div className="text-sm leading-6 text-[#51607B]">Call or continue on WhatsApp for immediate support.</div>
                 </div>
               </div>
-            </div>
-            <div className={`rounded-2xl border bg-white p-5 shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
+            </SurfaceCard>
+            <SurfaceCard className="p-5">
               <div className="flex items-start gap-3">
                 <Mail className="mt-1 h-4 w-4" style={{ color: accent }} />
                 <div>
-                  <div className="text-sm font-semibold text-[#0e1216]">{EMAIL}</div>
-                  <div className="text-sm leading-6 text-white/90">Email is available if you prefer a documented reply thread.</div>
+                  <div className="text-sm font-semibold text-[#0D234F]">{EMAIL}</div>
+                  <div className="text-sm leading-6 text-[#51607B]">Use email if you want a documented commercial thread.</div>
                 </div>
               </div>
-            </div>
-            <div className={`rounded-2xl border bg-white p-5 shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
+            </SurfaceCard>
+            <SurfaceCard className="p-5">
               <div className="flex items-start gap-3">
                 <MapPin className="mt-1 h-4 w-4" style={{ color: accent }} />
                 <div>
-                  <div className="text-sm font-semibold text-[#0e1216]">
+                  <div className="text-sm font-semibold text-[#0D234F]">
                     {ADDRESS_LINE_1}, {ADDRESS_LINE_2}
                   </div>
-                  <div className="text-sm leading-6 text-white/90">
+                  <div className="text-sm leading-6 text-[#51607B]">
                     Office hours: {HOURS_DISPLAY}
-                    {HOURS_NEEDS_VERIFICATION ? " — please confirm before visiting." : ""}
+                    {HOURS_NEEDS_VERIFICATION ? " - please confirm before visiting." : ""}
                   </div>
                 </div>
               </div>
-            </div>
+            </SurfaceCard>
           </div>
         </div>
 
-        <div className={`rounded-[30px] border bg-white p-6 shadow-[0_18px_48px_rgba(20,24,29,0.06)] ${cardBorder}`}>
-          <div className="mb-5 text-xl font-bold tracking-[-0.02em] text-[#0e1216]" style={{ fontFamily: "'Sora', sans-serif" }}>
+        <SurfaceCard className="p-6">
+          <div className="mb-5 text-xl font-bold tracking-[-0.02em] text-[#0D234F]" style={{ fontFamily: displayFont }}>
             Request a Quote
           </div>
           <QuoteForm compact={compact} />
-        </div>
+        </SurfaceCard>
       </Container>
     </section>
   );
@@ -1100,29 +1147,27 @@ export function ContactSection({ compact = false }: { compact?: boolean }) {
 
 export function CtaBanner() {
   return (
-    <section className="py-8 lg:py-12" style={{ backgroundColor: "rgba(20,184,166,0.12)" }}>
+    <section className="py-10 lg:py-14" style={{ backgroundColor: "rgba(224,162,26,0.08)" }}>
       <Container>
-        <div className={`flex flex-col gap-6 rounded-[32px] border bg-white p-8 shadow-[0_18px_48px_rgba(20,24,29,0.05)] lg:flex-row lg:items-center lg:justify-between ${cardBorder}`}>
+        <SurfaceCard className="flex flex-col gap-6 p-8 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#14b8a6] bg-[#0e1216] px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/90">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#E6C875] bg-[#0D234F] px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/90">
               <CalendarDays className="h-4 w-4" style={{ color: accent }} />
-              Ready to source
+              Ready to engage
             </div>
-            <h2 style={{ fontFamily: "'Sora', sans-serif" }} className="text-[clamp(2rem,4vw,3.2rem)] font-extrabold leading-[1.02] tracking-[-0.04em] text-[#0e1216]">
-              Need a generator, solar kit, or a buyer you can verify?
+            <h2 style={{ fontFamily: displayFont }} className="text-[clamp(2rem,4vw,3.2rem)] font-extrabold leading-[1.02] tracking-[-0.04em] text-[#0D234F]">
+              Need a procurement or energy partner you can trust?
             </h2>
-            <p className="mt-3 max-w-2xl text-base leading-7 text-white/90">
-              Send the item or the load you want to power. We’ll check the supplier and send a written quote.
+            <p className="mt-3 max-w-2xl text-base leading-7 text-[#51607B]">
+              OPES combines corporate presentation, practical technical thinking, and clear execution for clients who want quality and certainty.
             </p>
           </div>
-          <a
+          <PrimaryButton
             href="/#contact"
-            className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-semibold text-white transition hover:opacity-90"
-            style={{ backgroundColor: accent }}
           >
             Request a Quote <ArrowRight className="h-4 w-4" />
-          </a>
-        </div>
+          </PrimaryButton>
+        </SurfaceCard>
       </Container>
     </section>
   );
@@ -1130,22 +1175,15 @@ export function CtaBanner() {
 
 export function Footer({ onNavigate }: { onNavigate: (path: string) => void }) {
   return (
-    <footer className="border-t border-white/10 bg-[#0e1216] py-8 lg:py-12">
+    <footer className="border-t border-white/10 bg-[#091933] py-10 lg:py-14">
       <Container className="grid gap-10 lg:grid-cols-[1fr_0.8fr_1fr]">
         <div>
           <div className="flex items-center gap-3">
             <Logo />
-            <div>
-              <div style={{ fontFamily: "'Sora', sans-serif" }} className="text-lg font-bold tracking-[-0.02em] text-white">
-                {BUSINESS_NAME}
-              </div>
-              <div className="text-[10px] uppercase tracking-[0.18em]" style={{ color: accent }}>
-                Procurement & Energy
-              </div>
-            </div>
+            <LogoWordmark light />
           </div>
           <p className="mt-4 max-w-md text-sm leading-7 text-white/90">
-            Oguntimehin helps Lagos homes, businesses, schools, and offices source generators, solar equipment, and related infrastructure — with supplier checks and delivery handled.
+            OPES delivers premium procurement, engineering support, and energy solutions with the clarity and professionalism expected from a modern corporate brand.
           </p>
           <div className="mt-6">
             <SocialLinks />
@@ -1163,7 +1201,7 @@ export function Footer({ onNavigate }: { onNavigate: (path: string) => void }) {
                   event.preventDefault();
                   onNavigate(item.href);
                 }}
-                className="text-sm font-medium !text-white transition hover:text-\[#14b8a6\]"
+                className="text-sm font-medium text-white transition hover:text-[#E0A21A]"
               >
                 {item.label}
               </a>
@@ -1195,7 +1233,7 @@ export function Footer({ onNavigate }: { onNavigate: (path: string) => void }) {
               </div>
             </div>
           </div>
-          <NewsletterSignup dark title="Newsletter signup" body="Subscribe for procurement, construction, and energy tips, sourcing updates, and new guides." />
+          <NewsletterSignup dark title="Newsletter signup" body="Subscribe for OPES updates, procurement insight, and practical energy guidance." />
         </div>
       </Container>
       <Container className="mt-10 border-t border-white/10 pt-6 text-xs text-white/70">
@@ -1206,7 +1244,7 @@ export function Footer({ onNavigate }: { onNavigate: (path: string) => void }) {
 }
 
 export function AnnouncementBar({ onNavigate }: { onNavigate: (path: string) => void }) {
-  const message = "Need a generator or solar quote? Chat with us on WhatsApp — tap Request a Quote below.";
+  const message = "Premium procurement and energy support from OPES. Start your quote or project discussion today.";
 
   return (
     <a
@@ -1215,15 +1253,15 @@ export function AnnouncementBar({ onNavigate }: { onNavigate: (path: string) => 
         event.preventDefault();
         onNavigate("/contact");
       }}
-      className="relative w-full overflow-hidden bg-gradient-to-r from-transparent via-white/5 to-transparent border-b border-white/5 py-2"
+      className="relative w-full overflow-hidden border-b border-white/10 bg-[linear-gradient(90deg,#0B1E43_0%,#173A78_50%,#0B1E43_100%)] py-2"
       role="region"
       aria-label="Announcement"
     >
       <span
         className="inline-block whitespace-nowrap"
         style={{
-          fontFamily: "'Sora', sans-serif",
-          color: "#14b8a6",
+          fontFamily: displayFont,
+          color: "#F5BE2E",
           fontWeight: "500",
           fontSize: "0.875rem",
           letterSpacing: "0.02em",

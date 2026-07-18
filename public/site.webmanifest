@@ -1,0 +1,16 @@
+{
+  "name": "OPES | Oguntimehin Procurement & Energy Services",
+  "short_name": "OPES",
+  "description": "Premium procurement, engineering support, and energy solutions.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F6F8",
+  "theme_color": "#0D234F",
+  "icons": [
+    {
+      "src": "/brand/opes-logo-primary.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,11 +1,10 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowRight,
+  BatteryCharging,
   Building2,
   CalendarClock,
-  Check,
   ClipboardCheck,
-  Download,
   Factory,
   FileText,
   MapPin,
@@ -13,7 +12,6 @@ import {
   Phone,
   Search,
   ShieldCheck,
-  Share2,
   Sun,
   Truck,
   Zap,
@@ -22,6 +20,7 @@ import {
   ADDRESS_LINE_1,
   ADDRESS_LINE_2,
   BUSINESS_NAME,
+  BUSINESS_SHORT_NAME,
   EMAIL,
   GOOGLE_MAPS_URL,
   HOURS_DISPLAY,
@@ -30,26 +29,31 @@ import {
   WA_GREETING,
   audiences,
   faqItems,
+  featuredMedia,
+  heroStats,
   orderSteps,
   projects,
   services,
+  trustPillars,
 } from "./content";
 import { blogPosts, getPostBySlug } from "./blog";
 import {
   AccentCheck,
-  CtaBanner,
   ContactSection,
   Container,
+  CtaBanner,
+  DarkPanel,
   FaqList,
   NewsletterSignup,
+  PrimaryButton,
+  SecondaryButton,
   SectionHeading,
+  SurfaceCard,
   TestimonialsPreview,
   WhyChooseGrid,
-  bodyText,
-  cardBorder,
-  createWhatsAppUrl,
-  dark,
   accent,
+  createWhatsAppUrl,
+  displayFont,
 } from "./layout";
 
 const serviceIconMap: Record<string, typeof Search> = {
@@ -64,53 +68,39 @@ const serviceIconMap: Record<string, typeof Search> = {
   file: FileText,
 };
 
-const projectTone: Record<string, { from: string; to: string }> = {
-  amber: { from: "from-[#F2A60C]/15", to: "to-[#F2A60C]/5" },
-  graphite: { from: "from-[#14181D]/10", to: "to-[#14181D]/5" },
-  blue: { from: "from-[#1C6FB5]/15", to: "to-[#1C6FB5]/5" },
+const projectTone: Record<string, string> = {
+  navy: "from-[#0D234F] via-[#173B77] to-[#244C9F]",
+  gold: "from-[#8D6211] via-[#C79019] to-[#F5BE2E]",
+  slate: "from-[#111111] via-[#24314D] to-[#40557B]",
 };
 
 type HeroSlide = { type: "video" | "image"; src: string; alt: string; poster?: string };
 
-// Drop real power/energy footage here (public/media) and it crossfades into the
-// hero. Use .mp4 for video (autoplay/loop/muted) — set a `poster` SVG so the
-// frame shows before/without the video. Use .jpg/.png/.svg for stills.
-// If a file is missing, that layer falls back to the gradient base so the hero never breaks.
 const heroSlides: HeroSlide[] = [
-  { type: "video", src: "/media/hero.mp4", poster: "/media/hero-generator.jpg", alt: "Construction site with building materials delivery" },
-  { type: "image", src: "/media/hero-solar.jpg", alt: "Solar panel installation on Lagos rooftop" },
-  { type: "image", src: "/media/hero-consult.jpg", alt: "Building materials procurement and site consultation" },
-  { type: "image", src: "/media/hero-construction.jpg", alt: "Construction site with building materials supply" },
+  { type: "video", src: "/media/hero-generator.mp4", poster: "/media/hero-generator.jpg", alt: "Industrial energy operations" },
+  { type: "image", src: "/media/recent/solar-installation-001.jpeg", alt: "Large-scale solar installation by OPES" },
+  { type: "image", src: "/media/recent/inverter-installed.jpeg", alt: "Commercial inverter deployment by OPES" },
+  { type: "image", src: "/media/hero-construction.jpg", alt: "Project procurement and site operations" },
 ];
 
 function HeroBackground() {
-  const gradientBase = [
-    "linear-gradient(125deg,#0a0d10 0%,#1a2230 50%,#26301f 100%)",
-    "linear-gradient(125deg,#241a06 0%,#3f2c08 42%,#7a4d06 120%)",
-    "linear-gradient(125deg,#0a1622 0%,#0f2c3d 52%,#13405a 100%)",
-  ];
   const [active, setActive] = useState(0);
   const [failed, setFailed] = useState<Set<number>>(new Set());
 
   useEffect(() => {
-    const id = window.setInterval(() => {
-      setActive((value) => (value + 1) % heroSlides.length);
-    }, 6000);
+    const id = window.setInterval(() => setActive((value) => (value + 1) % heroSlides.length), 5000);
     return () => window.clearInterval(id);
   }, []);
 
   return (
     <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-      {gradientBase.map((background, index) => (
-        <div key={`g${index}`} className="absolute inset-0" style={{ background }} />
-      ))}
-
+      <div className="absolute inset-0 bg-[linear-gradient(135deg,#071326_0%,#0D234F_45%,#111111_100%)]" />
       {heroSlides.map((slide, index) => {
         const visible = index === active && !failed.has(index);
         return (
           <div
             key={slide.src}
-            className="absolute inset-0 transition-opacity duration-[2000ms] ease-in-out"
+            className="absolute inset-0 transition-opacity duration-[1600ms] ease-out"
             style={{ opacity: visible ? 1 : 0 }}
           >
             {slide.type === "video" ? (
@@ -136,16 +126,19 @@ function HeroBackground() {
           </div>
         );
       })}
-
-      <div className="absolute inset-0 bg-[#0a0d10]/72" />
+      <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(7,19,38,0.88)_0%,rgba(13,35,79,0.78)_45%,rgba(17,17,17,0.82)_100%)]" />
       <div
         className="absolute inset-0 opacity-[0.10]"
         style={{
-          backgroundImage:
-            "linear-gradient(#ffffff22 1px, transparent 1px), linear-gradient(90deg,#ffffff22 1px, transparent 1px)",
-          backgroundSize: "52px 52px",
+          backgroundImage: "linear-gradient(#ffffff18 1px, transparent 1px), linear-gradient(90deg,#ffffff18 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
         }}
       />
+      <div className="absolute -left-10 top-24 h-40 w-40 rounded-[30px] border border-white/10 bg-white/5 blur-[1px] animate-float-reverse" />
+      <div className="absolute right-10 top-28 h-16 w-16 rounded-[18px] border border-[#F5BE2E]/50 bg-[#F5BE2E]/10 animate-float-slow" />
+      <div className="absolute bottom-20 right-[18%] h-24 w-24 rounded-[20px] border border-white/10 bg-white/5 animate-float-fast" />
+      <div className="absolute left-[15%] top-[35%] h-12 w-12 rounded-lg border border-[#E0A21A]/30 bg-[#E0A21A]/5 animate-float-slow" />
+      <div className="absolute right-[25%] bottom-[30%] h-20 w-20 rounded-xl border border-white/10 bg-white/5 animate-float-reverse" />
     </div>
   );
 }
@@ -154,44 +147,54 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
   return (
     <section className="relative isolate overflow-hidden">
       <HeroBackground />
-      <Container className="relative z-10 flex min-h-[88vh] flex-col justify-center py-20 text-white">
-        <div className="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-[0.18em] backdrop-blur-sm">
-          <span className="h-1.5 w-1.5 rounded-full bg-[#F2A60C]" />
-          Procurement, Construction & Building Materials · Lagos
+      <Container className="relative z-10 flex min-h-[92vh] flex-col justify-center py-24 text-white">
+        <div className="mb-6 inline-flex w-fit items-center gap-3 rounded-full border border-white/12 bg-white/8 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.2em] backdrop-blur-sm">
+          <img src="/brand/opes-logo-primary.png" alt="" className="h-5 w-5 object-contain" aria-hidden="true" />
+          World-class procurement and energy solutions
         </div>
-        <h1 className="max-w-4xl text-[clamp(2.4rem,6vw,4.6rem)] font-extrabold leading-[1.02] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
-          Source power equipment, building materials, and construction supplies — delivered to your Lagos site.
+        <h1 className="max-w-5xl text-[clamp(2.8rem,7vw,5.4rem)] font-extrabold leading-[0.98] tracking-[-0.05em]" style={{ fontFamily: displayFont }}>
+          Premium procurement and energy execution for clients that expect confidence, clarity, and results.
         </h1>
-        <p className="mt-5 max-w-2xl text-[18px] leading-relaxed text-white/80">
-          Oguntimehin PES handles procurement, supplier verification, and delivery of generators, solar equipment, building materials, and construction supplies — for homes, offices, schools, workshops, and construction sites across Lagos.
+        <p className="mt-6 max-w-3xl text-[18px] leading-relaxed text-white/78">
+          {BUSINESS_SHORT_NAME} brings together procurement expertise, engineering thinking, energy solutions, supplier verification, and delivery support under one premium corporate identity.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a
+          <PrimaryButton
             href="/#contact"
             onClick={(event) => {
               event.preventDefault();
               onNavigate?.("/#contact");
             }}
-            className="inline-flex items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-semibold text-[#14181D] transition hover:opacity-90"
-            style={{ backgroundColor: accent }}
           >
             Request a Quote <ArrowRight className="h-4 w-4" />
-          </a>
-          <a
-            href={createWhatsAppUrl(WA_GREETING)}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-white/5 px-6 py-4 text-sm font-semibold text-white transition hover:bg-white/10"
-          >
-            Chat on WhatsApp
-          </a>
+          </PrimaryButton>
+          <SecondaryButton href={createWhatsAppUrl(WA_GREETING)}>Chat on WhatsApp</SecondaryButton>
         </div>
-        <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-white/70">
-          <span className="inline-flex items-center gap-2"><Zap className="h-4 w-4" style={{ color: accent }} /> Generator supply</span>
-          <span className="inline-flex items-center gap-2"><Sun className="h-4 w-4" style={{ color: accent }} /> Solar & inverter systems</span>
-          <span className="inline-flex items-center gap-2"><Package className="h-4 w-4" style={{ color: accent }} /> Building materials</span>
-          <span className="inline-flex items-center gap-2"><Building2 className="h-4 w-4" style={{ color: accent }} /> Construction supply</span>
+        <div className="mt-12 grid gap-4 md:grid-cols-3">
+          {heroStats.map((item) => (
+            <div key={item.value} className="rounded-[24px] border border-white/10 bg-white/8 p-5 backdrop-blur-md">
+              <div className="text-lg font-bold text-[#F5BE2E]" style={{ fontFamily: displayFont }}>
+                {item.value}
+              </div>
+              <div className="mt-2 text-sm leading-6 text-white/72">{item.label}</div>
+            </div>
+          ))}
         </div>
+      </Container>
+    </section>
+  );
+}
+
+function TrustStrip() {
+  return (
+    <section className="border-b border-[#E7ECF3] bg-white py-8">
+      <Container className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {trustPillars.map((item) => (
+          <div key={item} className="flex items-center gap-3 rounded-[22px] border border-[#D7DEE9] bg-[#FBFCFD] px-5 py-4">
+            <AccentCheck />
+            <span className="text-sm font-semibold text-[#0D234F]">{item}</span>
+          </div>
+        ))}
       </Container>
     </section>
   );
@@ -199,19 +202,19 @@ function Hero({ onNavigate }: { onNavigate?: (path: string) => void }) {
 
 function WhoItsFor() {
   return (
-    <section className="border-b border-[#ECEEEC] bg-white py-10 lg:py-14">
+    <section className="border-b border-[#E7ECF3] bg-white py-12 lg:py-16">
       <Container>
         <SectionHeading
-          eyebrow="Who it's for"
-          title="Built for Lagos homes, businesses, and institutions"
-          body="If you need power equipment or a trusted buyer to source goods, we work the same way — check the supplier, quote in writing, deliver to your door."
+          eyebrow="Who we serve"
+          title="Structured support for projects, facilities, institutions, and modern businesses"
+          body="OPES is designed for clients who want a credible, polished, and execution-focused partner across procurement and energy scopes."
         />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {audiences.map((item) => (
-            <div key={item} className={`flex items-start gap-3 rounded-[22px] border bg-[#F5F6F4] p-5 shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
+            <SurfaceCard key={item} className="flex items-start gap-3 p-5">
               <AccentCheck />
-              <span className="text-sm font-semibold text-[#14181D]">{item}</span>
-            </div>
+              <span className="text-sm font-semibold text-[#0D234F]">{item}</span>
+            </SurfaceCard>
           ))}
         </div>
       </Container>
@@ -221,24 +224,26 @@ function WhoItsFor() {
 
 function ServicesSection() {
   return (
-    <section id="what-we-do" className="border-b border-[#ECEEEC] bg-[#F5F6F4] py-10 lg:py-14">
+    <section id="what-we-do" className="border-b border-[#E7ECF3] bg-[#F4F6F8] py-12 lg:py-16">
       <Container>
         <SectionHeading
-          eyebrow="What we do"
-          title="Procurement and power/energy sourcing, handled end to end"
-          body="From a single generator to a full solar setup or a procurement order, the process is the same: verified sourcing, clear quotation, and delivery in Lagos."
+          eyebrow="Services"
+          title="A premium service architecture built around performance, certainty, and presentation"
+          body="The OPES offer spans energy systems, commercial sourcing, supplier diligence, and logistics coordination with a stronger corporate standard of communication."
         />
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {services.map((service) => {
             const Icon = serviceIconMap[service.icon] ?? Package;
             return (
-              <div key={service.title} className={`group rounded-[24px] border bg-white p-6 shadow-[0_10px_24px_rgba(20,24,29,0.03)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(20,24,29,0.06)] ${cardBorder}`}>
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl" style={{ backgroundColor: "rgba(242,166,12,0.10)" }}>
-                  <Icon className="h-6 w-6" style={{ color: accent }} />
-                </span>
-                <h3 className="mt-5 text-lg font-bold tracking-[-0.02em] text-[#14181D]">{service.title}</h3>
-                <p className="mt-2 text-sm leading-7 text-[#3C4248]">{service.description}</p>
-              </div>
+              <SurfaceCard key={service.title} className="group p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_70px_rgba(15,23,42,0.08)]">
+                <div className="inline-flex h-14 w-14 items-center justify-center rounded-[18px] bg-[linear-gradient(135deg,rgba(224,162,26,0.14),rgba(36,76,159,0.12))]">
+                  <Icon className="h-6 w-6 text-[#0D234F]" />
+                </div>
+                <h3 className="mt-5 text-xl font-bold tracking-[-0.03em] text-[#0D234F]" style={{ fontFamily: displayFont }}>
+                  {service.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-[#51607B]">{service.description}</p>
+              </SurfaceCard>
             );
           })}
         </div>
@@ -247,26 +252,64 @@ function ServicesSection() {
   );
 }
 
+function SignatureSection() {
+  return (
+    <section className="border-b border-white/10 bg-[#091933] py-12 lg:py-16 text-white">
+      <Container className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+        <div>
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#F5BE2E]">
+            Visual identity
+          </div>
+          <h2 className="max-w-3xl text-[clamp(2.1rem,5vw,3.6rem)] font-extrabold leading-[1.02] tracking-[-0.05em]" style={{ fontFamily: displayFont }}>
+            The OPES folded-square motif becomes the site’s visual language.
+          </h2>
+          <p className="mt-4 max-w-2xl text-[17px] leading-8 text-white/76">
+            Navy structure, gold emphasis, spacious composition, and geometric forms create a cleaner corporate presence comparable to established engineering and energy brands.
+          </p>
+        </div>
+        <DarkPanel className="relative overflow-hidden p-8">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,190,46,0.18),transparent_34%)]" />
+          <div className="relative flex h-full min-h-[260px] items-center justify-center">
+            <div className="grid grid-cols-3 gap-4">
+              <div className="h-20 w-20 rounded-[22px] border border-white/10 bg-white/6" />
+              <div className="h-20 w-20 rounded-[22px] border border-[#F5BE2E]/40 bg-[#F5BE2E]/10" />
+              <div className="h-20 w-20 rounded-[22px] border border-white/10 bg-white/6" />
+              <div className="h-20 w-20 rounded-[22px] border border-white/10 bg-white/6" />
+              <div className="flex h-20 w-20 items-center justify-center rounded-[22px] border border-white/10 bg-white">
+                <img src="/brand/opes-logo-primary.png" alt={`${BUSINESS_SHORT_NAME} logo`} className="h-12 w-12 object-contain" />
+              </div>
+              <div className="h-20 w-20 rounded-[22px] border border-white/10 bg-white/6" />
+              <div className="h-20 w-20 rounded-[22px] border border-[#244C9F]/50 bg-[#244C9F]/10" />
+              <div className="h-20 w-20 rounded-[22px] border border-white/10 bg-white/6" />
+              <div className="h-20 w-20 rounded-[22px] border border-white/10 bg-white/6" />
+            </div>
+          </div>
+        </DarkPanel>
+      </Container>
+    </section>
+  );
+}
+
 function OrderProcess() {
   return (
-    <section className="border-b border-[#ECEEEC] bg-white py-10 lg:py-14">
+    <section className="border-b border-[#E7ECF3] bg-white py-12 lg:py-16">
       <Container>
         <SectionHeading
-          eyebrow="How it works"
-          title="Five steps from your request to delivery"
-          body="No mystery. You see the supplier check, the written quote, and the delivery — and you can ask at any stage."
+          eyebrow="Process"
+          title="A disciplined five-step path from project brief to final delivery"
+          body="The OPES process is designed to feel structured, transparent, and commercially dependable at every stage."
         />
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-5">
           {orderSteps.map((step, index) => (
-            <div key={step.title} className={`rounded-[22px] border bg-[#F5F6F4] p-5 shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
+            <SurfaceCard key={step.title} className="p-5">
               <div className="flex items-center gap-3">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold text-white" style={{ backgroundColor: dark }}>
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#0D234F] text-sm font-bold text-white">
                   {index + 1}
                 </span>
-                <span className="text-[11px] font-extrabold uppercase tracking-[0.16em]" style={{ color: accent }}>{step.title}</span>
+                <span className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#E0A21A]">{step.title}</span>
               </div>
-              <p className="mt-4 text-sm leading-7 text-[#3C4248]">{step.heading}</p>
-            </div>
+              <p className="mt-4 text-sm leading-7 text-[#51607B]">{step.heading}</p>
+            </SurfaceCard>
           ))}
         </div>
       </Container>
@@ -275,49 +318,48 @@ function OrderProcess() {
 }
 
 function ProjectsSection({ compact = false }: { compact?: boolean }) {
+  const displayProjects = compact ? projects.slice(0, 3) : projects;
+
   return (
-    <section className="border-b border-[#ECEEEC] bg-[#F5F6F4] py-10 lg:py-14">
+    <section className="border-b border-[#E7ECF3] bg-[#F4F6F8] py-12 lg:py-16">
       <Container>
         <SectionHeading
-          eyebrow="Recent projects"
-          title="Real sourcing and power work around Lagos"
-          body="A few examples of what we have helped source and deliver. Details stay factual — no invented numbers."
+          eyebrow="Recent work"
+          title="Real OPES project visuals now anchor the portfolio section"
+          body="Your newly added installation photos and recent work media are now positioned as premium case-study assets instead of generic placeholders."
         />
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project) => {
-            const tone = projectTone[project.tone];
-            return (
-              <article key={project.title} className={`overflow-hidden rounded-[24px] border bg-white shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
-                <div className="relative h-44 overflow-hidden bg-[#14181D]">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    loading="lazy"
-                    className="h-full w-full object-cover"
-                    onError={(event) => { (event.currentTarget as HTMLImageElement).style.display = "none"; }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#14181D]/70 to-transparent" />
-                  <span className="absolute left-4 top-4 text-[11px] font-extrabold uppercase tracking-[0.16em] text-white">{project.category}</span>
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {displayProjects.map((project) => (
+            <article key={project.title} className="overflow-hidden rounded-[28px] border border-[#D7DEE9] bg-white shadow-[0_18px_48px_rgba(15,23,42,0.06)]">
+              <div className="relative h-56 overflow-hidden bg-[#091933]">
+                <img src={project.image} alt={project.title} loading="lazy" className="h-full w-full object-cover transition duration-500 hover:scale-[1.03]" />
+                <div className={`absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t ${projectTone[project.tone]} opacity-75`} />
+                <span className="absolute left-5 top-5 rounded-full border border-white/15 bg-black/20 px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.18em] text-white backdrop-blur-md">
+                  {project.category}
+                </span>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold tracking-[-0.03em] text-[#0D234F]" style={{ fontFamily: displayFont }}>
+                  {project.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-[#51607B]">{project.summary}</p>
+                <p className="mt-4 text-sm leading-7 text-[#0D234F]/85">
+                  <span className="font-semibold">Outcome:</span> {project.outcome}
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="rounded-full border border-[#D7DEE9] bg-[#F8FAFC] px-3 py-1 text-xs font-semibold text-[#4D5E7D]">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-                <div className="p-6">
-                  <h3 className="text-lg font-bold tracking-[-0.02em] text-[#14181D]">{project.title}</h3>
-                  <p className="mt-2 text-sm leading-7 text-[#3C4248]">{project.summary}</p>
-                  <p className="mt-3 text-sm leading-7 text-[#14181D]/80"><span className="font-semibold">Outcome:</span> {project.outcome}</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="rounded-full border border-[#E3E7E4] bg-white px-3 py-1 text-xs font-medium text-[#3C4248]">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </article>
-            );
-          })}
+              </div>
+            </article>
+          ))}
         </div>
         {compact ? null : (
           <div className="mt-8">
-            <a href="/recent-projects" className="inline-flex items-center gap-2 text-sm font-semibold text-[#14181D] transition hover:text-[#F2A60C]">
-              See all recent projects <ArrowRight className="h-4 w-4" />
-            </a>
+            <SecondaryButton href="/recent-projects">See the project portfolio <ArrowRight className="h-4 w-4" /></SecondaryButton>
           </div>
         )}
       </Container>
@@ -325,33 +367,81 @@ function ProjectsSection({ compact = false }: { compact?: boolean }) {
   );
 }
 
+function MediaShowcase() {
+  return (
+    <section className="border-b border-white/10 bg-[#091933] py-12 lg:py-16 text-white">
+      <Container>
+        <SectionHeading
+          eyebrow="Project media"
+          title="Recent videos and field footage are now used where they add credibility"
+          body="Instead of leaving recent work hidden in the folder, the site now turns those files into a polished portfolio story."
+        />
+        <div className="grid gap-5 lg:grid-cols-3">
+          {featuredMedia.map((item) => (
+            <DarkPanel key={item.title} className="overflow-hidden">
+              <div className="h-56 overflow-hidden bg-black">
+                {item.type === "video" ? (
+                  <video className="h-full w-full object-cover" src={item.src} poster={item.poster} controls playsInline preload="metadata" />
+                ) : (
+                  <img className="h-full w-full object-cover" src={item.src} alt={item.title} />
+                )}
+              </div>
+              <div className="p-6">
+                <div className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#F5BE2E]">{item.category}</div>
+                <h3 className="mt-3 text-xl font-bold tracking-[-0.03em]" style={{ fontFamily: displayFont }}>
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-white/74">{item.caption}</p>
+              </div>
+            </DarkPanel>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}
+
 function FaqSection({ title, body }: { title?: string; body?: string }) {
   return (
-    <section className="border-b border-[#ECEEEC] bg-white py-10 lg:py-14">
+    <section className="border-b border-[#E7ECF3] bg-white py-12 lg:py-16">
       <Container>
         <SectionHeading
           eyebrow="FAQ"
-          title={title ?? "Questions people ask before they request a quote"}
-          body={body ?? "Straight answers about what we source, supplier checks, sizing, delivery, and payments."}
+          title={title ?? "Answers to the questions serious clients ask first"}
+          body={body ?? "Straight answers on procurement, energy systems, supplier verification, delivery, and project support."}
         />
         <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
           <FaqList items={faqItems} />
-          <div className={`rounded-[28px] border bg-[#F5F6F4] p-6 shadow-[0_14px_34px_rgba(20,24,29,0.04)] ${cardBorder}`}>
-            <h3 className="text-lg font-bold tracking-[-0.02em] text-[#14181D]">Still deciding?</h3>
-            <p className="mt-2 text-sm leading-7 text-[#3C4248]">
-              Send what you need to power or source. We reply with a written quote and the next step — no pressure.
+          <DarkPanel className="p-6">
+            <h3 className="text-xl font-bold tracking-[-0.03em]" style={{ fontFamily: displayFont }}>
+              Still evaluating?
+            </h3>
+            <p className="mt-3 text-sm leading-7 text-white/74">
+              Share the equipment, power objective, or procurement requirement and OPES will respond with a professional next step.
             </p>
-            <a
-              href={createWhatsAppUrl(WA_GREETING)}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-5 inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
-              style={{ backgroundColor: accent }}
-            >
-              Ask on WhatsApp <ArrowRight className="h-4 w-4" />
-            </a>
-          </div>
+            <div className="mt-5">
+              <PrimaryButton href={createWhatsAppUrl(WA_GREETING)}>Ask on WhatsApp <ArrowRight className="h-4 w-4" /></PrimaryButton>
+            </div>
+          </DarkPanel>
         </div>
+      </Container>
+    </section>
+  );
+}
+
+function InnerHero({ eyebrow, title, body }: { eyebrow: string; title: string; body?: string }) {
+  return (
+    <section className="relative overflow-hidden bg-[#091933] py-16 text-white">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(245,190,46,0.18),transparent_24%)]" />
+      <div className="absolute right-12 top-12 h-24 w-24 rotate-45 rounded-[24px] border border-white/10 bg-white/5" />
+      <Container className="relative z-10">
+        <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#F5BE2E]">
+          {eyebrow}
+        </div>
+        <h1 className="mt-4 max-w-4xl text-[clamp(2.3rem,5vw,4rem)] font-extrabold leading-[1.02] tracking-[-0.05em]" style={{ fontFamily: displayFont }}>
+          {title}
+        </h1>
+        {body ? <p className="mt-4 max-w-3xl text-[17px] leading-8 text-white/74">{body}</p> : null}
       </Container>
     </section>
   );
@@ -361,20 +451,23 @@ export function HomePage({ onNavigate }: { onNavigate?: (path: string) => void }
   return (
     <>
       <Hero onNavigate={onNavigate} />
-      <section className="border-b border-[#ECEEEC] bg-white py-10 lg:py-14">
+      <TrustStrip />
+      <section className="border-b border-[#E7ECF3] bg-white py-12 lg:py-16">
         <Container>
           <SectionHeading
-            eyebrow="Why Oguntimehin"
-            title="A Lagos buyer who checks before paying"
-            body="We are local, we verify suppliers before money moves, and we keep you updated from quote to delivery."
+            eyebrow="Why OPES"
+            title="A more premium digital identity for a stronger real-world business"
+            body="The site now speaks in a cleaner, more globally competitive tone while still keeping the message practical, credible, and tied to actual work."
           />
           <WhyChooseGrid />
         </Container>
       </section>
       <WhoItsFor />
       <ServicesSection />
+      <SignatureSection />
       <OrderProcess />
       <ProjectsSection />
+      <MediaShowcase />
       <TestimonialsPreview />
       <FaqSection />
       <CtaBanner />
@@ -386,17 +479,11 @@ export function HomePage({ onNavigate }: { onNavigate?: (path: string) => void }
 export function ServicesPage() {
   return (
     <>
-      <section className="bg-[#14181D] py-14 text-white">
-        <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Services</div>
-          <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
-            Procurement and power/energy sourcing for Lagos
-          </h1>
-          <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-white/75">
-            We source generators, solar and inverter equipment, and other goods — and we handle the checking, quoting, and delivery so you are not left guessing.
-          </p>
-        </Container>
-      </section>
+      <InnerHero
+        eyebrow="Services"
+        title="Integrated procurement and energy services under a premium corporate brand"
+        body="OPES now presents its service scope with the level of clarity and confidence expected from a world-class engineering and procurement company."
+      />
       <ServicesSection />
       <WhoItsFor />
       <CtaBanner />
@@ -408,90 +495,83 @@ export function ServiceInformationPage() {
   const points = [
     {
       icon: ShieldCheck,
-      title: "Supplier checks before payment",
-      body: "We confirm the supplier is real and the specification matches what you pay for before any order is placed.",
+      title: "Supplier diligence before commercial commitment",
+      body: "Supplier credibility, product fit, and commercial alignment are reviewed before clients proceed.",
       image: "/media/svc-supplier.jpg",
     },
     {
       icon: Factory,
-      title: "Inspection before it moves",
-      body: "Where possible, items are checked for rating, condition, and completeness before they leave the supplier.",
-      image: "/media/svc-inspection.jpg",
+      title: "Technical and quality review",
+      body: "Equipment condition, configuration, and key details are checked where possible before movement or handover.",
+      image: "/media/recent/inverter-installed.jpeg",
     },
     {
       icon: FileText,
-      title: "Paperwork and clearance",
-      body: "We help with the documentation and clearance steps needed to get equipment to you without avoidable delay.",
-      image: "/media/svc-supplier.jpg",
+      title: "Clear quotations and documented scope",
+      body: "Specifications, supply scope, and commercial details are kept documented so expectations stay aligned.",
+      image: "/media/recent/hybrid-inverter-system-12kva.jpeg",
     },
     {
       icon: Truck,
-      title: "Delivery in Lagos",
-      body: "We coordinate transport to your address or an agreed pickup point, and keep you updated through the process.",
-      image: "/media/svc-delivery.jpg",
+      title: "Delivery and project coordination",
+      body: "OPES manages supply movement and practical logistics planning with communication maintained throughout.",
+      image: "/media/recent/deye-battery-pack-215kwh.jpeg",
     },
   ];
 
   const notes = [
-    "Lead times depend on the item, supplier, and whether inspection or clearance is involved — we give a realistic timeline when we quote.",
-    "Delivery outside Lagos can be arranged depending on the item and location. Confirm with us when you request a quote.",
-    "Installation can be coordinated through trusted technicians; scope and cost are confirmed per job.",
-    "We do not list live stock. Every quote is built around what you actually need.",
+    "Lead time depends on specification, source availability, supplier readiness, and logistics conditions.",
+    "Delivery outside Lagos can be considered based on the project scope and item class.",
+    "Installation support can be coordinated where required; the scope is clarified per project.",
+    "OPES works around actual client needs rather than generic stock-driven proposals.",
   ];
 
   return (
     <>
-      <section className="bg-[#14181D] py-14 text-white">
+      <InnerHero
+        eyebrow="Service information"
+        title="How OPES executes with structure, diligence, and commercial clarity"
+        body="The redesigned service-information experience is built to reassure clients that the process is disciplined and professionally handled."
+      />
+      <section className="border-b border-[#E7ECF3] bg-white py-12 lg:py-16">
         <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Service information</div>
-          <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
-            How sourcing and delivery work
-          </h1>
-          <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-white/75">
-            The same careful process applies whether you need a generator, a solar kit, or a general procurement order.
-          </p>
-        </Container>
-      </section>
-      <section className="border-b border-[#ECEEEC] bg-white py-10 lg:py-14">
-        <Container>
-          <div className="grid gap-4 md:grid-cols-2">
+          <div className="grid gap-5 md:grid-cols-2">
             {points.map((point) => (
-              <div key={point.title} className={`overflow-hidden rounded-[24px] border bg-white shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
-                <div className="relative h-40 overflow-hidden bg-[#14181D]">
+              <SurfaceCard key={point.title} className="overflow-hidden">
+                <div className="relative h-48 overflow-hidden bg-[#091933]">
                   <img
                     src={point.image}
                     alt={point.title}
                     loading="lazy"
                     className="h-full w-full object-cover"
-                    onError={(event) => { (event.currentTarget as HTMLImageElement).style.display = "none"; }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#14181D]/55 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#091933]/65 to-transparent" />
                 </div>
                 <div className="p-6">
                   <div className="flex items-start gap-4">
-                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl" style={{ backgroundColor: "rgba(242,166,12,0.10)" }}>
-                      <point.icon className="h-6 w-6" style={{ color: accent }} />
+                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,rgba(224,162,26,0.14),rgba(36,76,159,0.12))]">
+                      <point.icon className="h-6 w-6 text-[#0D234F]" />
                     </span>
                     <div>
-                      <h3 className="text-lg font-bold tracking-[-0.02em] text-[#14181D]">{point.title}</h3>
-                      <p className="mt-2 text-sm leading-7 text-[#3C4248]">{point.body}</p>
+                      <h3 className="text-lg font-bold tracking-[-0.03em] text-[#0D234F]" style={{ fontFamily: displayFont }}>{point.title}</h3>
+                      <p className="mt-2 text-sm leading-7 text-[#51607B]">{point.body}</p>
                     </div>
                   </div>
                 </div>
-              </div>
+              </SurfaceCard>
             ))}
           </div>
         </Container>
       </section>
-      <section className="border-b border-[#ECEEEC] bg-[#F5F6F4] py-10 lg:py-14">
+      <section className="border-b border-[#E7ECF3] bg-[#F4F6F8] py-12 lg:py-16">
         <Container>
-          <SectionHeading eyebrow="Before you order" title="A few things worth knowing" />
+          <SectionHeading eyebrow="Before you engage" title="A few details that help keep projects smooth" />
           <div className="grid gap-4 sm:grid-cols-2">
             {notes.map((note) => (
-              <div key={note} className={`flex items-start gap-3 rounded-[22px] border bg-white p-5 shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
+              <SurfaceCard key={note} className="flex items-start gap-3 p-5">
                 <AccentCheck />
-                <span className="text-sm leading-7 text-[#3C4248]">{note}</span>
-              </div>
+                <span className="text-sm leading-7 text-[#51607B]">{note}</span>
+              </SurfaceCard>
             ))}
           </div>
         </Container>
@@ -504,14 +584,11 @@ export function ServiceInformationPage() {
 export function HowItWorksPage() {
   return (
     <>
-      <section className="bg-[#14181D] py-14 text-white">
-        <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>How it works</div>
-          <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
-            From your request to delivery in five steps
-          </h1>
-        </Container>
-      </section>
+      <InnerHero
+        eyebrow="How it works"
+        title="A professional process clients can understand at a glance"
+        body="The new layout presents the OPES workflow in a way that feels credible, premium, and easy to follow."
+      />
       <OrderProcess />
       <ServiceInformationPage />
     </>
@@ -521,18 +598,13 @@ export function HowItWorksPage() {
 export function ProjectsPage() {
   return (
     <>
-      <section className="bg-[#14181D] py-14 text-white">
-        <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Recent projects</div>
-          <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
-            Sourcing and power work around Lagos
-          </h1>
-          <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-white/75">
-            Examples of what we have helped source and deliver. We keep claims factual and tied to the work.
-          </p>
-        </Container>
-      </section>
+      <InnerHero
+        eyebrow="Recent projects"
+        title="A stronger project portfolio built from your actual field media"
+        body="The project section now uses your latest installation photos and videos to make the OPES story feel grounded, current, and professional."
+      />
       <ProjectsSection />
+      <MediaShowcase />
       <CtaBanner />
     </>
   );
@@ -541,14 +613,10 @@ export function ProjectsPage() {
 export function TestimonialsPage() {
   return (
     <>
-      <section className="bg-[#14181D] py-14 text-white">
-        <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Reviews</div>
-          <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
-            What customers say
-          </h1>
-        </Container>
-      </section>
+      <InnerHero
+        eyebrow="Brand trust"
+        title="Professional presentation matters because trust starts before the first quote"
+      />
       <TestimonialsPreview />
       <CtaBanner />
     </>
@@ -558,18 +626,12 @@ export function TestimonialsPage() {
 export function WhyChoosePage() {
   return (
     <>
-      <section className="bg-[#14181D] py-14 text-white">
-        <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Why choose us</div>
-          <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
-            A local buyer who checks before paying
-          </h1>
-          <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-white/75">
-            Lagos-based, practical, and straight about cost and timing. Here is what that means day to day.
-          </p>
-        </Container>
-      </section>
-      <section className="border-b border-[#ECEEEC] bg-white py-10 lg:py-14">
+      <InnerHero
+        eyebrow="Why choose us"
+        title="Why OPES should feel more like a premium corporate partner"
+        body="The new design and messaging position the business around trust, execution quality, engineering confidence, and commercial professionalism."
+      />
+      <section className="border-b border-[#E7ECF3] bg-white py-12 lg:py-16">
         <Container>
           <WhyChooseGrid />
         </Container>
@@ -582,14 +644,10 @@ export function WhyChoosePage() {
 export function FaqPage() {
   return (
     <>
-      <section className="bg-[#14181D] py-14 text-white">
-        <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>FAQ</div>
-          <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
-            Answers before you request a quote
-          </h1>
-        </Container>
-      </section>
+      <InnerHero
+        eyebrow="FAQ"
+        title="Common OPES questions answered with clarity"
+      />
       <FaqSection title="The questions we hear most" />
       <CtaBanner />
     </>
@@ -599,17 +657,11 @@ export function FaqPage() {
 export function ContactPage() {
   return (
     <>
-      <section className="bg-[#14181D] py-14 text-white">
-        <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Contact</div>
-          <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
-            Tell us what you need
-          </h1>
-          <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-white/75">
-            Send the item or the load you want to power. We check the supplier and reply with a written quote.
-          </p>
-        </Container>
-      </section>
+      <InnerHero
+        eyebrow="Contact"
+        title="Bring your project, procurement, or energy requirement to OPES"
+        body="The contact experience has been upgraded to feel more corporate, more direct, and easier to trust."
+      />
       <ContactSection />
     </>
   );
@@ -618,21 +670,15 @@ export function ContactPage() {
 export function BlogPage({ onNavigate }: { onNavigate?: (path: string) => void }) {
   return (
     <>
-      <section className="bg-[#14181D] py-14 text-white">
-        <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Blog & guides</div>
-          <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
-            Practical notes on power and procurement in Lagos
-          </h1>
-          <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-white/75">
-            Generator sizing, solar basics, and how to source without overpaying — written for homes and businesses.
-          </p>
-        </Container>
-      </section>
-      <section className="border-b border-[#ECEEEC] bg-[#F5F6F4] py-10 lg:py-14">
+      <InnerHero
+        eyebrow="Insights"
+        title="Practical insight on energy systems, backup power, and smarter procurement"
+        body="The blog now sits inside a more premium content shell that feels aligned with the upgraded OPES brand."
+      />
+      <section className="border-b border-[#E7ECF3] bg-[#F4F6F8] py-12 lg:py-16">
         <Container>
           {blogPosts.length === 0 ? (
-            <p className="text-sm text-[#3C4248]">Guides are being written. Check back soon, or ask us directly on WhatsApp.</p>
+            <p className="text-sm text-[#51607B]">Guides are being prepared. You can still reach OPES directly on WhatsApp for live support.</p>
           ) : (
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {blogPosts.map((post) => (
@@ -643,28 +689,27 @@ export function BlogPage({ onNavigate }: { onNavigate?: (path: string) => void }
                     event.preventDefault();
                     if (onNavigate) onNavigate(`/blog/${post.slug}`);
                   }}
-                  className={`group flex flex-col overflow-hidden rounded-[24px] border bg-white shadow-[0_10px_24px_rgba(20,24,29,0.03)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_40px_rgba(20,24,29,0.06)] ${cardBorder}`}
+                  className="group flex flex-col overflow-hidden rounded-[26px] border border-[#D7DEE9] bg-white shadow-[0_18px_48px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(15,23,42,0.09)]"
                 >
-                  <div className="relative h-40 overflow-hidden bg-[#14181D]">
+                  <div className="relative h-44 overflow-hidden bg-[#091933]">
                     {post.image ? (
                       <img
                         src={post.image}
                         alt={post.title}
                         loading="lazy"
                         className="h-full w-full object-cover"
-                        onError={(event) => { (event.currentTarget as HTMLImageElement).style.display = "none"; }}
                       />
                     ) : null}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#14181D]/55 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#091933]/65 to-transparent" />
                   </div>
                   <div className="p-6">
                     <div className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.14em]" style={{ color: accent }}>
                       <span>{post.category}</span>
                       {post.readTime ? <span className="text-[#9AA1A8]">· {post.readTime}</span> : null}
                     </div>
-                    <h3 className="mt-3 text-lg font-bold leading-snug tracking-[-0.02em] text-[#14181D] group-hover:text-[#F2A60C]">{post.title}</h3>
-                    <p className="mt-2 text-sm leading-7 text-[#3C4248]">{post.excerpt}</p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#14181D]">Read guide <ArrowRight className="h-4 w-4" style={{ color: accent }} /></span>
+                    <h3 className="mt-3 text-xl font-bold leading-snug tracking-[-0.03em] text-[#0D234F] group-hover:text-[#E0A21A]" style={{ fontFamily: displayFont }}>{post.title}</h3>
+                    <p className="mt-2 text-sm leading-7 text-[#51607B]">{post.excerpt}</p>
+                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#0D234F]">Read guide <ArrowRight className="h-4 w-4" style={{ color: accent }} /></span>
                   </div>
                 </a>
               ))}
@@ -681,55 +726,44 @@ export function BlogPostPage({ slug }: { slug: string }) {
 
   if (!post) {
     return (
-      <section className="bg-[#F5F6F4] py-20">
+      <section className="bg-[#F4F6F8] py-20">
         <Container>
-          <h1 className="text-2xl font-bold text-[#14181D]">Guide not found</h1>
-          <p className="mt-3 text-sm text-[#3C4248]">This guide may have been moved. Browse all guides from the blog page.</p>
+          <h1 className="text-2xl font-bold text-[#0D234F]">Guide not found</h1>
+          <p className="mt-3 text-sm text-[#51607B]">This guide may have been moved. Browse all guides from the blog page.</p>
         </Container>
       </section>
     );
   }
 
   return (
-    <article className="bg-[#F5F6F4] py-12 lg:py-16">
+    <article className="bg-[#F4F6F8] py-12 lg:py-16">
       <Container className="max-w-3xl">
         <div className="flex items-center gap-2 text-[11px] font-extrabold uppercase tracking-[0.14em]" style={{ color: accent }}>
           <span>{post.category}</span>
           {post.date ? <span className="text-[#9AA1A8]">· {post.date}</span> : null}
           {post.readTime ? <span className="text-[#9AA1A8]">· {post.readTime}</span> : null}
         </div>
-        <h1 className="mt-3 text-[clamp(2rem,4.5vw,3.2rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-[#14181D]" style={{ fontFamily: "'Sora', sans-serif" }}>
+        <h1 className="mt-3 text-[clamp(2rem,4.5vw,3.2rem)] font-extrabold leading-[1.05] tracking-[-0.04em] text-[#0D234F]" style={{ fontFamily: displayFont }}>
           {post.title}
         </h1>
-        <p className="mt-4 text-lg leading-relaxed text-[#3C4248]">{post.excerpt}</p>
+        <p className="mt-4 text-lg leading-relaxed text-[#51607B]">{post.excerpt}</p>
         {post.image ? (
-          <div className="mt-6 overflow-hidden rounded-[20px] border border-[#E3E7E4] bg-[#14181D]">
+          <div className="mt-6 overflow-hidden rounded-[24px] border border-[#D7DEE9] bg-[#091933]">
             <img
               src={post.image}
               alt={post.title}
               className="h-56 w-full object-cover sm:h-72"
-              onError={(event) => { (event.currentTarget as HTMLImageElement).style.display = "none"; }}
             />
           </div>
         ) : null}
-        <div className="mt-8 space-y-5 text-[17px] leading-8 text-[#2C3138]">
+        <div className="mt-8 space-y-5 text-[17px] leading-8 text-[#30435F]">
           {post.body.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
         </div>
-        <div className="mt-10 flex flex-wrap gap-3 border-t border-[#ECEEEC] pt-6">
-          <a
-            href={createWhatsAppUrl(WA_GREETING)}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
-            style={{ backgroundColor: accent }}
-          >
-            Ask about this on WhatsApp <ArrowRight className="h-4 w-4" />
-          </a>
-          <a href="/blog" className="inline-flex items-center gap-2 rounded-full border border-[#E3E7E4] bg-white px-5 py-3 text-sm font-semibold text-[#14181D]">
-            Back to all guides
-          </a>
+        <div className="mt-10 flex flex-wrap gap-3 border-t border-[#D7DEE9] pt-6">
+          <PrimaryButton href={createWhatsAppUrl(WA_GREETING)}>Ask about this on WhatsApp <ArrowRight className="h-4 w-4" /></PrimaryButton>
+          <SecondaryButton href="/blog">Back to all guides</SecondaryButton>
         </div>
       </Container>
     </article>
@@ -762,20 +796,13 @@ export function PrivacyPage() {
 
   return (
     <>
-      <section className="bg-[#14181D] py-14 text-white">
-        <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Privacy policy</div>
-          <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
-            How we handle your information
-          </h1>
-        </Container>
-      </section>
-      <section className="border-b border-[#ECEEEC] bg-white py-10 lg:py-14">
+      <InnerHero eyebrow="Privacy policy" title="How OPES handles your information" />
+      <section className="border-b border-[#E7ECF3] bg-white py-12 lg:py-16">
         <Container className="max-w-3xl space-y-8">
           {sections.map((section) => (
             <div key={section.heading}>
-              <h2 className="text-xl font-bold tracking-[-0.02em] text-[#14181D]">{section.heading}</h2>
-              <p className="mt-2 text-[17px] leading-8 text-[#3C4248]">{section.body}</p>
+              <h2 className="text-xl font-bold tracking-[-0.03em] text-[#0D234F]" style={{ fontFamily: displayFont }}>{section.heading}</h2>
+              <p className="mt-2 text-[17px] leading-8 text-[#51607B]">{section.body}</p>
             </div>
           ))}
           <p className="text-sm text-[#9AA1A8]">Last updated: {new Date().getFullYear()}. This policy follows NDPR-aligned practices for Nigerian users.</p>
@@ -788,31 +815,24 @@ export function PrivacyPage() {
 export function CookiePolicyPage() {
   return (
     <>
-      <section className="bg-[#14181D] py-14 text-white">
-        <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Cookie policy</div>
-          <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
-            Cookies, pixels, and your consent
-          </h1>
-        </Container>
-      </section>
-      <section className="border-b border-[#ECEEEC] bg-white py-10 lg:py-14">
+      <InnerHero eyebrow="Cookie policy" title="Cookies, analytics, and your consent" />
+      <section className="border-b border-[#E7ECF3] bg-white py-12 lg:py-16">
         <Container className="max-w-3xl space-y-8">
           <div>
-            <h2 className="text-xl font-bold tracking-[-0.02em] text-[#14181D]">What we use</h2>
-            <p className="mt-2 text-[17px] leading-8 text-[#3C4248]">
+            <h2 className="text-xl font-bold tracking-[-0.03em] text-[#0D234F]" style={{ fontFamily: displayFont }}>What we use</h2>
+            <p className="mt-2 text-[17px] leading-8 text-[#51607B]">
               Essential cookies keep the site working. Analytics and marketing cookies (such as GA4, Meta Pixel, or TikTok Pixel if enabled) are loaded only after you accept them.
             </p>
           </div>
           <div>
-            <h2 className="text-xl font-bold tracking-[-0.02em] text-[#14181D]">Your control</h2>
-            <p className="mt-2 text-[17px] leading-8 text-[#3C4248]">
+            <h2 className="text-xl font-bold tracking-[-0.03em] text-[#0D234F]" style={{ fontFamily: displayFont }}>Your control</h2>
+            <p className="mt-2 text-[17px] leading-8 text-[#51607B]">
               The consent banner lets you accept all or reject non-essential cookies. Your choice is stored locally and can be reset by clearing site data.
             </p>
           </div>
           <div>
-            <h2 className="text-xl font-bold tracking-[-0.02em] text-[#14181D]">Disabled by default</h2>
-            <p className="mt-2 text-[17px] leading-8 text-[#3C4248]">
+            <h2 className="text-xl font-bold tracking-[-0.03em] text-[#0D234F]" style={{ fontFamily: displayFont }}>Disabled by default</h2>
+            <p className="mt-2 text-[17px] leading-8 text-[#51607B]">
               No analytics or marketing tags run until you accept them. We keep tracking off unless you opt in.
             </p>
           </div>
@@ -848,43 +868,35 @@ export function CompanyPolicyPage() {
 
   return (
     <>
-      <section className="bg-[#14181D] py-14 text-white">
-        <Container>
-          <div className="text-[11px] font-extrabold uppercase tracking-[0.18em]" style={{ color: accent }}>Company policy</div>
-          <h1 className="mt-3 max-w-3xl text-[clamp(2.2rem,5vw,3.6rem)] font-extrabold leading-[1.04] tracking-[-0.04em]" style={{ fontFamily: "'Sora', sans-serif" }}>
-            How we run orders
-          </h1>
-        </Container>
-      </section>
-      <section className="border-b border-[#ECEEEC] bg-white py-10 lg:py-14">
+      <InnerHero eyebrow="Company policy" title="How OPES approaches orders and project execution" />
+      <section className="border-b border-[#E7ECF3] bg-white py-12 lg:py-16">
         <Container className="max-w-3xl space-y-8">
           {sections.map((section) => (
             <div key={section.heading}>
-              <h2 className="text-xl font-bold tracking-[-0.02em] text-[#14181D]">{section.heading}</h2>
-              <p className="mt-2 text-[17px] leading-8 text-[#3C4248]">{section.body}</p>
+              <h2 className="text-xl font-bold tracking-[-0.03em] text-[#0D234F]" style={{ fontFamily: displayFont }}>{section.heading}</h2>
+              <p className="mt-2 text-[17px] leading-8 text-[#51607B]">{section.body}</p>
             </div>
           ))}
-          <div className={`overflow-hidden rounded-[24px] border bg-white shadow-[0_10px_24px_rgba(20,24,29,0.03)] ${cardBorder}`}>
-            <div className="relative h-44 overflow-hidden bg-[#14181D]">
+          <SurfaceCard className="overflow-hidden">
+            <div className="relative h-52 overflow-hidden bg-[#091933]">
               <img
-                src="/media/policy-office.jpg"
-                alt="Oguntimehin Procurement & Energy Services, Ipaja, Lagos"
+                src="/media/recent/inverter-installed.jpeg"
+                alt="OPES recent project"
                 loading="lazy"
                 className="h-full w-full object-cover"
-                onError={(event) => { (event.currentTarget as HTMLImageElement).style.display = "none"; }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#14181D]/55 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#091933]/65 to-transparent" />
             </div>
             <div className="p-6">
-            <div className="flex items-center gap-3 text-sm font-semibold text-[#14181D]">
+            <div className="flex items-center gap-3 text-sm font-semibold text-[#0D234F]">
               <MapPin className="h-4 w-4" style={{ color: accent }} /> {ADDRESS_LINE_1}, {ADDRESS_LINE_2}
             </div>
-            <div className="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#3C4248]">
+            <div className="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#51607B]">
               <span className="inline-flex items-center gap-2"><Phone className="h-4 w-4" style={{ color: accent }} /> {PHONE_DISPLAY}</span>
               <span className="inline-flex items-center gap-2"><CalendarClock className="h-4 w-4" style={{ color: accent }} /> {HOURS_DISPLAY}{HOURS_NEEDS_VERIFICATION ? " (confirm before visiting)" : ""}</span>
             </div>
             </div>
-          </div>
+          </SurfaceCard>
         </Container>
       </section>
       <CtaBanner />
