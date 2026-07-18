@@ -217,7 +217,7 @@ export function classNames(...values: Array<string | false | undefined>) {
 }
 
 export function Logo() {
-  return <img src="/brand/opes-logo.png" alt="Oguntimehin Procurement & Energy Services logo" className="h-11 w-11 object-contain" />;
+  return <img src="/brand/logo.png" alt="Oguntimehin Procurement & Energy Services logo" className="h-11 w-11 object-contain" />;
 }
 
 export function Container({ className, children }: { className?: string; children: ReactNode }) {
@@ -460,12 +460,12 @@ export function Header({
                             onNavigate(link.href);
                             setActiveDesktopGroup(null);
                           }}
-                          className={classNames(
-                            "block rounded-xl px-3.5 py-2.5 text-sm font-medium transition",
-                            isLinkActive
-                              ? "bg-[#14b8a6]/10 text-[#14b8a6]"
-                              : "text-white/90 hover:bg-[#0e1216] hover:text-\[#14b8a6\]"
-                          )}
+className={classNames(
+                              "block rounded-xl px-3.5 py-2.5 text-sm font-medium transition",
+                              isLinkActive
+                                ? "bg-[#14b8a6]/10 text-[#14b8a6]"
+                                : "text-[#0e1216] hover:bg-[#14b8a6]/10 hover:text-[#14b8a6]"
+                            )}
                         >
                           {link.label}
                         </a>
@@ -515,52 +515,53 @@ export function Header({
               onClick={() => setMenuOpen(false)}
             />
 
-            {menuGroups.map((group) => {
-              const isGroupOpen = activeMobileGroup === group.label;
-              const isGroupActive = group.links.some(
-                (link) => link.href === currentPath || (link.href !== "/" && currentPath.startsWith(link.href))
-              );
+{menuGroups.map((group) => {
+  const isGroupOpen = activeMobileGroup === group.label;
+  const isGroupActive = group.links.some(
+    (link) => link.href === currentPath || (link.href !== "/" && currentPath.startsWith(link.href))
+  );
 
-              return (
-                <div key={group.label} className="border-t border-[#0e1216] pt-2">
-                  <button
-                    type="button"
-                    onClick={() => setActiveMobileGroup(isGroupOpen ? null : group.label)}
-                    className={classNames(
-                      "flex w-full items-center justify-between py-2 text-sm font-semibold transition cursor-pointer text-left bg-transparent border-none outline-none",
-                      isGroupActive ? "text-[#14b8a6]" : "text-white/90 hover:text-\[#14b8a6\]"
-                    )}
-                  >
-                    <span>{group.label}</span>
-                    <ChevronDown className={classNames("h-4 w-4 transition-transform duration-200", isGroupOpen && "rotate-180")} />
-                  </button>
-                  {isGroupOpen ? (
-                    <div className="mt-1 flex flex-col gap-2.5 border-l border-[#1e293b] pl-4 py-1">
-                      {group.links.map((link) => {
-                        const isLinkActive = currentPath === link.href;
-                        return (
-                          <a
-                            key={link.href}
-                            href={link.href}
-                            onClick={(event) => {
-                              event.preventDefault();
-                              onNavigate(link.href);
-                              setMenuOpen(false);
-                            }}
-                            className={classNames(
-                              "block py-1 text-sm font-medium transition",
-                              isLinkActive ? "text-[#14b8a6]" : "text-white/90 hover:text-\[#14b8a6\]"
-                            )}
-                          >
-                            {link.label}
-                          </a>
-                        );
-                      })}
-                    </div>
-                  ) : null}
-                </div>
-              );
-            })}
+  return (
+    <div key={group.label} className="border-t border-[#0e1216] pt-2">
+      <button
+        type="button"
+        onClick={() => setActiveMobileGroup(isGroupOpen ? null : group.label)}
+        className={classNames(
+          "flex w-full items-center justify-between py-2 text-sm font-semibold transition cursor-pointer text-left bg-transparent border-none outline-none",
+          isGroupActive ? "text-[#14b8a6]" : "text-[#0e1216] hover:text-[#14b8a6]"
+        )}
+      >
+        <span>{group.label}</span>
+        <ChevronDown className={classNames("h-4 w-4 transition-transform duration-200", isGroupOpen && "rotate-180")} />
+      </button>
+      {isGroupOpen ? (
+        <div className="mt-1 flex flex-col gap-2.5 border-l border-[#1e293b] pl-4 py-1">
+          {group.links.map((link) => {
+            const isLinkActive = currentPath === link.href;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={(event) => {
+                  event.preventDefault();
+                  onNavigate(link.href);
+                  setMenuOpen(false);
+                }}
+                className={classNames(
+                  "block py-1 text-sm font-medium transition",
+                  isLinkActive ? "text-[#14b8a6]" : "text-[#0e1216] hover:text-[#14b8a6]"
+                )}
+              >
+                {link.label}
+              </a>
+            );
+          })}
+        </div>
+      ) : null}
+    </div>
+  );
+})}
+
 
             <div className="border-t border-[#1e293b] pt-4">
               <SocialLinks />
@@ -1240,6 +1241,8 @@ export function AnnouncementBar({ onNavigate }: { onNavigate: (path: string) => 
     </a>
   );
 }
+
+
 
 
 
